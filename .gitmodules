@@ -1,0 +1,3 @@
+[submodule "jpeda"]
+	path = jpeda
+	url = git@github.com:johnpeck/jpeda

@@ -1,0 +1,15 @@
+* boxcom progress
+* ----------------------- Dated notes ---------------------------
+** <2012-10-07 Sun> Created this project
+* --------------------- Specifications --------------------------
+** Power outputs: +3.3V, +/15V at 100mA
+** Module name programmable with remote command
+** Non-volatile voltage input calibration
+* ------------------------ TODO list ----------------------------
+* DONE A todo item
+* TODO Receive eval232r boards
+** Ordered from Digi-Key on <2012-10-07 Sun>
+   - Scheduled to ship via UPS 3-day
+* TODO Create a schematic part for ft232rl
+** Part has a 3.3V LDO regulator broken out to pin 17.
+   - Can source 50mA.
