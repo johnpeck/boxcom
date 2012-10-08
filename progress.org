@@ -15,3 +15,4 @@
 * TODO Create a schematic part for ft232rl
 ** Part has a 3.3V LDO regulator broken out to pin 17.
    - Can source 50mA.
+* DONE Create a schematic part for keystone 621 bracket
