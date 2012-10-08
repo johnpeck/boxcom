@@ -6,7 +6,9 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
-* DONE A todo item
+* TODO Post to geda-user about gschem issues on apone
+** I'm having trouble selecting text, and text isn't redrawn until I explicitly ask for a redraw.
+   - I wonder if there's a good way to assess the "state" of the geda installation, so that the developers have a beter idea of what I'm working with.
 * TODO Receive eval232r boards
 ** Ordered from Digi-Key on <2012-10-07 Sun>
    - Scheduled to ship via UPS 3-day
