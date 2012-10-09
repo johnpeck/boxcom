@@ -17,3 +17,6 @@
    - Can source 50mA.
 * DONE Create a schematic part for keystone 621 bracket
 * TODO Fix capacitor value for USB power -- make sure Butterfly boots
+* TODO Create a schematic part for trs202e -- rs232 transceiver
+** The TI part is trs202ecd for 16-SOIC parts
+** TODO Use luciani's SOIC-127P-600L1-16N footprint
