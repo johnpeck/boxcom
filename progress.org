@@ -12,7 +12,8 @@
 * TODO Receive eval232r boards
 ** Ordered from Digi-Key on <2012-10-07 Sun>
    - Scheduled to ship via UPS 3-day
-* TODO Create a schematic part for ft232rl
+* DONE Create a schematic part for ft232rl
 ** Part has a 3.3V LDO regulator broken out to pin 17.
    - Can source 50mA.
 * DONE Create a schematic part for keystone 621 bracket
+* TODO Fix capacitor value for USB power -- make sure Butterfly boots
