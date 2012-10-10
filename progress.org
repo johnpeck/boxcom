@@ -9,7 +9,7 @@
 * TODO Post to geda-user about gschem issues on apone
 ** I'm having trouble selecting text, and text isn't redrawn until I explicitly ask for a redraw.
    - I wonder if there's a good way to assess the "state" of the geda installation, so that the developers have a beter idea of what I'm working with.
-* TODO Receive eval232r boards
+* DONE Receive eval232r boards
 ** Ordered from Digi-Key on <2012-10-07 Sun>
    - Scheduled to ship via UPS 3-day
 * DONE Create a schematic part for ft232rl
@@ -17,6 +17,11 @@
    - Can source 50mA.
 * DONE Create a schematic part for keystone 621 bracket
 * TODO Fix capacitor value for USB power -- make sure Butterfly boots
-* TODO Create a schematic part for trs202e -- rs232 transceiver
+* DONE Create a schematic part for trs202e -- rs232 transceiver
 ** The TI part is trs202ecd for 16-SOIC parts
-** TODO Use luciani's SOIC-127P-600L1-16N footprint
+** DONE Use luciani's SOIC-127P-600L1-16N footprint
+* TODO Create schematic parts for eval232 schematic parts
+** TODO 10nF capacitor
+** TODO Ferrite bead
+** TODO 47p capacitor
+** TODO 4.7u capacitor
