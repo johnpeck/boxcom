@@ -21,7 +21,7 @@
 ** The TI part is trs202ecd for 16-SOIC parts
 ** DONE Use luciani's SOIC-127P-600L1-16N footprint
 * TODO Create schematic parts for eval232 schematic parts
-** TODO 10nF capacitor
-** TODO Ferrite bead
-** TODO 47p capacitor
-** TODO 4.7u capacitor
+** DONE 10nF capacitor
+** DONE Ferrite bead
+** DONE 47p capacitor
+** DONE 4.7u capacitor
