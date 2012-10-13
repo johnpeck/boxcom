@@ -16,12 +16,15 @@
 ** Part has a 3.3V LDO regulator broken out to pin 17.
    - Can source 50mA.
 * DONE Create a schematic part for keystone 621 bracket
-* TODO Fix capacitor value for USB power -- make sure Butterfly boots
+* DONE Fix capacitor value for USB power -- make sure Butterfly boots
+  - Replaced the 1uF C402 with 3.3nF
 * DONE Create a schematic part for trs202e -- rs232 transceiver
 ** The TI part is trs202ecd for 16-SOIC parts
 ** DONE Use luciani's SOIC-127P-600L1-16N footprint
-* TODO Create schematic parts for eval232 schematic parts
+* DONE Create schematic parts for eval232 schematic parts
 ** DONE 10nF capacitor
 ** DONE Ferrite bead
 ** DONE 47p capacitor
 ** DONE 4.7u capacitor
+
+* TODO Create makefile for schematics directory

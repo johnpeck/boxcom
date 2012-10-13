@@ -81,17 +81,6 @@ footprint=1206_capacitor.fp
 T 47400 45200 5 10 1 1 0 0 1
 value=1.0u
 }
-C 47700 44000 1 0 0 1u0_x7r_50v_1206_vert.sym
-{
-T 47800 45600 5 10 0 0 0 0 1
-device=capacitor
-T 48200 44600 5 10 1 1 0 0 1
-refdes=C402
-T 47800 45400 5 10 0 0 0 0 1
-footprint=1206_capacitor.fp
-T 48200 44400 5 10 1 1 0 0 1
-value=1.0u
-}
 T 39800 47100 9 10 1 0 0 0 2
 4.75 < Vbus < 5.25
 for high-current USB
@@ -360,3 +349,10 @@ junction-to-ambient tempco of
 T 52300 45400 9 10 1 0 0 0 2
 100mA max output
 limited by USB
+C 47700 44000 1 0 0 3n3_x7r_50v_1206_vert.sym
+{
+T 48200 44600 5 10 1 1 0 0 1
+refdes=C402
+T 48200 44400 5 10 1 1 0 0 1
+value=3.3n
+}
