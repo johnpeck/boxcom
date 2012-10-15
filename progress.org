@@ -28,3 +28,13 @@
 ** DONE 4.7u capacitor
 
 * TODO Create makefile for schematics directory
+* TODO Create schematic page for usbio
+* TODO Add grounded mounting hole to power schematic.
+  - This will be a 4-40 mounting hole with a big "shoulder" for making connections to the chassis.  It should show up in the schematic so a net can be associated with it.
+* TODO Create a named net input in io symbol directory
+* TODO Make geda notes able to be built
+* TODO Create 3-pin mta100 output symbol
+  - Make sure it has a footprint -- don't need a right angle connector for this board.
+  - Have to modify 2pin_mta100_pol.fp for 3 pins.
+* TODO Create the butterfly schematic page
+* TODO Create a mechanical drawing
