@@ -9,6 +9,46 @@
 * TODO Post to geda-user about gschem issues on apone
 ** I'm having trouble selecting text, and text isn't redrawn until I explicitly ask for a redraw.
    - I wonder if there's a good way to assess the "state" of the geda installation, so that the developers have a beter idea of what I'm working with.
+** TODO Uninstall fonts installed during fix
+   - [ ] arkpandora
+   - [ ] artwiz-aleczapka-en
+   - [ ] cheapskatefonts
+   - [ ] corefonts
+   - [X] dejavu
+   - [ ] font-adobe-100dpi
+   - [ ] font-adobe-75dpi
+   - [ ] font-adobe-utopia-100dpi
+   - [ ] font-adobe-utopia-75dpi
+   - [ ] font-adobe-utopia-type1
+   - [ ] font-alias
+   - [ ] font-bh-75dpi
+   - [ ] font-bh-100dpi
+   - [ ] font-bh-lucidatypewriter-100dpi
+   - [ ] font-bh-lucidatypewriter-75dpi
+   - [ ] font-bh-ttf
+   - [ ] font-bh-type1
+   - [ ] font-bitstream-100dpi
+   - [ ] font-bitstream-75dpi
+   - [ ] font-bitstream-speedo
+   - [ ] font-bitstream-type1
+   - [ ] font-cursor-misc
+   - [ ] font-misc-misc
+   - [ ] font-dec-misc
+   - [ ] font-ibm-type1
+   - [ ] font-micro-misc
+   - [ ] font-schumacher-misc
+   - [ ] font-sony-misc
+   - [ ] font-sun-misc
+   - [ ] font-util
+   - [ ] font-xfree86-type1
+   - [X] freefont-ttf
+   - [X] freefonts
+   - [ ] lfpfonts-fix
+   - [ ] lfpfonts-var
+   - [ ] liberation-fonts (this was it!!)
+   - [ ] terminus-font
+   - [ ] ttf-bitstream-vera
+   - [X] urw-fonts
 * DONE Receive eval232r boards
 ** Ordered from Digi-Key on <2012-10-07 Sun>
    - Scheduled to ship via UPS 3-day
