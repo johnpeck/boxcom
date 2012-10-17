@@ -71,7 +71,6 @@
 * TODO Create schematic page for usbio
 * TODO Add grounded mounting hole to power schematic.
   - This will be a 4-40 mounting hole with a big "shoulder" for making connections to the chassis.  It should show up in the schematic so a net can be associated with it.
-* TODO Create a named net input in io symbol directory
 * TODO Make geda notes able to be built
 * TODO Create 3-pin mta100 output symbol
   - Make sure it has a footprint -- don't need a right angle connector for this board.
@@ -79,8 +78,11 @@
 * TODO Create the butterfly schematic page
 * TODO Add standoffs for mounting butterfly to hardware page
 * TODO Add feet for budbox to hardware page
-* TODO Find panel switch for chassis
 * TODO Create a mechanical drawing
 ** DONE Create 3-pin mta100 header drawing
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** TODO Make a drawing of the 20-1 rocker switch
+** TODO Add mounting holes to butterfly drawing in library
+* TODO Work on functional drawing [/]
+** TODO Add current monitor
+* TODO Add makefile to butterfly board schematics
