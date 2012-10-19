@@ -340,10 +340,12 @@ refdes=TP403
 T 51150 48864 5 10 1 1 0 0 1
 label=Vreg
 }
-T 47100 48100 9 10 1 0 0 0 3
+T 47100 48100 9 10 1 0 0 0 5
 lt3080 in SOT-223 package has
 junction-to-ambient tempco of
 55 C/W, 125C max junction temp.
+This allows about 1A for
+5V --> 3.3V
 T 52300 45400 9 10 1 0 0 0 2
 100mA max output
 limited by USB
