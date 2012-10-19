@@ -2,6 +2,11 @@
 * ----------------------- Dated notes ---------------------------
 ** <2012-10-07 Sun> Created this project
 * --------------------- Specifications --------------------------
+** USB board
+*** Four 3.3V power outputs, one of which has current monitoring up to 100mA
+*** 2-pin current monitor output
+*** FTDI USB to UART part, with level translator for RS-232 levels
+*** Switch header for lighted panel rocker switch
 ** Power outputs: +3.3V, +/15V at 100mA
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
