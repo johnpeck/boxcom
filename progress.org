@@ -76,7 +76,7 @@
 
 * DONE Create makefile for schematics directory
 * DONE Create schematic page for usbio
-* TODO Add grounded mounting hole to power schematic.
+* DONE Add grounded mounting hole to power schematic.
   - This will be a 4-40 mounting hole with a big "shoulder" for making connections to the chassis.  It should show up in the schematic so a net can be associated with it
 ** DONE Create fat mounting hole footprint (4_40_mthole_fat.fp)
 * TODO Make geda notes able to be built
@@ -97,9 +97,9 @@
 * TODO Work on functional drawing [/]
 ** TODO Add current monitor
 * TODO Work on makefile for usb board schematics
-** TODO We need an "edit" target to edit all schematic pages
+** DONE We need an "edit" target to edit all schematic pages
 ** TODO We need a "cost" target to calculate bom cost
-** TODO We need a "netlist" target to create the netlist for PCB
+** DONE We need a "netlist" target to create the netlist for PCB
 ** TODO We need a "kit" target to create a kit
 * TODO Work on makefile for butterfly board schematics
 ** TODO Create this makefile

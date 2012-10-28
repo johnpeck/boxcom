@@ -14,6 +14,12 @@ PRINTSCRIPT = print.scm
 # The directory for printed schematics
 PRINTDIR = ./printable
 
+# The layout directory
+LAYOUTDIR = ../layout
+
+# The netlist name
+NETLIST = netlist.net
+
 #------------------------- Done with configuration ---------------------
 
 
@@ -24,7 +30,17 @@ help:
 	@echo 'Usage:                                                                '
 	@echo '   make print           Print schematic pages to PDF                  '
 	@echo '   make edit            Open all schematic pages with gschem          '
+	@echo '   make netlist         Extract netlist from schematics               '
 	@echo '                                                                      '
+
+# Create netlist
+.PHONY: netlist
+netlist : $(LAYOUTDIR)/$(NETLIST)
+
+$(LAYOUTDIR)/$(NETLIST) : $(PAGES)
+	gnetlist -g PCB $^ -o $@
+
+
 
 # Define all postscript files
 PSPAGES = $(PAGES:%.sch=$(PRINTDIR)/%.ps)
