@@ -23,6 +23,7 @@ help:
 	@echo '                                                                      '
 	@echo 'Usage:                                                                '
 	@echo '   make print           Print schematic pages to PDF                  '
+	@echo '   make edit            Open all schematic pages with gschem          '
 	@echo '                                                                      '
 
 # Define all postscript files
@@ -56,4 +57,9 @@ $(PRINTDIR)/%.ps : %.sch
 # The output directory
 $(PRINTDIR):
 	mkdir -p $(PRINTDIR)
+
+# Edit schematics
+.PHONY: edit
+edit:
+	gschem $(PAGES) &
 
