@@ -93,3 +93,5 @@
 * TODO Work on functional drawing [/]
 ** TODO Add current monitor
 * TODO Add makefile to butterfly board schematics
+* TODO Order drill for USB punch
+  - The multi-diameter drill 16-8 should work for this
