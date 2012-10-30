@@ -79,8 +79,6 @@
 * DONE Add grounded mounting hole to power schematic.
   - This will be a 4-40 mounting hole with a big "shoulder" for making connections to the chassis.  It should show up in the schematic so a net can be associated with it
 ** DONE Create fat mounting hole footprint (4_40_mthole_fat.fp)
-* TODO Make geda notes able to be built
-** TODO Find the \mfgpart command from some other project, or just redefine it.
 * DONE Create 3-pin mta100 output symbol
   - Make sure it has a footprint -- don't need a right angle connector for this board.
   - Have to modify 2pin_mta100_pol.fp for 3 pins.
