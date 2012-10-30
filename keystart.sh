@@ -3,6 +3,10 @@
 #
 # Starts a keychain for the current shell
 #
+# This script acts differently between Ubuntu and Cygwin bash shells.
+# With Cygwin, I have to run the script with:
+# source keystart.sh
+#
 # Usage: keystart.sh
 set -e # bash should exit the script if any statement returns a non-true 
        #return value
@@ -18,3 +22,4 @@ fi
 
 keychain ~/.ssh/id_rsa
 source ~/.keychain/$HOSTNAME-sh
+
