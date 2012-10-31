@@ -104,3 +104,6 @@
 * TODO Improve serial link circuitry [/]
 ** TODO Test points for Rx and Tx lines
 ** TODO Source resistor for Tx (look at Butterfly's source resistor)
+* TODO Add lt6106 part
+* TODO Duplicate regulator page for use with current monitor
+* TODO Current monitor goes on a separate page.
