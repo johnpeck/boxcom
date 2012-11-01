@@ -6,7 +6,8 @@ BOARDNAME = usb_board
 # Schematic pages in the order you'd like them arranged in the pdf output
 PAGES = contents.sch \
 	usbio.sch \
-	power.sch
+	power.sch \
+	hardware.sch
 
 # The Guile script to run in order to print schematics
 PRINTSCRIPT = print.scm

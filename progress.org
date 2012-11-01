@@ -86,8 +86,8 @@
   - The Butterfly is its own board.
 * TODO Add standoffs for mounting butterfly to hardware page
   - These will go on the butterfly board schematics
-* TODO Add feet for budbox to hardware page
-* TODO Create a mechanical drawing
+* DONE Add feet for budbox to hardware page
+* TODO Work on mechanical drawing
 ** DONE Create 3-pin mta100 header drawing
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** TODO Make a drawing of the 20-1 rocker switch
