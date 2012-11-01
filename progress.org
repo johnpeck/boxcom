@@ -108,3 +108,4 @@
 * TODO Add lt6106 part
 * TODO Duplicate regulator page for use with current monitor
 * TODO Current monitor goes on a separate page.
+* TODO Add passives around trs202 rs-232 transceiver

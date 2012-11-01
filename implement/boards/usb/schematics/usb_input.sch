@@ -1,0 +1,93 @@
+v 20110115 2
+C 39200 39200 0 0 0 title-bordered-B.sym
+T 51200 40300 9 20 1 0 0 0 1
+USB input
+T 49400 39500 9 10 1 0 0 0 1
+4
+T 51000 39500 9 10 1 0 0 0 1
+5
+T 49700 39800 9 10 1 0 0 0 1
+usb_input.sch
+T 53000 39500 9 10 1 0 0 0 1
+John Peck
+C 39600 44800 1 0 0 usb_big_typeb.sym
+{
+T 39700 46800 5 10 1 1 0 0 1
+refdes=J400
+T 39700 47995 5 10 0 0 0 0 1
+device=connector
+T 39700 47795 5 10 0 0 0 0 1
+footprint=usb_typeb_big.fp
+}
+T 39600 47100 9 10 1 0 0 0 2
+4.75 < Vbus < 5.25
+for high-current USB
+C 46800 47200 1 0 0 testpoint.sym
+{
+T 46800 48350 5 10 0 0 0 0 1
+footprint=testpoint.fp
+T 46800 48550 5 10 0 0 0 0 1
+device=connector
+T 46800 47950 5 10 0 0 0 0 1
+value=red
+T 47050 47750 5 10 1 1 0 0 1
+refdes=TP400
+T 47050 47564 5 10 1 1 0 0 1
+label=Vbus
+}
+C 40300 44000 1 0 0 gnd_bus.sym
+N 40500 44800 40500 44400 4
+N 41800 45600 41800 44600 4
+N 40500 44600 46700 44600 4
+T 39600 47700 9 10 1 0 0 0 3
+USB 2 can draw 100mA
+before it needs to be
+configured by a host.
+T 53000 39800 9 10 1 0 0 0 1
+B
+C 45100 46700 1 0 0 bead_50ohm_6a_1206.sym
+{
+T 45700 47200 5 10 1 1 0 0 1
+refdes=FB400
+T 45100 46700 5 10 1 1 0 0 1
+value=50ohm at 100MHz
+}
+C 46500 45000 1 0 0 10n_x7r_50v_1206_vert.sym
+{
+T 47000 45600 5 10 1 1 0 0 1
+refdes=C403
+T 47000 45400 5 10 1 1 0 0 1
+value=10n
+}
+N 46700 45000 46700 44600 4
+N 46700 46100 46700 47000 4
+T 40300 43500 9 10 1 0 0 0 2
+"bus" ground will be connected
+to the chassis.
+N 46900 47200 46900 47000 4
+N 41800 46500 41800 47000 4
+N 41800 47000 45200 47000 4
+C 45100 46200 1 0 0 netname_out.sym
+{
+T 45400 46200 5 10 1 1 0 0 1
+net=Dminus:1
+}
+N 41800 46200 45100 46200 4
+C 45100 45900 1 0 0 netname_out.sym
+{
+T 45400 45900 5 10 1 1 0 0 1
+net=Dplus:1
+}
+N 41800 45900 45100 45900 4
+C 40800 42900 1 0 0 4_40_mthole_fat.sym
+{
+T 41600 42900 5 10 1 1 0 0 1
+value=4-40 fat
+T 41600 43100 5 10 1 1 0 0 1
+refdes=HOLE400
+}
+C 40300 42500 1 0 0 gnd_bus.sym
+N 40800 43100 40500 43100 4
+N 40500 43100 40500 42900 4
+T 42400 47200 9 10 1 0 0 0 1
+TODO: insert switch here

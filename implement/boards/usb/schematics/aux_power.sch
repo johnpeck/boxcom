@@ -1,0 +1,307 @@
+v 20110115 2
+C 39200 39200 0 0 0 title-bordered-B.sym
+T 50800 40300 9 20 1 0 0 0 1
+Auxiliary power
+T 49400 39500 9 10 1 0 0 0 1
+4
+T 51000 39500 9 10 1 0 0 0 1
+5
+T 49900 39800 9 10 1 0 0 0 1
+aux_power.sch
+T 53000 39500 9 10 1 0 0 0 1
+John Peck
+C 48900 44800 1 0 0 2200n_x7r_50v_1206_vert.sym
+{
+T 49000 46200 5 10 0 0 0 0 1
+footprint=1206_capacitor.fp
+T 49000 46400 5 10 0 0 0 0 1
+device=capacitor
+T 49400 45200 5 10 1 1 0 0 1
+value=2.2u
+T 49400 45400 5 10 1 1 0 0 1
+refdes=C401
+}
+N 47800 46300 49100 46300 4
+N 46900 45400 46900 45100 4
+N 46000 45100 46000 45200 4
+N 46000 45200 46900 45200 4
+N 45200 43800 49100 43800 4
+N 49100 43800 49100 44800 4
+N 46000 44000 46000 43800 4
+N 46900 43900 46900 43800 4
+N 45200 43200 45200 44800 4
+N 44900 46300 46000 46300 4
+C 51500 48700 1 0 0 3v3_pos.sym
+N 48000 45900 48000 46300 4
+N 48000 44700 48000 43800 4
+C 46000 45400 1 0 0 lt3080est.sym
+{
+T 45995 47195 5 10 0 0 0 0 1
+footprint=sot_223.fp
+T 45995 47395 5 10 0 0 0 0 1
+device=regulator
+T 46295 46595 5 10 1 1 0 0 1
+value=lt3080est
+T 46295 46795 5 10 1 1 0 0 1
+refdes=U400
+}
+N 47800 46000 48000 46000 4
+T 46200 43500 9 10 1 0 0 0 1
+Vout = Rset x 10uA
+T 47100 42800 9 10 1 0 0 0 3
+Minimum load current for lt3080
+is 1mA (maximum).  Choose Rlmin
+to flow this current.
+T 51300 47000 9 10 1 0 0 0 4
+The AVR Butterfly board requires
+3.1V <= Vcc <= 4.5V, though the
+ATmega169PA can run on
+1.8V <= Vcc <= 5.5V.
+T 46300 47200 9 10 1 0 0 0 3
+lt3080 has a dropout
+voltage of 1.2V with
+100mA load.
+C 45000 44800 1 0 0 1u0_x7r_50v_1206_vert.sym
+{
+T 45100 46400 5 10 0 0 0 0 1
+device=capacitor
+T 45500 45400 5 10 1 1 0 0 1
+refdes=C400
+T 45100 46200 5 10 0 0 0 0 1
+footprint=1206_capacitor.fp
+T 45500 45200 5 10 1 1 0 0 1
+value=1.0u
+}
+C 52500 48500 1 0 0 testpoint.sym
+{
+T 52500 49650 5 10 0 0 0 0 1
+footprint=testpoint.fp
+T 52500 49850 5 10 0 0 0 0 1
+device=connector
+T 52500 49250 5 10 0 0 0 0 1
+value=red
+T 52750 49050 5 10 1 1 0 0 1
+refdes=TP401
+T 52750 48864 5 10 1 1 0 0 1
+label=+3.3V
+}
+N 49100 46500 50400 46500 4
+T 47100 44200 9 10 1 0 0 0 1
+Rset
+T 48200 45000 9 10 1 0 0 0 1
+Rlmin
+C 45000 42800 1 0 0 gnd_ana.sym
+C 45200 40400 1 0 0 gnd_ana.sym
+N 45400 40800 45400 41100 4
+C 42700 43700 1 0 0 led_green_1206_vert.sym
+{
+T 42800 45400 5 10 0 0 0 0 1
+device=led
+T 42800 45200 5 10 0 0 0 0 1
+footprint=1206_led.fp
+T 43300 44100 5 10 1 1 180 8 1
+value=green
+T 43300 44300 5 10 1 1 180 8 1
+refdes=D400
+}
+C 42800 45000 1 0 0 180r_1206_vert.sym
+{
+T 42800 46700 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 42800 46900 5 10 0 0 0 0 1
+device=resistor
+T 43100 45500 5 10 1 1 0 0 1
+value=180
+T 43100 45700 5 10 1 1 0 0 1
+refdes=R402
+}
+C 42700 47100 1 0 0 vbus.sym
+C 42700 42800 1 0 0 gnd_bus.sym
+N 45200 45900 45200 46300 4
+N 44900 43400 45200 43400 4
+N 42900 43700 42900 43200 4
+N 43700 43400 42900 43400 4
+N 42900 45000 42900 44800 4
+N 42900 47100 42900 46200 4
+N 43700 46300 42900 46300 4
+C 47900 44700 1 0 0 3k30_1206_vert.sym
+{
+T 47900 46400 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 47900 46600 5 10 0 0 0 0 1
+device=resistor
+T 48200 45200 5 10 1 1 0 0 1
+value=3.3k
+T 48200 45400 5 10 1 1 0 0 1
+refdes=R403
+}
+C 46800 43900 1 0 0 330k_1206_vert.sym
+{
+T 46800 45600 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 46800 45800 5 10 0 0 0 0 1
+device=resistor
+T 47100 44400 5 10 1 1 0 0 1
+value=330k
+T 47100 44600 5 10 1 1 0 0 1
+refdes=R405
+}
+C 45300 41100 1 0 0 testpoint_big.sym
+{
+T 45300 42250 5 10 0 0 0 0 1
+footprint=testpoint_big.fp
+T 45300 42450 5 10 0 0 0 0 1
+device=connector
+T 45300 41850 5 10 0 0 0 0 1
+value=white
+T 45550 41650 5 10 1 1 0 0 1
+refdes=TP402
+T 45550 41464 5 10 1 1 0 0 1
+label=0V_ana
+}
+C 52300 45800 1 0 0 2pin_mta100_header_out.sym
+{
+T 52300 47100 5 10 0 0 0 0 1
+footprint=2pin_mta100_pol.fp
+T 52300 47300 5 10 0 0 0 0 1
+device=connector
+T 52600 45800 5 10 1 1 0 0 1
+value=mta100
+T 52600 46700 5 10 1 1 0 0 1
+refdes=J401
+}
+C 52100 45200 1 0 0 gnd_ana.sym
+N 51600 46500 52300 46500 4
+N 52300 46100 52300 45600 4
+C 52300 43800 1 0 0 2pin_mta100_header_out.sym
+{
+T 52300 45100 5 10 0 0 0 0 1
+footprint=2pin_mta100_pol.fp
+T 52300 45300 5 10 0 0 0 0 1
+device=connector
+T 52600 43800 5 10 1 1 0 0 1
+value=mta100
+T 52600 44700 5 10 1 1 0 0 1
+refdes=J402
+}
+C 52100 43300 1 0 0 gnd_ana.sym
+N 52300 44100 52300 43700 4
+N 51600 44500 52300 44500 4
+N 50100 42500 50100 46500 4
+N 50100 44500 50400 44500 4
+T 53000 39800 9 10 1 0 0 0 1
+B
+C 49600 46200 1 0 0 0m_1206_horz.sym
+{
+T 49600 47700 5 10 0 0 0 0 1
+device=resistor
+T 50900 46700 5 10 1 1 0 0 1
+refdes=R400
+T 49600 47500 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 50900 46200 5 10 1 1 0 0 1
+value=0.0
+}
+C 49600 44200 1 0 0 0m_1206_horz.sym
+{
+T 49600 45700 5 10 0 0 0 0 1
+device=resistor
+T 50900 44700 5 10 1 1 0 0 1
+refdes=R404
+T 49600 45500 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 50900 44200 5 10 1 1 0 0 1
+value=0.0
+}
+C 42900 46000 1 0 0 0m_1206_horz.sym
+{
+T 42900 47500 5 10 0 0 0 0 1
+device=resistor
+T 44200 46500 5 10 1 1 0 0 1
+refdes=R401
+T 42900 47300 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 44200 46000 5 10 1 1 0 0 1
+value=0.0
+}
+C 42900 43100 1 0 0 0m_1206_horz.sym
+{
+T 42900 44600 5 10 0 0 0 0 1
+device=resistor
+T 44200 43600 5 10 1 1 0 0 1
+refdes=R406
+T 42900 44400 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 44200 43100 5 10 1 1 0 0 1
+value=0.0
+}
+N 49100 45900 49100 48500 4
+C 49600 48200 1 0 0 0m_1206_horz.sym
+{
+T 49600 49700 5 10 0 0 0 0 1
+device=resistor
+T 50800 48700 5 10 1 1 0 0 1
+refdes=R407
+T 49600 49500 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 50900 48200 5 10 1 1 0 0 1
+value=0.0
+}
+N 49100 48500 50400 48500 4
+N 51600 48500 52600 48500 4
+N 51900 48700 51900 48500 4
+C 49000 48500 1 0 0 testpoint.sym
+{
+T 49000 49650 5 10 0 0 0 0 1
+footprint=testpoint.fp
+T 49000 49850 5 10 0 0 0 0 1
+device=connector
+T 49000 49250 5 10 0 0 0 0 1
+value=red
+T 49250 49050 5 10 1 1 0 0 1
+refdes=TP403
+T 49250 48864 5 10 1 1 0 0 1
+label=Vreg
+}
+T 45200 48100 9 10 1 0 0 0 5
+lt3080 in SOT-223 package has
+junction-to-ambient tempco of
+55 C/W, 125C max junction temp.
+This allows about 1A for
+5V --> 3.3V
+T 50400 45400 9 10 1 0 0 0 2
+100mA max output
+limited by USB
+C 45800 44000 1 0 0 3n3_x7r_50v_1206_vert.sym
+{
+T 46300 44600 5 10 1 1 0 0 1
+refdes=C402
+T 46300 44400 5 10 1 1 0 0 1
+value=3.3n
+}
+C 52300 41800 1 0 0 2pin_mta100_header_out.sym
+{
+T 52300 43100 5 10 0 0 0 0 1
+footprint=2pin_mta100_pol.fp
+T 52300 43300 5 10 0 0 0 0 1
+device=connector
+T 52600 41800 5 10 1 1 0 0 1
+value=mta100
+T 52600 42700 5 10 1 1 0 0 1
+refdes=J402
+}
+C 52100 41300 1 0 0 gnd_ana.sym
+N 52300 42100 52300 41700 4
+N 51600 42500 52300 42500 4
+N 50100 42500 50400 42500 4
+C 49600 42200 1 0 0 0m_1206_horz.sym
+{
+T 49600 43700 5 10 0 0 0 0 1
+device=resistor
+T 50900 42700 5 10 1 1 0 0 1
+refdes=R404
+T 49600 43500 5 10 0 0 0 0 1
+footprint=1206_resistor.fp
+T 50900 42200 5 10 1 1 0 0 1
+value=0.0
+}

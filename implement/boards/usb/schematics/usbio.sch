@@ -98,3 +98,6 @@ value=mta100
 T 54700 47500 5 10 1 1 0 0 1
 refdes=J?
 }
+T 53400 45700 9 10 1 0 0 0 2
+trs202 receiver inputs
+terminated in 5k
