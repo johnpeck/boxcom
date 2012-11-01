@@ -20,6 +20,6 @@ then
   exit $E_BADARGS
 fi
 
-keychain ~/.ssh/id_rsa
+keychain --stop others ~/.ssh/id_rsa
 source ~/.keychain/$HOSTNAME-sh
 

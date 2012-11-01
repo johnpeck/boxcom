@@ -84,6 +84,9 @@
   - Have to modify 2pin_mta100_pol.fp for 3 pins.
 * DONE Create the butterfly board schematic pages
   - The Butterfly is its own board.
+* TODO Work on functional drawing [1/2]
+** DONE Add current monitor
+** TODO Use functional drawing to name schematic pages
 * TODO Add standoffs for mounting butterfly to hardware page
   - These will go on the butterfly board schematics
 * DONE Add feet for budbox to hardware page
@@ -92,8 +95,6 @@
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** TODO Make a drawing of the 20-1 rocker switch
 ** TODO Add mounting holes to butterfly drawing in library
-* TODO Work on functional drawing [/]
-** TODO Add current monitor
 * TODO Work on makefile for usb board schematics
 ** DONE We need an "edit" target to edit all schematic pages
 ** TODO We need a "cost" target to calculate bom cost
