@@ -7,6 +7,7 @@ BOARDNAME = usb_board
 PAGES = contents.sch \
 	usb_input.sch \
 	usbio.sch \
+	rs232io.sch \
 	aux_power.sch \
 	current_monitor.sch \
 	monitored_power.sch \
