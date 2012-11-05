@@ -90,16 +90,17 @@
 ** TODO We need a "cost" target to calculate bom cost
 ** DONE We need a "netlist" target to create the netlist for PCB
 ** TODO We need a "kit" target to create a kit
-* TODO Work on makefile for butterfly board schematics
-** TODO Create this makefile
-* TODO Improve serial link circuitry [0/2]
-** TODO Test points for Rx and Tx lines
-** TODO Source resistor for Tx (look at Butterfly's source resistor)
+* TODO Work on makefile for butterfly board schematics [1/1]
+** DONE Create this makefile
+* DONE Improve serial link circuitry [2/2]
+** DONE Test points for Rx and Tx lines
+** DONE Source resistor for Tx (look at Butterfly's source resistor)
+   - Looks like the Butterfly uses a 4.7k RxD termination
 * DONE Add lt6106 part
 * TODO Add passives around trs202 rs-232 transceiver
 * TODO Add budbox to hardware page for usb
 * TODO Add notes about using punch for USB jack on USB page
-* TODO Add standoffs for mounting butterfly to hardware page
+* DONE Add standoffs for mounting butterfly to hardware page
   - These will go on the butterfly board schematics
 * TODO Work on functional drawing [1/2]
   - Functional drawing is [[file:implement/drawings/functional.fig][here]].

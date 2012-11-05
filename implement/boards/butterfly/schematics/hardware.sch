@@ -1,28 +1,28 @@
 v 20110115 2
-C 56500 54600 1 0 0 2pin_mta100_white_recept.sym
+C 52800 54500 1 0 0 2pin_mta100_white_recept.sym
 {
-T 56900 55300 5 10 1 1 0 0 1
+T 53200 55200 5 10 1 1 0 0 1
 refdes=MECH11
-T 56500 55650 5 10 0 0 0 0 1
+T 52800 55550 5 10 0 0 0 0 1
 device=connector
-T 56900 55100 5 10 1 1 0 0 1
+T 53200 55000 5 10 1 1 0 0 1
 value=mta100
-T 56900 54900 5 10 1 1 0 0 1
+T 53200 54800 5 10 1 1 0 0 1
 description=2-pin, white
-T 56900 54700 5 10 1 1 0 0 1
+T 53200 54600 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
-C 56500 53500 1 0 0 2pin_mta100_white_recept.sym
+C 52800 53400 1 0 0 2pin_mta100_white_recept.sym
 {
-T 56900 54200 5 10 1 1 0 0 1
+T 53200 54100 5 10 1 1 0 0 1
 refdes=MECH13
-T 56500 54550 5 10 0 0 0 0 1
+T 52800 54450 5 10 0 0 0 0 1
 device=connector
-T 56900 54000 5 10 1 1 0 0 1
+T 53200 53900 5 10 1 1 0 0 1
 value=mta100
-T 56900 53800 5 10 1 1 0 0 1
+T 53200 53700 5 10 1 1 0 0 1
 description=2-pin, white
-T 56900 53600 5 10 1 1 0 0 1
+T 53200 53500 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
 C 57100 58100 1 0 0 6pin_avr_isp.sym
@@ -70,30 +70,30 @@ hardware.sch
 T 54800 60700 9 10 1 0 0 0 2
 AVR Butterfly requires
 3.1V <= Vcc <= 4.5V
-C 49900 55300 1 0 0 3pin_mta100_header_in_ra.sym
+C 50200 57000 1 0 0 3pin_mta100_header_in_ra.sym
 {
-T 49900 57300 5 10 0 0 0 0 1
+T 50200 59000 5 10 0 0 0 0 1
 footprint=2pin_mta100_pol_ra.fp
-T 49900 57500 5 10 0 0 0 0 1
+T 50200 59200 5 10 0 0 0 0 1
 device=connector
-T 49900 55500 5 10 1 1 0 0 1
+T 50200 57200 5 10 1 1 0 0 1
 value=mta100
-T 49900 56800 5 10 1 1 0 0 1
+T 50200 58500 5 10 1 1 0 0 1
 refdes=J1
-T 49900 55300 5 10 1 1 0 0 1
+T 50200 57000 5 10 1 1 0 0 1
 comment=Right angle
 }
-C 47700 55700 1 0 0 3pin_mta100_white_recept.sym
+C 48000 57400 1 0 0 3pin_mta100_white_recept.sym
 {
-T 48100 56400 5 10 1 1 0 0 1
+T 48400 58100 5 10 1 1 0 0 1
 refdes=MECH6
-T 47700 56750 5 10 0 0 0 0 1
+T 48000 58450 5 10 0 0 0 0 1
 device=connector
-T 48100 56200 5 10 1 1 0 0 1
+T 48400 57900 5 10 1 1 0 0 1
 value=mta100
-T 48100 56000 5 10 1 1 0 0 1
+T 48400 57700 5 10 1 1 0 0 1
 description=3-pin, white
-T 48100 55800 5 10 1 1 0 0 1
+T 48400 57500 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
 C 54900 58400 1 0 0 avr_butterfly.sym
@@ -132,7 +132,7 @@ refdes=R?
 T 59800 55100 5 10 1 1 0 0 1
 value=130
 }
-T 56500 53100 9 10 1 0 0 0 1
+T 52800 53000 9 10 1 0 0 0 1
 Power cable
 C 60500 56200 1 0 0 led_red_t1_vert.sym
 {
@@ -150,77 +150,77 @@ value=130
 }
 T 59600 54100 9 10 1 0 0 0 1
 Debug blinkers
-C 54500 56100 1 0 0 2pin_mta100_white_recept.sym
+C 48400 53600 1 0 0 2pin_mta100_white_recept.sym
 {
-T 54900 56800 5 10 1 1 0 0 1
+T 48800 54300 5 10 1 1 0 0 1
 refdes=MECH11
-T 54500 57150 5 10 0 0 0 0 1
+T 48400 54650 5 10 0 0 0 0 1
 device=connector
-T 54900 56600 5 10 1 1 0 0 1
+T 48800 54100 5 10 1 1 0 0 1
 value=mta100
-T 54900 56400 5 10 1 1 0 0 1
+T 48800 53900 5 10 1 1 0 0 1
 description=2-pin, white
-T 54900 56200 5 10 1 1 0 0 1
+T 48800 53700 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
-C 54500 55000 1 0 0 2pin_mta100_white_recept.sym
+C 48400 52500 1 0 0 2pin_mta100_white_recept.sym
 {
-T 54900 55700 5 10 1 1 0 0 1
+T 48800 53200 5 10 1 1 0 0 1
 refdes=MECH13
-T 54500 56050 5 10 0 0 0 0 1
+T 48400 53550 5 10 0 0 0 0 1
 device=connector
-T 54900 55500 5 10 1 1 0 0 1
+T 48800 53000 5 10 1 1 0 0 1
 value=mta100
-T 54900 55300 5 10 1 1 0 0 1
+T 48800 52800 5 10 1 1 0 0 1
 description=2-pin, white
-T 54900 55100 5 10 1 1 0 0 1
+T 48800 52600 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
-C 54500 57200 1 0 0 2pin_mta100_header_in.sym
+C 48400 54700 1 0 0 2pin_mta100_header_in.sym
 {
-T 54500 57200 5 10 1 1 0 0 1
+T 48400 54700 5 10 1 1 0 0 1
 value=mta100
-T 54500 58100 5 10 1 1 0 0 1
+T 48400 55600 5 10 1 1 0 0 1
 refdes=J?
 }
-T 54500 54600 9 10 1 0 0 0 1
+T 48400 52100 9 10 1 0 0 0 1
 Tone modulation cable
-C 52300 56100 1 0 0 2pin_mta100_white_recept.sym
+C 46000 53700 1 0 0 2pin_mta100_white_recept.sym
 {
-T 52700 56800 5 10 1 1 0 0 1
+T 46400 54400 5 10 1 1 0 0 1
 refdes=MECH11
-T 52300 57150 5 10 0 0 0 0 1
+T 46000 54750 5 10 0 0 0 0 1
 device=connector
-T 52700 56600 5 10 1 1 0 0 1
+T 46400 54200 5 10 1 1 0 0 1
 value=mta100
-T 52700 56400 5 10 1 1 0 0 1
+T 46400 54000 5 10 1 1 0 0 1
 description=2-pin, white
-T 52700 56200 5 10 1 1 0 0 1
+T 46400 53800 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
-C 52300 55000 1 0 0 2pin_mta100_white_recept.sym
+C 46000 52600 1 0 0 2pin_mta100_white_recept.sym
 {
-T 52700 55700 5 10 1 1 0 0 1
+T 46400 53300 5 10 1 1 0 0 1
 refdes=MECH13
-T 52300 56050 5 10 0 0 0 0 1
+T 46000 53650 5 10 0 0 0 0 1
 device=connector
-T 52700 55500 5 10 1 1 0 0 1
+T 46400 53100 5 10 1 1 0 0 1
 value=mta100
-T 52700 55300 5 10 1 1 0 0 1
+T 46400 52900 5 10 1 1 0 0 1
 description=2-pin, white
-T 52700 55100 5 10 1 1 0 0 1
+T 46400 52700 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
-C 52300 57200 1 0 0 2pin_mta100_header_in.sym
+C 46000 54800 1 0 0 2pin_mta100_header_in.sym
 {
-T 52300 57200 5 10 1 1 0 0 1
+T 46000 54800 5 10 1 1 0 0 1
 value=mta100
-T 52300 58100 5 10 1 1 0 0 1
+T 46000 55700 5 10 1 1 0 0 1
 refdes=J?
 }
-T 52300 54600 9 10 1 0 0 0 1
+T 46000 52200 9 10 1 0 0 0 1
 Tone pulse cable
-T 48200 54900 9 10 1 0 0 0 1
+T 48100 56700 9 10 1 0 0 0 1
 RS232 cable
 C 48900 59400 1 0 0 2pin_mta100_white_recept.sym
 {
@@ -235,34 +235,48 @@ description=2-pin, white
 T 49300 59500 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
-C 45600 55700 1 0 0 3pin_mta100_white_recept.sym
+C 45900 57400 1 0 0 3pin_mta100_white_recept.sym
 {
-T 46000 56400 5 10 1 1 0 0 1
+T 46300 58100 5 10 1 1 0 0 1
 refdes=MECH6
-T 45600 56750 5 10 0 0 0 0 1
+T 45900 58450 5 10 0 0 0 0 1
 device=connector
-T 46000 56200 5 10 1 1 0 0 1
+T 46300 57900 5 10 1 1 0 0 1
 value=mta100
-T 46000 56000 5 10 1 1 0 0 1
+T 46300 57700 5 10 1 1 0 0 1
 description=3-pin, white
-T 46000 55800 5 10 1 1 0 0 1
+T 46300 57500 5 10 1 1 0 0 1
 comment=24-guage stranded
 }
-C 56500 56300 1 0 0 2pin_mta100_header_in.sym
+C 52700 55700 1 0 0 2pin_mta100_header_in.sym
 {
-T 56500 57700 5 10 0 0 0 0 1
+T 52700 57100 5 10 0 0 0 0 1
 footprint=2pin_mta100_pol.fp
-T 56500 57900 5 10 0 0 0 0 1
+T 52700 57300 5 10 0 0 0 0 1
 device=connector
-T 56500 56300 5 10 1 1 0 0 1
+T 52700 55700 5 10 1 1 0 0 1
 value=mta100
-T 56500 57200 5 10 1 1 0 0 1
+T 52700 56600 5 10 1 1 0 0 1
 refdes=J403
 }
-T 57400 56900 9 10 1 0 0 0 1
+T 53600 56300 9 10 1 0 0 0 1
 J401:10
-T 57400 56500 9 10 1 0 0 0 1
+T 53600 55900 9 10 1 0 0 0 1
 J401:9
-T 56500 57500 9 10 1 0 0 0 2
+T 52700 56900 9 10 1 0 0 0 2
 Solder connector to make Vcc_ext
 connection on Butterfly board.
+C 57900 60600 1 0 0 4_40x1_2_female_hex_standoff.sym
+{
+T 58400 60800 5 10 1 1 0 0 1
+value=4-40 x 1/2 female hex
+T 58400 61000 5 10 1 1 0 0 1
+refdes=MECH?
+}
+C 57900 59700 1 0 0 4_40x1_2_female_hex_standoff.sym
+{
+T 58400 59900 5 10 1 1 0 0 1
+value=4-40 x 1/2 female hex
+T 58400 60100 5 10 1 1 0 0 1
+refdes=MECH?
+}
