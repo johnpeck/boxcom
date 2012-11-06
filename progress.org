@@ -85,11 +85,11 @@
 * DONE Create the butterfly board schematic pages
   - The Butterfly is its own board.
 * DONE Add feet for budbox to hardware page
-* TODO Work on makefile for usb board schematics [3/5]
+* TODO Work on makefile for usb board schematics [4/5]
 ** DONE kitgen must take the list of schematics from standard input
    - This is the way to use it with a makefile.
 ** TODO We need a "cost" target to calculate bom cost
-** TODO We need a "kit" target to create a kit
+** DONE We need a "kit" target to create a kit
 ** DONE We need an "edit" target to edit all schematic pages
 ** DONE We need a "netlist" target to create the netlist for PCB
 * TODO Work on makefile for butterfly board schematics [1/1]
