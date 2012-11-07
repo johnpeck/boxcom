@@ -7,6 +7,7 @@ BOARDNAME = usb_board
 PAGES = contents.sch \
 	usb_input.sch \
 	usbio.sch \
+	rs232io.sch \
 	aux_power.sch \
 	current_monitor.sch \
 	monitored_power.sch \
@@ -35,6 +36,7 @@ help:
 	@echo '   make print           Print schematic pages to PDF                  '
 	@echo '   make edit            Open all schematic pages with gschem          '
 	@echo '   make netlist         Extract netlist from schematics               '
+	@echo '   make kit             Run kitgen on the schematic pages             '
 	@echo '                                                                      '
 
 # Create netlist
@@ -43,6 +45,11 @@ netlist : $(LAYOUTDIR)/$(NETLIST)
 
 $(LAYOUTDIR)/$(NETLIST) : $(PAGES)
 	gnetlist -g PCB $^ -o $@
+
+# Run kitgen
+.PHONY: kit
+kit : $(PAGES)
+	python kitgen.py $^
 
 
 
