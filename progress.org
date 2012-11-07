@@ -14,12 +14,12 @@
 * DONE Post to geda-user about gschem issues on apone
 ** I'm having trouble selecting text, and text isn't redrawn until I explicitly ask for a redraw.
    - I wonder if there's a good way to assess the "state" of the geda installation, so that the developers have a beter idea of what I'm working with.
-** TODO Uninstall fonts installed during fix
+** DONE Uninstall fonts installed during fix
    - [ ] arkpandora
    - [ ] artwiz-aleczapka-en
    - [ ] cheapskatefonts
    - [ ] corefonts
-   - [X] dejavu
+   - [ ] dejavu
    - [ ] font-adobe-100dpi
    - [ ] font-adobe-75dpi
    - [ ] font-adobe-utopia-100dpi
@@ -46,14 +46,14 @@
    - [ ] font-sun-misc
    - [ ] font-util
    - [ ] font-xfree86-type1
-   - [X] freefont-ttf
-   - [X] freefonts
+   - [ ] freefont-ttf
+   - [ ] freefonts
    - [ ] lfpfonts-fix
    - [ ] lfpfonts-var
    - [ ] liberation-fonts (this was it!!)
    - [ ] terminus-font
    - [ ] ttf-bitstream-vera
-   - [X] urw-fonts
+   - [ ] urw-fonts
 * DONE Receive eval232r boards
 ** Ordered from Digi-Key on <2012-10-07 Sun>
    - Scheduled to ship via UPS 3-day
@@ -114,3 +114,8 @@
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** DONE Make a drawing of the 21-1 rocker switch
 ** TODO Add mounting holes to butterfly drawing in library
+* TODO Work on mechanical power switch [0/2]
+** TODO Create schematic part for switch
+** TODO Create 4-pin mta100 footprint for switch.
+   - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
+
