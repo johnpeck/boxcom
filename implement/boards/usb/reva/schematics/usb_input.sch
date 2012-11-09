@@ -185,3 +185,10 @@ refdes=R?
 T 43900 48600 5 10 1 1 0 0 1
 value=150
 }
+C 46800 41000 1 0 0 switch_green_rocker.sym
+{
+T 47400 41500 5 10 1 1 0 0 1
+refdes=MECH?
+T 47400 41300 5 10 1 1 0 0 1
+value=Green rocker SPST
+}

@@ -1,11 +1,12 @@
 # Ignore the temporary files emacs makes in the root directory
 *~
 
-# Ignore temporary files for USB board schematics
-implement/boards/usb/schematics/*~
+# Ignore temporary and backup files for USB board schematics
+implement/boards/usb/reva/schematics/*~
+implement/boards/usb/reva/schematics/#*
 
 # Ignore temporary files for Butterfly board schematics
-implement/boards/butterfly/schematics/*~
+implement/boards/butterfly/reva/schematics/*~
 
 # Ignore backup files for drawings
 implement/drawings/*.bak

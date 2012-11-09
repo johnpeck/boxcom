@@ -99,8 +99,8 @@
 ** DONE Source resistor for Tx (look at Butterfly's source resistor)
    - Looks like the Butterfly uses a 4.7k RxD termination
 * DONE Add lt6106 part
-* TODO Add passives around trs202 rs-232 transceiver
-* TODO Add budbox to hardware page for usb
+* DONE Add passives around trs202 rs-232 transceiver
+* DONE Add budbox to hardware page for usb
 * TODO Add notes about using punch for USB jack on USB page
 * DONE Add standoffs for mounting butterfly to hardware page
   - These will go on the butterfly board schematics
@@ -114,8 +114,8 @@
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** DONE Make a drawing of the 21-1 rocker switch
 ** TODO Add mounting holes to butterfly drawing in library
-* TODO Work on mechanical power switch [0/2]
-** TODO Create schematic part for switch
+* TODO Work on mechanical power switch [1/2]
+** DONE Create schematic part for switch (21-1)
 ** TODO Create 4-pin mta100 footprint for switch.
    - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
 
