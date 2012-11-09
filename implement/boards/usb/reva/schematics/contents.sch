@@ -9,7 +9,7 @@ T 51300 39800 9 10 1 0 0 0 1
 T 45900 46300 9 30 1 0 0 0 1
 USB interface board
 T 45900 45500 9 20 1 0 0 0 1
-1. Stimulus output
+1. USB input
 T 45900 45000 9 20 1 0 0 0 1
 2. Stimulus sense ADC driver
 T 45900 44000 9 20 1 0 0 0 1

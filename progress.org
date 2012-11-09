@@ -100,6 +100,7 @@
    - Looks like the Butterfly uses a 4.7k RxD termination
 * DONE Add lt6106 part
 * DONE Add passives around trs202 rs-232 transceiver
+* TODO Add passives around ft232 part
 * DONE Add budbox to hardware page for usb
 * TODO Add notes about using punch for USB jack on USB page
 * DONE Add standoffs for mounting butterfly to hardware page
@@ -114,6 +115,7 @@
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** DONE Make a drawing of the 21-1 rocker switch
 ** TODO Add mounting holes to butterfly drawing in library
+** TODO Create an end-on view of a USB jack
 * TODO Work on mechanical power switch [1/2]
 ** DONE Create schematic part for switch (21-1)
 ** TODO Create 4-pin mta100 footprint for switch.

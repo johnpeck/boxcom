@@ -58,3 +58,10 @@ refdes=MECH?
 T 38900 39400 5 10 1 1 0 0 1
 comment=Both holes tapped 4-40
 }
+C 36200 40700 1 0 0 box_cu3007a.sym
+{
+T 37100 40700 5 10 1 1 0 0 1
+value=cu-3007-a
+T 37100 40890 5 10 1 1 0 0 1
+refdes=MECH?
+}
