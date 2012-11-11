@@ -116,8 +116,8 @@
 ** DONE Make a drawing of the 21-1 rocker switch
 ** TODO Add mounting holes to butterfly drawing in library
 ** TODO Create an end-on view of a USB jack
-* TODO Work on mechanical power switch [1/2]
+* DONE Work on mechanical power switch [2/2]
 ** DONE Create schematic part for switch (21-1)
-** TODO Create 4-pin mta100 footprint for switch.
+** DONE Create 4-pin mta100 footprint for switch.
    - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
 
