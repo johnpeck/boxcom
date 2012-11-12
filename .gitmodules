@@ -1,3 +1,9 @@
 [submodule "jpeda"]
 	path = jpeda
 	url = git@github.com:johnpeck/jpeda
+[submodule "implement/boards/usb/reva/schematics/jpeda"]
+	path = implement/boards/usb/reva/schematics/jpeda
+	url = git@github.com:johnpeck/jpeda.git
+[submodule "implement/boards/butterfly/reva/schematics/jpeda"]
+	path = implement/boards/butterfly/reva/schematics/jpeda
+	url = git@github.com:johnpeck/jpeda.git
