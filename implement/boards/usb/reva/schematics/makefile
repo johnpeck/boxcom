@@ -43,7 +43,8 @@ help:
 .PHONY: netlist
 netlist : $(LAYOUTDIR)/$(NETLIST)
 
-$(LAYOUTDIR)/$(NETLIST) : $(PAGES)
+$(LAYOUTDIR)/$(NETLIST) : $(LAYOUTDIR) \
+                          $(PAGES)
 	gnetlist -g PCB $^ -o $@
 
 # Run kitgen
@@ -84,6 +85,10 @@ $(PRINTDIR)/%.ps : %.sch
 # The output directory
 $(PRINTDIR):
 	mkdir -p $(PRINTDIR)
+
+# The layout directory
+$(LAYOUTDIR):
+	mkdir -p $(LAYOUTDIR)
 
 # Edit schematics
 .PHONY: edit

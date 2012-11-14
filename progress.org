@@ -100,9 +100,10 @@
    - Looks like the Butterfly uses a 4.7k RxD termination
 * DONE Add lt6106 part
 * DONE Add passives around trs202 rs-232 transceiver
-* TODO Add passives around ft232 part [1/2]
+* DONE Add passives around ft232 part [2/2]
 ** DONE Create red 1206 LED for transmit or receive indicator
-** TODO Add 7-pin header for CBUS lines
+** DONE Add 7-pin header for CBUS lines
+* TODO Create 7pin mta100 header footprint
 * DONE Add budbox to hardware page for usb
 * TODO Add notes about using punch for USB jack on USB page
 * DONE Add standoffs for mounting butterfly to hardware page
