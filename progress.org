@@ -98,12 +98,14 @@
 ** DONE Test points for Rx and Tx lines
 ** DONE Source resistor for Tx (look at Butterfly's source resistor)
    - Looks like the Butterfly uses a 4.7k RxD termination
-* DONE Add lt6106 part
+* TODO Add passives around lt6106 part [1/2]
+** DONE Use 100ohm resistors for Rin
+** TODO Add note about output bandwidth
 * DONE Add passives around trs202 rs-232 transceiver
 * DONE Add passives around ft232 part [2/2]
 ** DONE Create red 1206 LED for transmit or receive indicator
 ** DONE Add 7-pin header for CBUS lines
-* TODO Create 7pin mta100 header footprint
+* DONE Create 7pin mta100 header footprint
 * DONE Add budbox to hardware page for usb
 * TODO Add notes about using punch for USB jack on USB page
 * DONE Add standoffs for mounting butterfly to hardware page

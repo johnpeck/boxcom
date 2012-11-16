@@ -10,7 +10,6 @@ PAGES = contents.sch \
 	rs232io.sch \
 	aux_power.sch \
 	current_monitor.sch \
-	monitored_power.sch \
 	hardware.sch
 
 # The Guile script to run in order to print schematics
