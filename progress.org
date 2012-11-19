@@ -89,6 +89,7 @@
 ** DONE kitgen must take the list of schematics from standard input
    - This is the way to use it with a makefile.
 ** TODO We need a "cost" target to calculate bom cost
+** TODO Renumber components on each page
 ** DONE We need a "kit" target to create a kit
 ** DONE We need an "edit" target to edit all schematic pages
 ** DONE We need a "netlist" target to create the netlist for PCB
@@ -98,9 +99,9 @@
 ** DONE Test points for Rx and Tx lines
 ** DONE Source resistor for Tx (look at Butterfly's source resistor)
    - Looks like the Butterfly uses a 4.7k RxD termination
-* TODO Add passives around lt6106 part [1/2]
+* DONE Add passives around lt6106 part [2/2]
 ** DONE Use 100ohm resistors for Rin
-** TODO Add note about output bandwidth
+** DONE Add note about output bandwidth
 * DONE Add passives around trs202 rs-232 transceiver
 * DONE Add passives around ft232 part [2/2]
 ** DONE Create red 1206 LED for transmit or receive indicator
@@ -121,6 +122,11 @@
 ** DONE Make a drawing of the 21-1 rocker switch
 ** TODO Add mounting holes to butterfly drawing in library
 ** TODO Create an end-on view of a USB jack
+** TODO Create top-down view of angle bracket
+** TODO Set board dimensions.
+*** Y dimension is 2.5 inches
+** TODO Set USB connector position
+   - Board edge should be 50mils away from the box edge.
 * DONE Work on mechanical power switch [2/2]
 ** DONE Create schematic part for switch (21-1)
 ** DONE Create 4-pin mta100 footprint for switch.
