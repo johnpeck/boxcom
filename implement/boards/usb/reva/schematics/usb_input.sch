@@ -13,7 +13,7 @@ John Peck
 C 43500 43800 1 0 0 usb_big_typeb.sym
 {
 T 43600 45800 5 10 1 1 0 0 1
-refdes=J400
+refdes=J101
 T 43600 46995 5 10 0 0 0 0 1
 device=connector
 T 43600 46795 5 10 0 0 0 0 1
@@ -31,7 +31,7 @@ device=connector
 T 50700 46950 5 10 0 0 0 0 1
 value=red
 T 50950 46750 5 10 1 1 0 0 1
-refdes=TP400
+refdes=TP100
 T 50950 46564 5 10 1 1 0 0 1
 label=Vbus
 }
@@ -48,14 +48,14 @@ A
 C 49000 45700 1 0 0 bead_50ohm_6a_1206.sym
 {
 T 49400 46200 5 10 1 1 0 0 1
-refdes=FB400
+refdes=FB100
 T 49000 45700 5 10 1 1 0 0 1
 value=50ohm at 100MHz
 }
 C 50400 44000 1 0 0 10n_x7r_50v_1206_vert.sym
 {
 T 50900 44600 5 10 1 1 0 0 1
-refdes=C403
+refdes=C100
 T 50900 44400 5 10 1 1 0 0 1
 value=10n
 }
@@ -73,7 +73,7 @@ C 42500 41700 1 0 0 4_40_mthole_fat.sym
 T 43300 41700 5 10 1 1 0 0 1
 value=4-40 fat
 T 43300 41900 5 10 1 1 0 0 1
-refdes=HOLE400
+refdes=HOLE100
 }
 C 42000 41300 1 0 0 gnd_bus.sym
 N 42500 41900 42200 41900 4
@@ -83,7 +83,7 @@ C 45500 41300 1 0 0 gnd_ana.sym
 C 43600 41600 1 0 0 0m_1206_horz.sym
 {
 T 44900 42100 5 10 1 1 0 0 1
-refdes=R?
+refdes=R102
 T 44900 41600 5 10 1 1 0 0 1
 value=0.0
 }
@@ -103,7 +103,7 @@ footprint=1206_led.fp
 T 52200 43700 5 10 1 1 180 8 1
 value=green
 T 52200 43900 5 10 1 1 180 8 1
-refdes=D400
+refdes=D100
 }
 C 51700 44600 1 0 0 180r_1206_vert.sym
 {
@@ -114,7 +114,7 @@ device=resistor
 T 52000 45100 5 10 1 1 0 0 1
 value=180
 T 52000 45300 5 10 1 1 0 0 1
-refdes=R402
+refdes=R101
 }
 C 51600 42400 1 0 0 gnd_bus.sym
 N 51800 43300 51800 42800 4
@@ -168,14 +168,14 @@ Panel cutout for
 C 45000 47700 1 0 0 150r_1206_horz.sym
 {
 T 46300 48200 5 10 1 1 0 0 1
-refdes=R?
+refdes=R100
 T 46300 47700 5 10 1 1 0 0 1
 value=150
 }
 C 39600 48300 1 0 0 switch_green_rocker.sym
 {
 T 40200 48800 5 10 1 1 0 0 1
-refdes=MECH?
+refdes=MECH101
 T 40200 48600 5 10 1 1 0 0 1
 value=Green rocker SPST
 }
@@ -194,7 +194,7 @@ C 44100 47600 1 0 0 4pin_mta100_header_in.sym
 T 44100 47600 5 10 1 1 0 0 1
 value=mta100
 T 44100 49300 5 10 1 1 0 0 1
-refdes=J?
+refdes=J100
 }
 C 44900 47400 1 0 0 gnd_bus.sym
 C 47200 48000 1 0 0 vbus.sym
@@ -213,7 +213,7 @@ N 47000 48000 47400 48000 4
 C 42000 48200 1 0 0 4pin_mta100_white_recept.sym
 {
 T 42400 48900 5 10 1 1 0 0 1
-refdes=MECH?
+refdes=MECH100
 T 42400 48700 5 10 1 1 0 0 1
 value=mta100
 T 42400 48500 5 10 1 1 0 0 1
@@ -224,7 +224,7 @@ comment=24-guage stranded
 C 42100 42200 1 0 0 testpoint_big.sym
 {
 T 42350 42750 5 10 1 1 0 0 1
-refdes=TP?
+refdes=TP101
 T 42350 42564 5 10 1 1 0 0 1
 label=0V_bus
 }
@@ -252,11 +252,8 @@ L 41350 44000 41300 43950 3 0 0 0 -1 -1
 L 40700 44000 40750 44050 3 0 0 0 -1 -1
 L 40700 44000 40750 43950 3 0 0 0 -1 -1
 T 40800 44050 9 10 1 0 0 0 1
-0.541
+0.500
 B 40550 43200 150 600 3 0 0 0 -1 -1 3 1 45 50 -1 -1
-T 39600 43300 9 10 1 0 0 0 2
-50mil USB
-overhang
 L 40700 42000 40000 42000 3 0 0 0 -1 -1
 L 40000 42000 40000 40500 3 0 0 0 -1 -1
 V 40300 41700 100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -274,3 +271,9 @@ T 40100 41000 9 10 1 0 0 0 3
 4-40 mounting
 holes 200mils
 from edge.
+T 39500 42900 9 10 1 0 0 0 5
+50mil PCB
+gap + 40mil
+chassis = 
+90mil USB 
+overhang

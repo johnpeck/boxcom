@@ -24,6 +24,9 @@ LAYOUTDIR = ../layout
 # The netlist name
 NETLIST = netlist.net
 
+# Path to scripts directory from jpeda
+SCRIPTDIR = ./jpeda/scripts
+
 #------------------------- Done with configuration ---------------------
 
 
@@ -49,7 +52,7 @@ $(LAYOUTDIR)/$(NETLIST) : $(LAYOUTDIR) \
 # Run kitgen
 .PHONY: kit
 kit : $(PAGES)
-	python kitgen.py $^
+	python $(SCRIPTDIR)/kitgen.py $^
 
 
 

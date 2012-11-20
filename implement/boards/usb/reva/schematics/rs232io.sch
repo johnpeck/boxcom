@@ -17,14 +17,14 @@ C 47200 43100 1 0 0 trs202ecd.sym
 T 47500 48300 5 10 1 1 0 0 1
 value=trs202ecd
 T 47500 48500 5 10 1 1 0 0 1
-refdes=U1
+refdes=U300
 }
 C 52700 46100 1 0 0 3pin_mta100_header_out.sym
 {
 T 53000 46100 5 10 1 1 0 0 1
 value=mta100
 T 53000 47400 5 10 1 1 0 0 1
-refdes=J1
+refdes=J300
 }
 T 51300 44400 9 10 1 0 0 0 2
 trs202 receiver inputs
@@ -39,14 +39,14 @@ Butterfly.
 C 48800 46900 1 0 0 0m_1206_horz.sym
 {
 T 50100 47400 5 10 1 1 0 0 1
-refdes=R1
+refdes=R301
 T 50100 46900 5 10 1 1 0 0 1
 value=0.0
 }
 C 49600 46500 1 0 0 0m_1206_horz.sym
 {
 T 50900 47000 5 10 1 1 0 0 1
-refdes=R2
+refdes=R303
 T 50900 46500 5 10 1 1 0 0 1
 value=0.0
 }
@@ -65,7 +65,7 @@ netname=bfly_txd
 C 51700 47500 1 0 0 testpoint.sym
 {
 T 51950 48050 5 10 1 1 0 0 1
-refdes=TP1
+refdes=TP301
 T 51950 47864 5 10 1 1 0 0 1
 label=RS-232 output
 }
@@ -73,7 +73,7 @@ N 51800 47500 51800 47200 4
 C 52200 44900 1 0 0 testpoint.sym
 {
 T 52450 45450 5 10 1 1 0 0 1
-refdes=TP2
+refdes=TP303
 T 52450 45264 5 10 1 1 0 0 1
 label=RS-232 input
 }
@@ -82,28 +82,28 @@ N 51800 44900 51800 46800 4
 C 46400 44100 1 0 0 100n_x7r_50v_1206_vert.sym
 {
 T 46900 44700 5 10 1 1 0 0 1
-refdes=C?
+refdes=C301
 T 46900 44500 5 10 1 1 0 0 1
 value=100n
 }
 C 48600 41800 1 0 0 100n_x7r_50v_1206_vert.sym
 {
 T 49000 42400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C304
 T 49000 42200 5 10 1 1 0 0 1
 value=100n
 }
 C 47600 41800 1 0 0 100n_x7r_50v_1206_vert.sym
 {
 T 47200 42400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C303
 T 47200 42200 5 10 1 1 0 0 1
 value=100n
 }
 C 49600 44100 1 0 0 100n_x7r_50v_1206_vert.sym
 {
 T 50100 44700 5 10 1 1 0 0 1
-refdes=C?
+refdes=C302
 T 50100 44500 5 10 1 1 0 0 1
 value=100n
 }
@@ -122,7 +122,7 @@ C 46800 48400 1 0 0 vbus.sym
 C 45000 47400 1 0 0 100n_x7r_50v_1206_horz.sym
 {
 T 46300 48100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C300
 T 46200 47400 5 10 1 1 0 0 1
 value=100n
 }
@@ -134,7 +134,7 @@ N 45600 47800 45800 47800 4
 C 44900 45900 1 0 0 0m_1206_horz.sym
 {
 T 46200 46400 5 10 1 1 0 0 1
-refdes=R1
+refdes=R304
 T 46200 45900 5 10 1 1 0 0 1
 value=0.0
 }
@@ -145,7 +145,7 @@ N 46900 46200 47200 46200 4
 C 48800 45500 1 0 0 0m_1206_horz.sym
 {
 T 50100 46000 5 10 1 1 0 0 1
-refdes=R1
+refdes=R305
 T 50100 45500 5 10 1 1 0 0 1
 value=0.0
 }
@@ -165,28 +165,28 @@ net=ttl_txd:1
 C 43100 46900 1 0 0 10r0_1206_horz.sym
 {
 T 44400 47400 5 10 1 1 0 0 1
-refdes=R?
+refdes=R300
 T 44400 46900 5 10 1 1 0 0 1
 value=10
 }
 C 42300 46500 1 0 0 10r0_1206_horz.sym
 {
 T 43600 47000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R302
 T 43600 46500 5 10 1 1 0 0 1
 value=10
 }
 C 43700 47900 1 0 0 testpoint.sym
 {
 T 43950 48450 5 10 1 1 0 0 1
-refdes=TP1
+refdes=TP300
 T 43950 48264 5 10 1 1 0 0 1
 label=TTL TxD
 }
 C 43700 45600 1 0 0 testpoint.sym
 {
 T 43950 46150 5 10 1 1 0 0 1
-refdes=TP1
+refdes=TP302
 T 43950 45964 5 10 1 1 0 0 1
 label=TTL RxD
 }
@@ -201,7 +201,7 @@ N 45300 45600 43800 45600 4
 C 52200 43300 1 0 0 testpoint_big.sym
 {
 T 52450 43850 5 10 1 1 0 0 1
-refdes=TP?
+refdes=TP304
 T 52450 43664 5 10 1 1 0 0 1
 label=net?
 }

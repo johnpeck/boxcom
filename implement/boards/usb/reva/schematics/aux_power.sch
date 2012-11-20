@@ -80,7 +80,7 @@ device=connector
 T 48700 48050 5 10 0 0 0 0 1
 value=red
 T 48950 47850 5 10 1 1 0 0 1
-refdes=TP401
+refdes=TP400
 T 48950 47664 5 10 1 1 0 0 1
 label=+3.3V_aux
 }
@@ -99,7 +99,7 @@ device=resistor
 T 47900 45700 5 10 1 1 0 0 1
 value=3.3k
 T 47900 45900 5 10 1 1 0 0 1
-refdes=R403
+refdes=R402
 T 47900 45500 5 10 1 1 0 0 1
 comment=Rlmin
 }
@@ -112,7 +112,7 @@ device=resistor
 T 46800 44900 5 10 1 1 0 0 1
 value=330k
 T 46800 45100 5 10 1 1 0 0 1
-refdes=R405
+refdes=R404
 T 46800 44700 5 10 1 1 0 0 1
 comment=Rset
 }
@@ -125,7 +125,7 @@ device=connector
 T 54500 43250 5 10 0 0 0 0 1
 value=white
 T 54750 43050 5 10 1 1 0 0 1
-refdes=TP402
+refdes=TP401
 T 54750 42864 5 10 1 1 0 0 1
 label=0V_ana
 }
@@ -138,7 +138,7 @@ device=connector
 T 52300 46300 5 10 1 1 0 0 1
 value=mta100
 T 52300 47200 5 10 1 1 0 0 1
-refdes=J401
+refdes=J400
 }
 C 51800 45700 1 0 0 gnd_ana.sym
 N 51300 47000 52000 47000 4
@@ -152,7 +152,7 @@ device=connector
 T 52300 44300 5 10 1 1 0 0 1
 value=mta100
 T 52300 45200 5 10 1 1 0 0 1
-refdes=J402
+refdes=J401
 }
 C 51800 43800 1 0 0 gnd_ana.sym
 N 52000 44600 52000 44200 4
@@ -177,7 +177,7 @@ C 49300 44700 1 0 0 0m_1206_horz.sym
 T 49300 46200 5 10 0 0 0 0 1
 device=resistor
 T 50600 45200 5 10 1 1 0 0 1
-refdes=R404
+refdes=R403
 T 49300 46000 5 10 0 0 0 0 1
 footprint=1206_resistor.fp
 T 50600 44700 5 10 1 1 0 0 1
@@ -232,7 +232,7 @@ C 49300 42700 1 0 0 0m_1206_horz.sym
 T 49300 44200 5 10 0 0 0 0 1
 device=resistor
 T 50600 43200 5 10 1 1 0 0 1
-refdes=R404
+refdes=R405
 T 49300 44000 5 10 0 0 0 0 1
 footprint=1206_resistor.fp
 T 50600 42700 5 10 1 1 0 0 1
