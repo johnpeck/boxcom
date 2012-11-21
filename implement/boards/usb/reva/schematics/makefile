@@ -46,11 +46,12 @@ help:
 	@echo '                                                                      '
 
 
+# Run gsch2pcb on the board's project file
 .PHONY: pcb
 pcb :   $(LAYOUTDIR) \
 	$(LAYOUTDIR)/$(BOARDNAME).pcb
 
-$(LAYOUTDIR)/layout.pcb : $(BOARDNAME).pj
+$(LAYOUTDIR)/$(BOARDNAME).pcb : $(BOARDNAME).pj
 	gsch2pcb $^
 
 
@@ -91,20 +92,20 @@ print: $(PRINTDIR) \
 $(PRINTDIR)/$(PRINTNAME) : $(PDFPAGES)
 	pdftk $^ cat output $@
 
-# PDF
+# Create PDF from postscript
 $(PRINTDIR)/%.pdf : $(PRINTDIR)/%.ps
 	@echo
 	@echo 'Converting $< to PDF...'
 	ps2pdf $< $@
 
-# Postscript
+# Create postscript schematic pages
 $(PRINTDIR)/%.ps : %.sch
 	@echo
 	@echo 'Converting $< to postscript...'
 	gschem -p -o $@ -s $(PRINTSCRIPT) $<
 
 
-# The output directory
+# The output directory for prints
 $(PRINTDIR):
 	mkdir -p $(PRINTDIR)
 

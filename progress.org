@@ -85,8 +85,8 @@
 * DONE Create the butterfly board schematic pages
   - The Butterfly is its own board.
 * DONE Add feet for budbox to hardware page
-* TODO Work on makefile for usb board schematics [5/6]
-** TODO We need a "pcb" target to run gsch2pcb
+* DONE Work on makefile for usb board schematics [6/6]
+** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
 ** DONE kitgen must take the list of schematics from standard input
    - This is the way to use it with a makefile.
@@ -96,6 +96,10 @@
 ** DONE We need a "netlist" target to create the netlist for PCB
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
+* TODO Work on USB board layout [/]
+** TODO Create makefile target for editing
+   - Should include all the command-line options you want
+** TODO Decide on board outline
 * DONE Improve serial link circuitry [2/2]
 ** DONE Test points for Rx and Tx lines
 ** DONE Source resistor for Tx (look at Butterfly's source resistor)
