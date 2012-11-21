@@ -27,6 +27,9 @@ NETLIST = netlist.net
 # Path to scripts directory from jpeda
 SCRIPTDIR = ./jpeda/scripts
 
+# Path to footprints
+FOOTDIR = ./jpeda/footprints
+
 #------------------------- Done with configuration ---------------------
 
 
@@ -39,7 +42,24 @@ help:
 	@echo '   make edit            Open all schematic pages with gschem          '
 	@echo '   make netlist         Extract netlist from schematics               '
 	@echo '   make kit             Run kitgen on the schematic pages             '
+	@echo '   make pcb             Run gsch2pcb on the board                     '
 	@echo '                                                                      '
+
+
+.PHONY: pcb
+pcb :   $(LAYOUTDIR) \
+	$(LAYOUTDIR)/layout.pcb
+
+$(LAYOUTDIR)/layout.pcb : $(BOARDNAME).pj
+	gsch2pcb $^
+
+
+# Create project file for gsch2pcb
+$(BOARDNAME).pj :
+	@echo 'schematics '$(PAGES) > $@
+	@echo 'output-name '$(LAYOUTDIR)/layout >> $@
+	@echo 'elements-dir '$(FOOTDIR) >> $@
+
 
 # Create netlist
 .PHONY: netlist
@@ -97,3 +117,6 @@ $(LAYOUTDIR):
 edit:
 	gschem $(PAGES) &
 
+.PHONY: clean
+clean :
+	rm -f $(BOARDNAME).pj

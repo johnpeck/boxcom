@@ -93,3 +93,12 @@ value=4-40 x 1/4 phillips
 T 39000 36150 5 10 1 1 0 0 1
 refdes=MECH610
 }
+C 42100 37900 1 0 0 pcb_boxcom_usb_reva.sym
+{
+T 43400 38300 5 10 1 1 0 0 1
+value=Boxcom USB interface
+T 43400 38490 5 10 1 1 0 0 1
+refdes=PCB600
+T 43400 38100 5 10 1 0 0 0 1
+revision=a
+}
