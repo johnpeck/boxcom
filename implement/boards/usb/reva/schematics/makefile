@@ -48,7 +48,7 @@ help:
 
 .PHONY: pcb
 pcb :   $(LAYOUTDIR) \
-	$(LAYOUTDIR)/layout.pcb
+	$(LAYOUTDIR)/$(BOARDNAME).pcb
 
 $(LAYOUTDIR)/layout.pcb : $(BOARDNAME).pj
 	gsch2pcb $^
@@ -57,7 +57,7 @@ $(LAYOUTDIR)/layout.pcb : $(BOARDNAME).pj
 # Create project file for gsch2pcb
 $(BOARDNAME).pj :
 	@echo 'schematics '$(PAGES) > $@
-	@echo 'output-name '$(LAYOUTDIR)/layout >> $@
+	@echo 'output-name '$(LAYOUTDIR)/$(BOARDNAME) >> $@
 	@echo 'elements-dir '$(FOOTDIR) >> $@
 
 
@@ -67,7 +67,7 @@ netlist : $(LAYOUTDIR)/$(NETLIST)
 
 $(LAYOUTDIR)/$(NETLIST) : $(LAYOUTDIR) \
                           $(PAGES)
-	gnetlist -g PCB $^ -o $@
+	gnetlist -g PCB $(PAGES) -o $@
 
 # Run kitgen
 .PHONY: kit
