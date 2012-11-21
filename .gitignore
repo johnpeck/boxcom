@@ -4,9 +4,22 @@
 # Ignore temporary and backup files for USB board schematics
 implement/boards/usb/reva/schematics/*~
 implement/boards/usb/reva/schematics/#*
+implement/boards/usb/reva/schematics/usb_board.pj
+
+# Ignore all schematic pdfs except the full collection
+implement/boards/usb/reva/schematics/printable/usbio.pdf
+implement/boards/usb/reva/schematics/printable/aux_power.pdf
+implement/boards/usb/reva/schematics/printable/contents.pdf
+implement/boards/usb/reva/schematics/printable/current_monitor.pdf
+implement/boards/usb/reva/schematics/printable/hardware.pdf
+implement/boards/usb/reva/schematics/printable/rs232io.pdf
+implement/boards/usb/reva/schematics/printable/usb_input.pdf
 
 # Ignore temporary files for Butterfly board schematics
 implement/boards/butterfly/reva/schematics/*~
 
 # Ignore backup files for drawings
 implement/drawings/*.bak
+
+# Ignore temporary files for USB board layout
+implement/boards/usb/reva/layout/*-
