@@ -51,8 +51,9 @@ help:
 pcb :   $(LAYOUTDIR) \
 	$(LAYOUTDIR)/$(BOARDNAME).pcb
 
-$(LAYOUTDIR)/$(BOARDNAME).pcb : $(BOARDNAME).pj
-	gsch2pcb $^
+$(LAYOUTDIR)/$(BOARDNAME).pcb : $(BOARDNAME).pj \
+                                $(FOOTDIR)/*.fp
+	gsch2pcb $<
 
 
 # Create project file for gsch2pcb
