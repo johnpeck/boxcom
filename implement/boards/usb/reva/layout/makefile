@@ -51,7 +51,9 @@ help:
 .PHONY: edit
 edit:
 	sed -i '/Styles/d' $(BOARDNAME).pcb # Smoke the old route styles
+	@echo $(# There have to be at least four route styles, or none get processed)
 	pcb --route-styles '$(SIGSTYLE):$(SIGSTYLE):$(SIGSTYLE):$(SIGSTYLE)' \
+            --rat-thickness 1 $(# Here is a comment) \
             --fab-author '$(FABAUTHOR)' \
             $(BOARDNAME).pcb &
 
