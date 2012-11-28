@@ -23,3 +23,4 @@ implement/drawings/*.bak
 
 # Ignore temporary files for USB board layout
 implement/boards/usb/reva/layout/*-
+implement/boards/usb/reva/layout/*.backup
