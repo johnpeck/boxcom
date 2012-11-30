@@ -96,17 +96,19 @@
 ** DONE We need a "netlist" target to create the netlist for PCB
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on USB board layout [3/5]
+* TODO Work on USB board layout [6/7]
 ** DONE Create makefile target for editing
    - Should include all the command-line options you want
-** TODO Decide on board outline
+** DONE Decide on board outline
 *** <2012-11-27 Tue> Trying 2.5-inch square
+*** <2012-11-29 Thu> Decided on 2.5 x 2.75 outline
 ** DONE Find out if the ft232r part is connected directly to D+ and D-
    - It is.  Look at the ft232r evaluation board schematics.
 ** TODO Make blog post about multi-line bash commands and their comments
 ** DONE Place components on rs232io page
-** TODO Place components on auxiliary power page
-** TODO Place components on monitored power page
+** DONE Place components on auxiliary power page
+** DONE Place components on monitored power page
+** TODO Position and label mta100 connectors
 * DONE Modify 4-40 footprints to have 1/2-inch keepout
 * DONE Improve serial link circuitry [2/2]
 ** DONE Test points for Rx and Tx lines
