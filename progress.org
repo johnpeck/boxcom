@@ -96,7 +96,7 @@
 ** DONE We need a "netlist" target to create the netlist for PCB
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on USB board layout [9/10]
+* TODO Work on USB board layout [11/12]
 ** DONE Create makefile target for editing
    - Should include all the command-line options you want
 ** DONE Decide on board outline
@@ -111,7 +111,9 @@
 ** DONE Position and label mta100 connectors
 ** TODO Decide on where to host schematics and layout for boxcom
 ** DONE Add ground plane to layout.  I'll make a 4-layer board.
-** TODO Route power to ftdi part
+** DONE Route power to ftdi part
+** DONE Route power to rs232 transceiver
+** TODO Route power to U500 (current monitor)
 * DONE Modify 4-40 footprints to have 1/2-inch keepout
 * DONE Improve serial link circuitry [2/2]
 ** DONE Test points for Rx and Tx lines
