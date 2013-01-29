@@ -96,7 +96,7 @@
 ** DONE We need a "netlist" target to create the netlist for PCB
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on USB board layout [13/14]
+* TODO Work on USB board layout [14/15]
 ** DONE Create makefile target for editing
    - Should include all the command-line options you want
 ** DONE Decide on board outline
@@ -115,7 +115,8 @@
 ** DONE Route power to rs232 transceiver
 ** DONE Route power to U500 (current monitor)
 ** DONE Route the U400 and U501 voltage regulators
-** TODO Prepare gerber export target for makefile
+** DONE Prepare gerber export target for makefile
+** TODO Follow checklist.org to check over gerbers output to output directory
 * DONE Modify 4-40 footprints to have 1/2-inch keepout
 * DONE Improve serial link circuitry [2/2]
 ** DONE Test points for Rx and Tx lines
