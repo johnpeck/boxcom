@@ -110,6 +110,8 @@
 ** DONE Place components on monitored power page
 ** DONE Position and label mta100 connectors
 ** TODO Decide on where to host schematics and layout for boxcom
+** TODO Put up placeholder bnc2adc.com site
+** TODO Add part number and rev code to top silk
 ** DONE Add ground plane to layout.  I'll make a 4-layer board.
 ** DONE Route power to ftdi part
 ** DONE Route power to rs232 transceiver
