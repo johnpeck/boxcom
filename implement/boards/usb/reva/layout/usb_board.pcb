@@ -6,7 +6,7 @@ FileVersion[20070407]
 PCB["" 300000 330000]
 
 Grid[500.0 0 0 1]
-Cursor[62000 41500 0.000000]
+Cursor[123511 187000 0.000000]
 PolyArea[200000000.000000]
 Thermal[0.500000]
 DRC[600 1000 1000 500 1500 600]
@@ -2224,11 +2224,13 @@ Layer(10 "silk")
 	Text[47000 80000 0 100 "0V_bus" "clearline"]
 	Text[134000 263000 0 100 "10mA --> 1V" "clearline"]
 	Text[138000 246000 0 100 "USB power for Boxcom" "clearline"]
-	Text[139000 252000 0 100 "www.bnc2adc.com/rollyerown" "clearline"]
 	Text[226000 148500 0 100 "Vbus" "clearline"]
 	Text[43500 240000 0 100 "0V_bus" "clearline"]
 	Text[122000 236000 0 100 "0V_ana" "clearline"]
 	Text[239000 93000 0 100 "Sw" "clearline"]
+	Text[138000 251500 0 100 "www.johnpeck.info/boxcom.html" "clearline"]
+	Text[186500 258500 0 100 "JPart number: 13-7" "clearline"]
+	Text[186500 265000 0 100 "Revision: A" "clearline"]
 )
 NetList()
 (

@@ -12,6 +12,9 @@ REVCODE = a
 # The submission directory name (can't be named submit)
 SUBMITDIR = output
 
+# The printable output directory
+PRINTDIR = printable
+
 # The author
 FABAUTHOR = John Peck
 
@@ -80,6 +83,7 @@ help:
 	@echo 'Usage:                                                                '
 	@echo '   make edit            Open layout with PCB                          '
 	@echo '   make submit          Export gerbers and create zip file            '
+	@echo '   make silkprint       Export silkscreen and board outline to ps     '
 	@echo '   make clean           Remove all gerber outputs and temporary files '
 	@echo '                                                                      '
 
@@ -98,7 +102,46 @@ edit:
             --fab-author '$(FABAUTHOR)' \
             $(BOARDNAME).pcb &
 
+.PHONY: silkprint
+silkprint: $(PRINTDIR)
+	pcb -x ps --psfile $(PRINTDIR)/$(BOARDNAME).ps \
+          --media Letter --outline --fill-page --drill-copper \
+          --multi-file $(BOARDNAME).pcb
+	# Strip out the legend (can't turn it off)
+	sed -e '/topsilk/d' $(PRINTDIR)/$(BOARDNAME).topsilk.ps \
+          > $(PRINTDIR)/temp1.ps
+	sed -e '/$(BOARDNAME)/d' $(PRINTDIR)/temp1.ps \
+          > $(PRINTDIR)/temp2.ps
+	sed -e '/not to scale/d' $(PRINTDIR)/temp2.ps \
+          > $(PRINTDIR)/temp1.ps
+	# Create the bounding box -- needed for scaling
+	ps2eps -f $(PRINTDIR)/temp1.ps
+	# Resize the figure
+	gs \
+          -o $(PRINTDIR)/resized.eps \
+          -sDEVICE=epswrite \
+          -dEPSFitPage \
+          -dDEVICEWIDTHPOINTS=600 \
+          -dDEVICEHEIGHTPOINTS=600 \
+          $(PRINTDIR)/temp1.eps
+	# Move the figure
+	gs \
+          -o $(PRINTDIR)/moved.pdf \
+          -sPAPERSIZE=letter \
+          -sDEVICE=pdfwrite \
+          -c "<< /PageOffset [40 102] >> setpagedevice" -f\
+          $(PRINTDIR)/resized.eps
+	cp $(PRINTDIR)/moved.pdf $(PRINTDIR)/silkprint.pdf
+	# Clean up
+	rm $(PRINTDIR)/usb_board.*
+	rm $(PRINTDIR)/moved.pdf
+	rm $(PRINTDIR)/temp*
+	rm $(PRINTDIR)/resized.eps
 
+
+
+$(PRINTDIR):
+	mkdir -p $(PRINTDIR)
 
 .PHONY: submit
 submit: $(SUBMITDIR) \
