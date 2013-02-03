@@ -85,7 +85,7 @@
 * DONE Create the butterfly board schematic pages
   - The Butterfly is its own board.
 * DONE Add feet for budbox to hardware page
-* DONE Work on makefile for usb board schematics [6/6]
+* TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
 ** DONE kitgen must take the list of schematics from standard input
@@ -94,9 +94,10 @@
 ** DONE We need a "kit" target to create a kit
 ** DONE We need an "edit" target to edit all schematic pages
 ** DONE We need a "netlist" target to create the netlist for PCB
+** TODO Add makefile target to copy assembly list to website
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on USB board layout [14/15]
+* TODO Work on USB board layout [16/18]
 ** DONE Create makefile target for editing
    - Should include all the command-line options you want
 ** DONE Decide on board outline
@@ -109,9 +110,10 @@
 ** DONE Place components on auxiliary power page
 ** DONE Place components on monitored power page
 ** DONE Position and label mta100 connectors
-** TODO Decide on where to host schematics and layout for boxcom
+** DONE Decide on where to host schematics and layout for boxcom
    - These will go in a static directorty on the johnpeck site.  See the boxcom.rst draft I've made.
-** TODO Add part number and rev code to top silk
+** TODO Add makefile target to copy silkprint over to website
+** DONE Add part number and rev code to top silk
 ** DONE Add ground plane to layout.  I'll make a 4-layer board.
 ** DONE Route power to ftdi part
 ** DONE Route power to rs232 transceiver
@@ -119,6 +121,13 @@
 ** DONE Route the U400 and U501 voltage regulators
 ** DONE Prepare gerber export target for makefile
 ** TODO Follow checklist.org to check over gerbers output to output directory
+** TODO Things to check when the board gets back
+** TODO Make a diagram in xfig showing what each of the numbers mean in 4_40_mthole_fat.fp
+** TODO Submit board to Sierra
+*** TODO Did the solder mask make it between pins on U300?
+* TODO Work on USB board kit [/]
+** TODO Fill kit 14 for two boards
+   DEADLINE: <2013-02-22 Fri>
 * DONE Modify 4-40 footprints to have 1/2-inch keepout
 * DONE Improve serial link circuitry [2/2]
 ** DONE Test points for Rx and Tx lines
