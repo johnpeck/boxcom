@@ -129,18 +129,7 @@
 * TODO Work on USB board kit [0/1]
 ** TODO Fill kit 14 for two boards
    DEADLINE: <2013-02-22 Fri>
-* DONE Modify 4-40 footprints to have 1/2-inch keepout
-* DONE Improve serial link circuitry [2/2]
-** DONE Test points for Rx and Tx lines
-** DONE Source resistor for Tx (look at Butterfly's source resistor)
-   - Looks like the Butterfly uses a 4.7k RxD termination
-* DONE Add passives around lt6106 part [2/2]
-** DONE Use 100ohm resistors for Rin
-** DONE Add note about output bandwidth
-* DONE Add passives around trs202 rs-232 transceiver
-* DONE Add passives around ft232 part [2/2]
-** DONE Create red 1206 LED for transmit or receive indicator
-** DONE Add 7-pin header for CBUS lines
+** TODO Make sure all parts have vendor entries
 * DONE Create 7pin mta100 header footprint
 * DONE Add budbox to hardware page for usb
 * TODO Add notes about using punch for USB jack on USB page
@@ -167,4 +156,4 @@
 ** DONE Create 4-pin mta100 footprint for switch.
    - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
 
-* DONE Fill in description entries for each part.  Make sure kit_cost file is complete.
+* TODO Create design notes document

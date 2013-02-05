@@ -42,6 +42,7 @@ help:
 	@echo '   make edit            Open all schematic pages with gschem          '
 	@echo '   make netlist         Extract netlist from schematics               '
 	@echo '   make kit             Run kitgen on the schematic pages             '
+	@echo '   make buy             Run buygen on the filled kit                  '
 	@echo '   make pcb             Run gsch2pcb on the board                     '
 	@echo '                                                                      '
 
@@ -75,6 +76,11 @@ $(LAYOUTDIR)/$(NETLIST) : $(LAYOUTDIR) \
 .PHONY: kit
 kit : $(PAGES)
 	python $(SCRIPTDIR)/kitgen.py $^
+
+# Run buygen after kit has been filled by hand
+.PHONY: buy
+buy:
+	python $(SCRIPTDIR)/buygen.py
 
 
 

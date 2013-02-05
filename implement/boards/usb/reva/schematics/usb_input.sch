@@ -1,4 +1,4 @@
-v 20110115 2
+v 20121123 2
 C 39200 39200 0 0 0 title-bordered-B.sym
 T 51200 40300 9 20 1 0 0 0 1
 USB input
@@ -277,3 +277,12 @@ gap + 40mil
 chassis = 
 90mil USB 
 overhang
+C 42100 40400 1 0 0 4_40x1_4phillips_zinc.sym
+{
+T 42600 40600 5 10 1 1 0 0 1
+value=4-40 x 1/4 phillips
+T 42600 40800 5 10 1 1 0 0 1
+refdes=MECH103
+T 42600 40400 5 10 1 1 0 0 1
+comment=Zinc-plated
+}

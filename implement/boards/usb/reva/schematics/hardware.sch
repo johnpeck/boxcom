@@ -1,4 +1,4 @@
-v 20110115 2
+v 20121123 2
 C 33200 34500 0 0 0 title-bordered-B.sym
 T 44900 35600 9 20 1 0 0 0 1
 Other hardware
@@ -12,93 +12,95 @@ T 47000 35100 9 10 1 0 0 0 1
 A
 T 47000 34800 9 10 1 0 0 0 1
 John Peck
-C 36200 39200 1 0 0 4_40_2tap_ra_bracket.sym
+C 37400 39600 1 0 0 4_40_2tap_ra_bracket.sym
 {
-T 36400 39500 5 10 1 1 0 0 1
+T 37600 39900 5 10 1 1 0 0 1
 value=4-40
-T 36400 39700 5 10 1 1 0 0 1
+T 37600 40100 5 10 1 1 0 0 1
 refdes=MECH602
-T 36400 39300 5 10 1 1 0 0 1
+T 37600 39700 5 10 1 1 0 0 1
 comment=Both holes tapped 4-40
 }
-C 36200 38400 1 0 0 500x500_foot.sym
+C 36100 37400 1 0 0 500x500_foot.sym
 {
-T 36700 38700 5 10 1 1 0 0 1
+T 36600 37700 5 10 1 1 0 0 1
 refdes=MECH604
-T 36700 38500 5 10 1 1 0 0 1
+T 36600 37500 5 10 1 1 0 0 1
 value=0.5 x 0.5 foot
 }
-C 38100 38500 1 0 0 500x500_foot.sym
+C 38000 37400 1 0 0 500x500_foot.sym
 {
-T 38600 38800 5 10 1 1 0 0 1
+T 38500 37700 5 10 1 1 0 0 1
 refdes=MECH603
-T 38600 38600 5 10 1 1 0 0 1
+T 38500 37500 5 10 1 1 0 0 1
 value=0.5 x 0.5 foot
 }
-C 36200 37600 1 0 0 500x500_foot.sym
+C 36100 36600 1 0 0 500x500_foot.sym
 {
-T 36700 37900 5 10 1 1 0 0 1
+T 36600 36900 5 10 1 1 0 0 1
 refdes=MECH606
-T 36700 37700 5 10 1 1 0 0 1
+T 36600 36700 5 10 1 1 0 0 1
 value=0.5 x 0.5 foot
 }
-C 38100 37700 1 0 0 500x500_foot.sym
+C 38000 36600 1 0 0 500x500_foot.sym
 {
-T 38600 38000 5 10 1 1 0 0 1
+T 38500 36900 5 10 1 1 0 0 1
 refdes=MECH605
-T 38600 37800 5 10 1 1 0 0 1
+T 38500 36700 5 10 1 1 0 0 1
 value=0.5 x 0.5 foot
 }
-C 38700 39300 1 0 0 4_40_2tap_ra_bracket.sym
+C 41600 39600 1 0 0 4_40_2tap_ra_bracket.sym
 {
-T 38900 39600 5 10 1 1 0 0 1
+T 41800 39900 5 10 1 1 0 0 1
 value=4-40
-T 38900 39800 5 10 1 1 0 0 1
+T 41800 40100 5 10 1 1 0 0 1
 refdes=MECH601
-T 38900 39400 5 10 1 1 0 0 1
+T 41800 39700 5 10 1 1 0 0 1
 comment=Both holes tapped 4-40
 }
-C 36200 40700 1 0 0 box_cu3007a.sym
+C 37000 38200 1 0 0 box_cu3007a.sym
 {
-T 37100 40700 5 10 1 1 0 0 1
+T 37900 38200 5 10 1 1 0 0 1
 value=cu-3007-a
-T 37100 40890 5 10 1 1 0 0 1
+T 37900 38390 5 10 1 1 0 0 1
 refdes=MECH600
 }
-C 36300 36600 1 0 0 4_40x1_4phillips.sym
+C 40100 36900 1 0 0 pcb_boxcom_usb_reva.sym
 {
-T 36800 36800 5 10 1 1 0 0 1
-value=4-40 x 1/4 phillips
-T 36800 37000 5 10 1 1 0 0 1
-refdes=MECH608
-}
-C 38350 36650 1 0 0 4_40x1_4phillips.sym
-{
-T 38850 36850 5 10 1 1 0 0 1
-value=4-40 x 1/4 phillips
-T 38850 37050 5 10 1 1 0 0 1
-refdes=MECH607
-}
-C 36150 35800 1 0 0 4_40x1_4phillips.sym
-{
-T 36650 36000 5 10 1 1 0 0 1
-value=4-40 x 1/4 phillips
-T 36650 36200 5 10 1 1 0 0 1
-refdes=MECH609
-}
-C 38500 35750 1 0 0 4_40x1_4phillips.sym
-{
-T 39000 35950 5 10 1 1 0 0 1
-value=4-40 x 1/4 phillips
-T 39000 36150 5 10 1 1 0 0 1
-refdes=MECH610
-}
-C 42100 37900 1 0 0 pcb_boxcom_usb_reva.sym
-{
-T 43400 38300 5 10 1 1 0 0 1
+T 41400 37300 5 10 1 1 0 0 1
 value=Boxcom USB interface
-T 43400 38490 5 10 1 1 0 0 1
+T 41400 37490 5 10 1 1 0 0 1
 refdes=PCB600
-T 43400 38100 5 10 1 0 0 0 1
+T 41400 37100 5 10 1 0 0 0 1
 revision=a
+}
+C 37600 40700 1 0 0 4_40x1_4phillips_zinc.sym
+{
+T 38100 40900 5 10 1 1 0 0 1
+value=4-40 x 1/4 phillips
+T 38100 41100 5 10 1 1 0 0 1
+refdes=MECH608
+T 38100 40700 5 10 1 1 0 0 1
+comment=Zinc-plated
+}
+T 41400 40800 9 10 1 0 0 0 2
+Second PCB mounting screw
+on another page
+C 35400 39700 1 0 0 4_40x1_4phillips_zinc.sym
+{
+T 35900 39900 5 10 1 1 0 0 1
+value=4-40 x 1/4 phillips
+T 35900 40100 5 10 1 1 0 0 1
+refdes=MECH609
+T 35900 39700 5 10 1 1 0 0 1
+comment=Zinc-plated
+}
+C 39600 39700 1 0 0 4_40x1_4phillips_zinc.sym
+{
+T 40100 39900 5 10 1 1 0 0 1
+value=4-40 x 1/4 phillips
+T 40100 40100 5 10 1 1 0 0 1
+refdes=MECH610
+T 40100 39700 5 10 1 1 0 0 1
+comment=Zinc-plated
 }
