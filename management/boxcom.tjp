@@ -1,0 +1,28 @@
+# This file describes the boxcom project.  This project demonstrates the
+# capabilities of my ASCII command interface written for the AVR
+# Butterfly.
+project "Boxcom" 2013-02-05 +4m {
+  timezone "US/Central"
+  timeformat "%Y-%m-%d"
+  # Use US format for numbers
+  numberformat "-" "" "," "." 1
+  # Use US financial format for currency values. Don't show cents.
+  currencyformat "(" ")" "," "." 0
+  currency "USD"
+}
+
+resource john "John Peck" {
+  email "john@johnpeck.info"
+  rate 20
+}
+
+# The whole project is a task that contains subtasks
+task "Boxcom" {
+  task "USB board" {
+    # The effort to finish this task in man-days
+    effort 20d
+    # Put me on it
+    allocate john
+    
+  }
+}
