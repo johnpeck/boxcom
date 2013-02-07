@@ -126,10 +126,17 @@
 *** TODO Did the solder mask make it between pins on U300?
 ** TODO Make a diagram in xfig showing what each of the numbers mean in 4_40_mthole_fat.fp
 ** DONE Submit board to Sierra
-* TODO Work on USB board kit [0/1]
+* TODO Work on USB board kit [2/4]
 ** TODO Fill kit 14 for two boards
    DEADLINE: <2013-02-22 Fri>
 ** TODO Make sure all parts have vendor entries
+** DONE Create a "boards" category for symbols
+   - Circuit boards will go in here.
+*** TODO Move the boxcom circuit board to this directory, replace it in the schematics
+** DONE Create a "pcb_features" category for symbols
+   - Things like mounting holes with big annular rings will go in here.
+*** TODO Move the 4_40 mounting hole symbol to this directory, replace it in the schematics.
+*** TODO Create the paste format for digikey
 * DONE Create 7pin mta100 header footprint
 * DONE Add budbox to hardware page for usb
 * TODO Add notes about using punch for USB jack on USB page

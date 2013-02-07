@@ -19,10 +19,46 @@ resource john "John Peck" {
 # The whole project is a task that contains subtasks
 task "Boxcom" {
   task "USB board" {
-    # The effort to finish this task in man-days
-    effort 20d
-    # Put me on it
-    allocate john
-    
+    task kit "Kitting" {
+      # The USB board requires kitting
+      # effort 14d
+      allocate john
+      task vendor "Assign parts to vendors" {
+        effort 5d
+        allocate john
+      }
+    }
+    task assembly "Assembly" {
+      # Assembly requires kitting
+      depends !kit
+      effort 14d
+      allocate john
+    }
   }
+}
+
+textreport frame "" {
+  header "Some header"
+  footer "----"
+  textreport index "Overview" {
+    formats html
+    center '<[report id="overview"]>'
+  }
+}
+
+
+# A traditional Gantt chart with a project overview.
+taskreport overview "" {
+  header "Project overview"
+  columns bsi { title 'Work index' },
+          name, start, end, effort, chart
+  # For this report we like to have the abbreviated weekday in front
+  # of the date. %a is the tag for this.
+  timeformat "%a %Y-%m-%d"
+  loadunit days
+  hideresource @all
+  caption 'All effort values are in man days.'
+  footer "Staffing"
+
+
 }

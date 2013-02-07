@@ -65,15 +65,6 @@ value=cu-3007-a
 T 37900 38390 5 10 1 1 0 0 1
 refdes=MECH600
 }
-C 40100 36900 1 0 0 pcb_boxcom_usb_reva.sym
-{
-T 41400 37300 5 10 1 1 0 0 1
-value=Boxcom USB interface
-T 41400 37490 5 10 1 1 0 0 1
-refdes=PCB600
-T 41400 37100 5 10 1 0 0 0 1
-revision=a
-}
 C 37600 40700 1 0 0 4_40x1_4phillips_zinc.sym
 {
 T 38100 40900 5 10 1 1 0 0 1
@@ -103,4 +94,13 @@ T 40100 40100 5 10 1 1 0 0 1
 refdes=MECH610
 T 40100 39700 5 10 1 1 0 0 1
 comment=Zinc-plated
+}
+C 40500 37000 1 0 0 boxcom_usb_reva.sym
+{
+T 41800 37400 5 10 1 1 0 0 1
+value=Boxcom USB interface
+T 41800 37590 5 10 1 1 0 0 1
+refdes=PCB600
+T 41800 37200 5 10 1 0 0 0 1
+revision=a
 }

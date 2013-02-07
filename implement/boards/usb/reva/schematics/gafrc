@@ -34,7 +34,8 @@
 (component-library "./jpeda/symbols/nets")
 (component-library "./jpeda/symbols/nonelectrics")
 (component-library "./jpeda/symbols/title")
-(component-library "./jpeda/symbols/pcb")
+(component-library "./jpeda/symbols/pcb_features")
+(component-library "./jpeda/symbols/boards")
 
 ; (Optional) Add the canned gschem symbols
 ;(component-library "/usr/share/gEDA/sym/4000")
