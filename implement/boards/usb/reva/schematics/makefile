@@ -30,21 +30,25 @@ SCRIPTDIR = ./jpeda/scripts
 # Path to footprints
 FOOTDIR = ./jpeda/footprints
 
+# Kitnum -- this also needs to be set in the kitgen file :-(
+KITNUM = 14
+
 #------------------------- Done with configuration ---------------------
 
 
 
 help:
-	@echo 'Makefile for USB board schematics                                     '
-	@echo '                                                                      '
-	@echo 'Usage:                                                                '
-	@echo '   make print           Print schematic pages to PDF                  '
-	@echo '   make edit            Open all schematic pages with gschem          '
-	@echo '   make netlist         Extract netlist from schematics               '
-	@echo '   make kit             Run kitgen on the schematic pages             '
-	@echo '   make buy             Run buygen on the filled kit                  '
-	@echo '   make pcb             Run gsch2pcb on the board                     '
-	@echo '                                                                      '
+	@echo 'Makefile for USB board schematics                                       '
+	@echo '                                                                        '
+	@echo 'Usage:                                                                  '
+	@echo '   make print           Print schematic pages to PDF                    '
+	@echo '   make edit            Open all schematic pages with gschem            '
+	@echo '   make netlist         Extract netlist from schematics                 '
+	@echo '   make kit             Run kitgen on the schematic pages               '
+	@echo '   make buy             Run buygen on the filled kit                    '
+	@echo '   make newbuy          Remove old buygen summary file, run buygen again'
+	@echo '   make pcb             Run gsch2pcb on the board                       '
+	@echo '                                                                        '
 
 
 # Run gsch2pcb on the board's project file
@@ -77,9 +81,18 @@ $(LAYOUTDIR)/$(NETLIST) : $(LAYOUTDIR) \
 kit : $(PAGES)
 	python $(SCRIPTDIR)/kitgen.py $^
 
-# Run buygen after kit has been filled by hand
+# Run buygen after kit has been filled by hand.  If there are repeated
+# vendors, run this target again after putting x's in the summary file
+# next to vendors you want to disqualify.
 .PHONY: buy
 buy:
+	python $(SCRIPTDIR)/buygen.py
+
+# Disregard the summary file and run buygen again. This is useful when
+# new vendors become qualified for parts.
+.PHONY: newbuy
+newbuy:
+	rm -f kit$(KITNUM)/kit$(KITNUM)_summary.dat
 	python $(SCRIPTDIR)/buygen.py
 
 

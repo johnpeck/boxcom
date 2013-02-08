@@ -126,10 +126,10 @@
 *** TODO Did the solder mask make it between pins on U300?
 ** TODO Make a diagram in xfig showing what each of the numbers mean in 4_40_mthole_fat.fp
 ** DONE Submit board to Sierra
-* TODO Work on USB board kit [2/4]
+* TODO Work on USB board kit [3/4]
 ** TODO Fill kit 14 for two boards
    DEADLINE: <2013-02-22 Fri>
-** TODO Make sure all parts have vendor entries
+** DONE Make sure all parts have vendor entries
 ** DONE Create a "boards" category for symbols
    - Circuit boards will go in here.
 *** TODO Move the boxcom circuit board to this directory, replace it in the schematics
