@@ -1,0 +1,15 @@
+# Ignore all the vendor cut-and-paste files
+*.pst
+
+# Ignore backup files
+*#
+
+# Ignore all kitting files except the fill file
+kit*_build.bom
+kit*_build.tex
+kit*_cost.bom
+kit*_digikey.dat
+kit*_mcmaster.dat
+kit*_newark.dat
+kit*_sierra.dat
+kit*_summary.dat
