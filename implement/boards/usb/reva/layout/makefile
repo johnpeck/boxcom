@@ -18,6 +18,9 @@ PRINTDIR = printable
 # The author
 FABAUTHOR = John Peck
 
+# Path to static blog file repository
+BLOGPATH = /home/john/projects/johnpeck/revb/src/boxcom
+
 
 # --------------------------- Technology settings --------------------------- 
 
@@ -82,6 +85,7 @@ help:
 	@echo '                                                                      '
 	@echo 'Usage:                                                                '
 	@echo '   make edit            Open layout with PCB                          '
+	@echo '   make blog            Copy outputs to blog                          '
 	@echo '   make submit          Export gerbers and create zip file            '
 	@echo '   make silkprint       Export silkscreen and board outline to ps     '
 	@echo '   make clean           Remove all gerber outputs and temporary files '
@@ -101,6 +105,26 @@ edit:
             --rat-thickness 1 $(# Here is a comment) \
             --fab-author '$(FABAUTHOR)' \
             $(BOARDNAME).pcb &
+
+.PHONY: blog
+blog: $(PRINTDIR)/prettypic.png
+	cp $< $(BLOGPATH)/usb_board_picture.png
+
+$(PRINTDIR)/prettypic.png: $(PRINTDIR)
+	pcb -x png --photo-mode \
+          --dpi 600  \
+          --use-alpha \
+          --as-shown  \
+          --only-visible \
+          --outfile $(PRINTDIR)/out.png \
+          $(BOARDNAME).pcb
+	convert $(PRINTDIR)/out.png \
+          \( +clone -background black -shadow 75x20+20+20 \)  +swap \
+          -background white \
+          -layers merge \
+          -resize 600 \
+          $@
+
 
 .PHONY: silkprint
 silkprint: $(PRINTDIR)
@@ -237,4 +261,5 @@ clean :
 	rm -f *.cnc
 	rm -f checklist.org
 	rm -rf $(SUBMITDIR)
+	rm -rf $(PRINTDIR)
 

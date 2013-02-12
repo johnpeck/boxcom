@@ -33,6 +33,9 @@ FOOTDIR = ./jpeda/footprints
 # Kitnum -- this also needs to be set in the kitgen file :-(
 KITNUM = 14
 
+# Path to the file repository for the blog entry
+BLOGPATH = /home/john/projects/johnpeck/revb/src/boxcom
+
 #------------------------- Done with configuration ---------------------
 
 
@@ -42,6 +45,7 @@ help:
 	@echo '                                                                        '
 	@echo 'Usage:                                                                  '
 	@echo '   make print           Print schematic pages to PDF                    '
+	@echo '   make blog            Copy outputs to blog                            '
 	@echo '   make edit            Open all schematic pages with gschem            '
 	@echo '   make netlist         Extract netlist from schematics                 '
 	@echo '   make kit             Run kitgen on the schematic pages               '
@@ -49,6 +53,11 @@ help:
 	@echo '   make newbuy          Remove old buygen summary file, run buygen again'
 	@echo '   make pcb             Run gsch2pcb on the board                       '
 	@echo '                                                                        '
+
+
+.PHONY: blog
+blog: print
+	cp $(PRINTDIR)/$(PRINTNAME) $(BLOGPATH)/usb_board_schematics.pdf
 
 
 # Run gsch2pcb on the board's project file

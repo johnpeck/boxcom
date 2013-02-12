@@ -21,7 +21,7 @@ flags a
 
 # The whole project is a task that contains subtasks
 task "Boxcom" {
-  task "USB board" {
+  task usbboard "USB board" {
     flags a
     task kit "Kitting" {
       allocate john
@@ -48,8 +48,12 @@ task "Boxcom" {
         start 2013-02-07
       }
       task mcmaster "Wait for McMaster order" {
-        length 5d
         start 2013-02-07
+        end 2013-02-08
+      }
+      task baggies "Parts go into baggies" {
+        effort 1d
+        depends !digikey,!newark,!mcmaster
       }
     }
     task assembly "Assembly" {
@@ -58,6 +62,23 @@ task "Boxcom" {
       effort 14d
       allocate john
     }
+    #  There should always be visibility of the project
+    task web "Web report" {
+      allocate john
+      task overview "Generate overview text" {
+        effort 1d
+        start 2013-02-09
+      }
+      task schematics "Publish schematics" {
+        effort 1d
+      }
+      task layout "Publish pretty layout picture" {
+        effort 1d
+      }
+      task partslist "Publish parts list" {
+        effort 1d
+      }
+    } # End web reporting
   } # End USB board
   task "Chassis" {
     flags a # Revision code for the chassis
@@ -65,8 +86,36 @@ task "Boxcom" {
       allocate john
       effort 1d
     }
+  } # End Chassis
+  task checkpoints "Milestones" {
+    task usbworks "USB board assembled and functional" {
+      depends !!usbboard.assembly
+      note "Board powers and communicates with the Butterfly"
+    }
   }
-}
+} # End Boxcom
+
+
+macro TaskTip [
+  tooltip istask() -8<-
+    '''Start: ''' <-query attribute='start'->
+    '''End: ''' <-query attribute='end'->
+    ----
+    '''Resources:'''
+
+    <-query attribute='resources'->
+    ----
+    '''Precursors: '''
+
+    <-query attribute='precursors'->
+    ----
+    '''Followers: '''
+
+    <-query attribute='followers'->
+    ->8-
+]
+
+
 
 textreport frame "" {
   header "Some header"
@@ -82,7 +131,7 @@ textreport frame "" {
 taskreport overview "" {
   header "Project overview"
   columns bsi { title 'Work index' },
-  name, flags { title 'Revision'}, start, end, effort, chart
+  name, flags { title 'Revision'}, start, end, effort, chart { ${TaskTip} }
   # For this report we like to have the abbreviated weekday in front
   # of the date. %a is the tag for this.
   timeformat "%a %Y-%m-%d"

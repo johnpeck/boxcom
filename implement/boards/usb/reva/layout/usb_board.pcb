@@ -12,7 +12,6 @@ Thermal[0.500000]
 DRC[600 1000 1000 500 1500 600]
 Flags("showdrc,nameonpcb,uniquename,clearnew,snappin")
 Groups("1,c:2,s:3:4:5:6:7:8")
-Styles["Signal,1000,3000,1500,1000:Power,5000,3000,1500,1000:Signal,1000,3000,1500,1000:Signal,1000,3000,1500,1000"]
 
 Symbol[' ' 1800]
 (
