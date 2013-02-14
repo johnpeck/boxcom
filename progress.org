@@ -139,7 +139,6 @@
 *** TODO Create the paste format for digikey
 * DONE Create 7pin mta100 header footprint
 * DONE Add budbox to hardware page for usb
-* TODO Add notes about using punch for USB jack on USB page
 * DONE Add standoffs for mounting butterfly to hardware page
   - These will go on the butterfly board schematics
 * TODO Work on functional drawing [1/2]
