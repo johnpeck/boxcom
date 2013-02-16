@@ -59,9 +59,11 @@ preview:
 
 # Make latex_manual.dvi a PHONY target so that latex can be run over and
 # over to resove labels.
-dvi: $(MAINFILE).dvi
-.PHONY: $(MAINFILE).dvi
-$(MAINFILE).dvi: 
+.PHONY : dvi
+.PHONY : $(MAINFILE).dvi
+dvi : $(MAINFILE).dvi
+$(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
+                 $(INTERNAL_CMDS_IDX).ind
 	latex $(MAINFILE).tex
 
 
@@ -71,19 +73,24 @@ $(OUTPUTDIR):
 
 
 
+# ind files are generated from idx files with makeindex
+%.ind : %.idx
+	makeindex -o $@ $<
 
-# Index ind files are just latex code made from individual idx files
-usr_commands.ind: usr_commands.idx
-	makeindex usr_commands.idx
+
+# The idx index files are generated when latex is run on the main
+# file and multind.sty is pulled in.  But latex expects to find
+# the ind files when it runs -- which are made from the idx files.
+%.idx :
+	touch $@
+
+
 
 # The SRS commands idx file has a cln extension
-srs_commands.ind: srs_commands.cln
-	makeindex srs_commands.cln
+#srs_commands.ind: srs_commands.cln
+#	makeindex srs_commands.cln
 
-# The index entries for user commands
-usr_commands.idx: $(wildcard ./commands/*.tex)\
-				  usr_cmds.tex
-	latex $(MAINFILE).tex
+
 
 # LaTeX has a problem with index entries containing escaped characters
 # when the entries occur inside macro arguments.  Need to remove all
@@ -197,4 +204,4 @@ clean:
 	rm -f figs/*.bak
 	rm -f output/howto_page*
 
-.PHONY: help clean dvi ps howto pdf comcheck spell
+

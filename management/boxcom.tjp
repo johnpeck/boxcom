@@ -40,16 +40,16 @@ task "Boxcom" {
         allocate john
       }
       task digikey "Wait for Digi-Key order" {
-        length 5d
+        length 4d
         start 2013-02-07
       }
       task newark "Wait for Newark order" {
-        length 5d
+        length 4d
         start 2013-02-07
       }
       task mcmaster "Wait for McMaster order" {
+        length 2d
         start 2013-02-07
-        end 2013-02-08
       }
       task baggies "Parts go into baggies" {
         effort 1d

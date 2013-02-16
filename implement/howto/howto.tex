@@ -1,5 +1,12 @@
 % Main latex file for the boxcom howto.
 
+% The left footer on the normal pagestyle pages
+\newcommand{\normalleftfoot}{This is my stuff}
+
+% The right footer on the normal pagestyle pages
+\newcommand{\normalrightfoot}{More stuff}
+
+
 % The manual_template controls page layout and things like the logo
 % in each page footer.
 \input{doctools/latex/manual_template.tex}  
@@ -25,8 +32,8 @@
 % These commands cause  usr_commands.idx and srs_commands.idx to be
 % generated when latex is run on this file and the multind.sty file
 % is pulled in (by manual_template)
-\makeindex{user_commands}
-\makeindex{internal_commands}
+\makeindex{user_cmds_index}
+\makeindex{internal_cmds_index}
 
 \begin{document}
 
@@ -68,9 +75,9 @@
 % 
 %----------------------------------------------------------------------
 \clearpage
-\addcontentsline{toc}{section}{Bibliography}
-\pagestyle{references} %set the references page style
-\bibliography{doctools/latex/ecrefs.bib}
+% \addcontentsline{toc}{section}{Bibliography}
+% \pagestyle{references} %set the references page style
+% \bibliography{doctools/latex/ecrefs.bib}
 
 
 
@@ -133,12 +140,12 @@
 
 
 % Alphabetical command index
-\printindex{user_commands}{Alphabetical command index}
+\printindex{user_cmds_index}{Alphabetical command index}
 
 %Internal SRS commands
 \ifthenelse{\equal{\isforme}{1}}{
-\clearpage
-\printindex{internal_commands}{Internal command index}
+\clearpage{}
+\printindex{internal_cmds_index}{Internal command index}
 }{}
 
 
