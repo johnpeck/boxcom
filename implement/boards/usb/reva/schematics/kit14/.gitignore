@@ -13,3 +13,8 @@ kit*_mcmaster.dat
 kit*_newark.dat
 kit*_sierra.dat
 kit*_summary.dat
+
+# Only keep the postscript output from the building BOM
+kit*_build.aux
+kit*_build.dvi
+kit*_build.log

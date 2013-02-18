@@ -1,0 +1,3 @@
+# Don't version xfig's backups
+SAVE.fig
+*.bak

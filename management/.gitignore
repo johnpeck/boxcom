@@ -1,0 +1,5 @@
+# Don't watch taskjuggler's outputs
+*.html
+css/
+icons/
+scripts/

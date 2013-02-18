@@ -1,0 +1,13 @@
+# Don't watch the doctools
+doctools/
+
+# Don't watch the howto intermediates
+*.aux
+*.dvi
+*.log
+*.toc
+
+# Don't watch the howto index files
+*.idx
+*.ilg
+*.ind

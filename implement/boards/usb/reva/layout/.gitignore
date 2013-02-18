@@ -1,0 +1,7 @@
+# Don't watch PCB's save files
+*.save
+
+# You don't need the cmd files when you're just working on the
+# board
+*.cmd
+
