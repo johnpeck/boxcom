@@ -63,7 +63,8 @@ preview:
 .PHONY : $(MAINFILE).dvi
 dvi : $(MAINFILE).dvi
 $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
-                 $(INTERNAL_CMDS_IDX).ind
+                 $(INTERNAL_CMDS_IDX).ind \
+                 figs/panel_switch_wiring.eps
 	latex $(MAINFILE).tex
 
 
@@ -107,9 +108,9 @@ srs_commands.idx: $(wildcard ./commands/*.tex)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Figure files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# The big block diagram figure
-./figs/full_block_diagram.eps: ./figs/full_block_diagram.fig
-	fig2dev -L eps -m 1 $< $@
+# The panel switch wiring figure
+figs/panel_switch_wiring.eps : figs/panel_switch_wiring.svg
+	inkscape --export-eps=$@ $< 
 
 # The pulsed waveform construction parameter figure
 ./figs/pulse_params.eps: ./figs/pulse_params.fig
