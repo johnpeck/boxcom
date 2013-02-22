@@ -162,5 +162,6 @@
 ** DONE Create 4-pin mta100 footprint for switch.
    - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
 
-* TODO Create design notes document
+* TODO Work on howto [1/1]
+** DONE Write up how to do loopback test
 * TODO Plan using taskjuggler

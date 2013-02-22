@@ -11,14 +11,105 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="169.78125"
-   height="100.92236"
+   width="246.62433"
+   height="160.31616"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="panel_switch_wiring.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="91.325939"
+     inkscape:cy="100.36482"
+     inkscape:document-units="in"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1078"
+     inkscape:window-height="855"
+     inkscape:window-x="131"
+     inkscape:window-y="92"
+     inkscape:window-maximized="0"
+     inkscape:snap-global="false"
+     units="in"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985"
+       units="in"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="0.1in"
+       spacingy="0.1in"
+       originx="-2.646188in"
+       originy="-3.5109784in" />
+  </sodipodi:namedview>
   <defs
      id="defs4">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect5332"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4832"
+       is_visible="true" />
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend"
+       style="overflow:visible">
+      <path
+         id="path3855"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible">
+      <path
+         id="path3831"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         id="path3849"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3822"
+       is_visible="true" />
     <inkscape:path-effect
        effect="spiro"
        id="path-effect4691"
@@ -96,43 +187,6 @@
          style="stop-color:#0000ff;stop-opacity:0;" />
     </linearGradient>
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="88.31793"
-     inkscape:cy="50.39089"
-     inkscape:document-units="in"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:window-width="1078"
-     inkscape:window-height="855"
-     inkscape:window-x="131"
-     inkscape:window-y="92"
-     inkscape:window-maximized="0"
-     inkscape:snap-global="false"
-     units="in"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0">
-    <inkscape:grid
-       type="xygrid"
-       id="grid2985"
-       units="in"
-       empspacing="5"
-       visible="true"
-       enabled="true"
-       snapvisiblegridlinesonly="true"
-       spacingx="0.1in"
-       spacingy="0.1in"
-       originx="-3.5in"
-       originy="-3.7892959in" />
-  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -149,7 +203,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-315,-610.4032)">
+     transform="translate(-238.15692,-576.05798)">
     <path
        sodipodi:type="star"
        style="fill:none;stroke-width:1.71000004;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none"
@@ -355,22 +409,108 @@
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
-       x="366.43283"
-       y="554.11914"
+       x="314.40997"
+       y="582.13611"
        id="text4693"
-       sodipodi:linespacing="125%"
-       transform="translate(0,62.362183)"><tspan
+       sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4695"
-         x="366.43283"
-         y="554.11914">Eswitch panel</tspan><tspan
+         x="314.40997"
+         y="582.13611">Eswitch panel</tspan><tspan
          sodipodi:role="line"
-         x="366.43283"
-         y="564.11914"
+         x="314.40997"
+         y="592.13611"
          id="tspan4697">rocker switch</tspan><tspan
          sodipodi:role="line"
-         x="366.43283"
-         y="574.11914"
+         x="314.40997"
+         y="602.13611"
          id="tspan4699">Part 21-1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
+       x="36.36549"
+       y="114.30688"
+       id="text3034"
+       sodipodi:linespacing="125%"
+       transform="translate(315,610.4032)"><tspan
+         sodipodi:role="line"
+         id="tspan3036"
+         x="36.36549"
+         y="114.30688">5-inch lengths</tspan><tspan
+         sodipodi:role="line"
+         x="36.36549"
+         y="124.30688"
+         id="tspan3038">of 24-gauge wire</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
+       x="237.72333"
+       y="616.16602"
+       id="text3040"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3042"
+         x="237.72333"
+         y="616.16602">Cover each solder</tspan><tspan
+         sodipodi:role="line"
+         x="237.72333"
+         y="626.16602"
+         id="tspan3044">lug with 1/2-inch</tspan><tspan
+         sodipodi:role="line"
+         x="237.72333"
+         y="636.16602"
+         id="tspan3046">of 1/8-inch heat</tspan><tspan
+         sodipodi:role="line"
+         x="237.72333"
+         y="646.16602"
+         id="tspan3048">shrink (16-22)</tspan></text>
+    <rect
+       style="fill:#191120;fill-opacity:1;stroke:#000000;stroke-width:0.89999998;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3050"
+       width="11.616755"
+       height="35.860416"
+       x="95.964493"
+       y="55.765339"
+       transform="translate(315,610.4032)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="m -45.135616,40.373203 c -0.169744,4.155811 0.968793,8.355553 3.214286,11.856601 2.782025,4.337578 7.21174,7.527642 12.12183,9.091373 6.46382,2.058552 13.429009,1.372037 20.2030509,1.010153 7.0643524,-0.377393 14.1488507,-0.377393 21.2132031,0"
+       id="path4830"
+       inkscape:path-effect="#path-effect4832"
+       inkscape:original-d="m -45.135616,40.373203 c 0,0 1.294332,8.016693 3.214286,11.856601 1.919954,3.839908 7.371643,7.375003 12.12183,9.091373 6.341495,2.291353 13.29829,0.837641 20.2030509,1.010153 6.9047606,0.172511 21.2132031,0 21.2132031,0"
+       inkscape:connector-curvature="0"
+       transform="translate(315,610.4032)"
+       sodipodi:nodetypes="czazc" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
+       x="386.72083"
+       y="602.52893"
+       id="text5316"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5318"
+         x="386.72083"
+         y="602.52893">Bind wires together</tspan><tspan
+         sodipodi:role="line"
+         x="386.72083"
+         y="612.52893"
+         id="tspan5322">with two 1/4-inch pieces</tspan><tspan
+         sodipodi:role="line"
+         x="386.72083"
+         y="622.52893"
+         id="tspan5326">of 1/8-inch heat shrink</tspan><tspan
+         sodipodi:role="line"
+         x="386.72083"
+         y="632.52893"
+         id="tspan5328">(16-22)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
+       d="m 441.77414,627.90901 c 0.32099,4.62369 -1.8437,9.34666 -5.55584,12.12183 -2.88474,2.15661 -6.48225,3.11493 -9.59644,4.92449 -5.68625,3.30411 -9.51927,9.5942 -9.84899,16.16245"
+       id="path5330"
+       inkscape:path-effect="#path-effect5332"
+       inkscape:original-d="m 441.77414,627.90901 c 0,0 -3.2914,8.43282 -5.55584,12.12183 -2.26443,3.68902 -0.93957,1.91166 -9.59644,4.92449 -8.65687,3.01284 -9.84899,16.16245 -9.84899,16.16245"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzc" />
   </g>
 </svg>

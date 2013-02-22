@@ -64,7 +64,9 @@ preview:
 dvi : $(MAINFILE).dvi
 $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  $(INTERNAL_CMDS_IDX).ind \
-                 figs/panel_switch_wiring.eps
+                 figs/panel_switch_wiring.eps \
+                 figs/usb_board_uart_to_db9.eps \
+                 figs/serial_loopback_test.eps
 	latex $(MAINFILE).tex
 
 
@@ -111,6 +113,14 @@ srs_commands.idx: $(wildcard ./commands/*.tex)
 # The panel switch wiring figure
 figs/panel_switch_wiring.eps : figs/panel_switch_wiring.svg
 	inkscape --export-eps=$@ $< 
+
+# The usb board serial breakout cable
+figs/usb_board_uart_to_db9.eps : figs/usb_board_uart_to_db9.svg
+	inkscape --export-eps=$@ $<
+
+# The serial loopback test setup figure
+figs/serial_loopback_test.eps : figs/serial_loopback_test.svg
+	inkscape --export-eps=$@ $<
 
 # The pulsed waveform construction parameter figure
 ./figs/pulse_params.eps: ./figs/pulse_params.fig
