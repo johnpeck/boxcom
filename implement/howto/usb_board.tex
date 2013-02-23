@@ -40,6 +40,37 @@ Use table \ref{tab:usb_rails} to keep track of voltage rails.
   \end{center}
 \end{table}
 
+\subsubsection{Current monitor}
+The current monitor output at J500 will have a fixed DC output, since
+the voltage regulator following it always draws at least 1mA. As
+illustrated in figure \ref{fig:monitor_test}, the slope set in
+hardware should give $\Delta \mathrm{V_{out}}$ = 1V for each
+additional 10mA of current draw from J501.  Since the voltage output
+from J501 is controlled at 3.3V, a test load of 3.3k$\Omega$ should
+increase the voltage at J500 by 100mV.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[clip,scale=.5]{figs/monitor_test}
+    \caption{The output connectors used during the current monitor test.\label{fig:monitor_test}}
+  \end{center}
+\end{figure}
+
+\begin{table}[ht]
+  \begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      Load applied to J501 & Acceptable $\mathrm{V_{out}}$ at J500 & Measured $\mathrm{V_{out}}$ at J500\\
+      \hline\hline
+      Open                 &90mV $\rightarrow$ 110mV &\wksentry{2cm}{$\mathrm{V_{out,o}} =$}\\
+      \hline
+      3.3k$\Omega$         &\cwksentry{3cm}{$\mathrm{V_{out,o}}$ + 100mV} &\\
+      \hline
+    \end{tabular}
+    \caption{Passing voltage measurements for the current monitor test.\label{tab:monitor_test}}
+  \end{center}
+\end{table}
+
 \subsubsection{Serial loopback}
 The serial loopback test is a basic test of the USB/serial interface
 and the RS-232 transceiver.  Make the breakout cable shown in figure

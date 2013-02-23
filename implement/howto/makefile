@@ -66,7 +66,8 @@ $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  $(INTERNAL_CMDS_IDX).ind \
                  figs/panel_switch_wiring.eps \
                  figs/usb_board_uart_to_db9.eps \
-                 figs/serial_loopback_test.eps
+                 figs/serial_loopback_test.eps \
+                 figs/monitor_test.eps
 	latex $(MAINFILE).tex
 
 
@@ -120,6 +121,10 @@ figs/usb_board_uart_to_db9.eps : figs/usb_board_uart_to_db9.svg
 
 # The serial loopback test setup figure
 figs/serial_loopback_test.eps : figs/serial_loopback_test.svg
+	inkscape --export-eps=$@ $<
+
+# The current monitor test figure
+figs/monitor_test.eps : figs/monitor_test.svg
 	inkscape --export-eps=$@ $<
 
 # The pulsed waveform construction parameter figure
