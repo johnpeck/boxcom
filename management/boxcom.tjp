@@ -1,6 +1,11 @@
 # This file describes the boxcom project.  This project demonstrates the
 # capabilities of my ASCII command interface written for the AVR
 # Butterfly.
+
+# The taskjugler user manual is at
+# /usr/local/lib/ruby/gems/1.9.1/gems/taskjuggler-3.4.0/manual/html
+
+
 project "Boxcom" 2013-02-01 +4m {
   timezone "US/Central"
   timeformat "%Y-%m-%d"
@@ -9,7 +14,22 @@ project "Boxcom" 2013-02-01 +4m {
   # Use US financial format for currency values. Don't show cents.
   currencyformat "(" ")" "," "." 0
   currency "USD"
+  # Uncomment this now attribute to look at the cost situation on
+  # some other date than the present.
+  now 2013-03-15
 }
+
+# In order to do a simple profit and loss analysis of the project we
+# specify accounts. One for the development costs, one for the
+# documentation costs, and one account to credit the customer payments
+# to.
+account cost "Project Cost" {
+  account dev "Development"
+  account doc "Documentation"
+}
+account rev "Income"
+# The Profit&Loss analysis should be rev - cost accounts.
+balance cost rev
 
 resource john "John Peck" {
   email "john@johnpeck.info"
@@ -19,11 +39,12 @@ resource john "John Peck" {
 # Flags for revision code
 flags a
 
+
 # The whole project is a task that contains subtasks
 task "Boxcom" {
   task usbboard "USB board" {
     flags a
-    task kit "Kitting" {
+    task kit14 "Fill kit 14" {
       allocate john
       task pcb "PCB fabrication" {
         task turntime "Turn time" {
@@ -55,13 +76,85 @@ task "Boxcom" {
         effort 1d
         depends !digikey,!newark,!mcmaster
       }
-    }
-    task assembly "Assembly" {
+    } # End kit14
+    task assemble14 "Assembly" {
       # Assembly requires kitting
-      depends !kit
-      effort 14d
+      depends !kit14
+      effort 3d
       allocate john
-    }
+      note -8<- 
+               Assembly takes less than 1 day, but schedule an
+               entire day for each board at the beginning. 
+           ->8-
+    } # End assembly
+    
+
+
+    # Kit 15
+    task kit15 "Fill kit 15" {
+        start 2013-02-25
+        chargeset dev
+        # If no resources (people) are allocated, those resources won't
+        # be paid.  Allocating a resource here will make kitting cost more,
+        # as it will be more expensive by the shipping time * hourly rate
+        # of the resource.
+        # allocate john
+        journalentry 2013-02-26 "A headline" {
+        summary -8<-
+          We ran into some compatibility problems with the SQL
+          Library.
+        ->8-
+        }
+        note "Some crap"
+        task pcb "PCB fabrication" {
+          note "Ordered 5 boards at $60 each"
+          task turntime "Turn time" {
+            note "Some note about the turntime"
+            length 4d
+            start 2013-02-26
+            charge 295 onstart
+          }
+          task shiptime "Ship time" {
+            length 4d
+            depends !turntime
+            charge 15 onstart
+          }
+        }
+        task vendor "Assign parts to vendors" {
+          # Note that the chargeset dev has already been assigned to this
+          # task group.  Charges will be made against this cost account
+          # when a task with an effort attribute is in progress or has
+          # finished.
+          allocate john
+          effort 1d
+        }
+        task digikey "Wait for Digi-Key order" {
+          length 4d
+          start 2013-02-26
+          charge 100 onstart
+        }
+        task newark "Wait for Newark order" {
+          length 4d
+          start 2013-02-26
+          charge 60 onstart
+          
+        }
+        task baggies "Parts go into baggies" {
+          effort 1d
+          allocate john
+          depends !digikey,!newark
+        }
+      } # End kit15
+      task assemble15 "Assembly" {
+        # Assembly requires kitting
+        depends !kit15
+        effort 3d
+        allocate john
+        note -8<- 
+               Assembly takes less than 1 day, but schedule an
+               entire day for each board at the beginning. 
+             ->8-
+      } # End assembly
     #  There should always be visibility of the project
     task web "Web report" {
       allocate john
@@ -88,57 +181,66 @@ task "Boxcom" {
     }
   } # End Chassis
   task checkpoints "Milestones" {
-    task usbworks "USB board assembled and functional" {
-      depends !!usbboard.assembly
-      note "Board powers and communicates with the Butterfly"
+    task usbworks "3 USB boards assembled and functional" {
+      depends !!usbboard.assemble15
+      note "Board powers up and passes tests in howto"
     }
   }
 } # End Boxcom
 
 
+navigator navbar {
+  hidereport @none
+}
+
+
 macro TaskTip [
-  tooltip istask() -8<-
-    '''Start: ''' <-query attribute='start'->
-    '''End: ''' <-query attribute='end'->
-    ----
-    '''Resources:'''
-
-    <-query attribute='resources'->
-    ----
-    '''Precursors: '''
-
-    <-query attribute='precursors'->
-    ----
-    '''Followers: '''
-
-    <-query attribute='followers'->
-    ->8-
+  tooltip istask() 
+               -8<-
+               '''Start: ''' <-query attribute='start'->
+               '''End: ''' <-query attribute='end'->
+               ---
+               '''Notes: ''' <-query attribute='note'->
+               ----
+               '''Resources:''' <-query attribute='resources'->
+               ----
+               '''Precursors: ''' <-query attribute='precursors'->
+               ----
+               '''Followers: ''' <-query attribute='followers'->
+               ----
+               '''Notes: ''' <-query attribute='note'->
+               ----
+               ->8-
 ]
 
 
-
-textreport frame "" {
-  header "Some header"
-  footer "----"
-  textreport index "Overview" {
-    formats html
-    center '<[report id="overview"]>'
-  }
-}
 
 
 # A traditional Gantt chart with a project overview.
 taskreport overview "" {
   header "Project overview"
   columns bsi { title 'Work index' },
-  name, flags { title 'Revision'}, start, end, effort, chart { ${TaskTip} }
+      name, flags { title 'Revision'}, 
+      start, end, cost, chart { ${TaskTip} }
   # For this report we like to have the abbreviated weekday in front
   # of the date. %a is the tag for this.
   timeformat "%a %Y-%m-%d"
   loadunit days
   hideresource @all
+  balance cost rev
   caption 'All effort values are in man days.'
   footer "Staffing"
+}
 
 
+textreport frame "" {
+  header -8<-
+    == Accounting Software Project ==
+    <[navigator id="navbar"]>
+  ->8-
+  footer "----"
+  textreport index "Overview" {
+    formats html
+    center '<[report id="overview"]>'
+  }
 }

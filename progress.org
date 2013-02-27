@@ -12,80 +12,12 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
-* DONE Post to geda-user about gschem issues on apone
-** I'm having trouble selecting text, and text isn't redrawn until I explicitly ask for a redraw.
-   - I wonder if there's a good way to assess the "state" of the geda installation, so that the developers have a beter idea of what I'm working with.
-** DONE Uninstall fonts installed during fix
-   - [ ] arkpandora
-   - [ ] artwiz-aleczapka-en
-   - [ ] cheapskatefonts
-   - [ ] corefonts
-   - [ ] dejavu
-   - [ ] font-adobe-100dpi
-   - [ ] font-adobe-75dpi
-   - [ ] font-adobe-utopia-100dpi
-   - [ ] font-adobe-utopia-75dpi
-   - [ ] font-adobe-utopia-type1
-   - [ ] font-alias
-   - [ ] font-bh-75dpi
-   - [ ] font-bh-100dpi
-   - [ ] font-bh-lucidatypewriter-100dpi
-   - [ ] font-bh-lucidatypewriter-75dpi
-   - [ ] font-bh-ttf
-   - [ ] font-bh-type1
-   - [ ] font-bitstream-100dpi
-   - [ ] font-bitstream-75dpi
-   - [ ] font-bitstream-speedo
-   - [ ] font-bitstream-type1
-   - [ ] font-cursor-misc
-   - [ ] font-misc-misc
-   - [ ] font-dec-misc
-   - [ ] font-ibm-type1
-   - [ ] font-micro-misc
-   - [ ] font-schumacher-misc
-   - [ ] font-sony-misc
-   - [ ] font-sun-misc
-   - [ ] font-util
-   - [ ] font-xfree86-type1
-   - [ ] freefont-ttf
-   - [ ] freefonts
-   - [ ] lfpfonts-fix
-   - [ ] lfpfonts-var
-   - [ ] liberation-fonts (this was it!!)
-   - [ ] terminus-font
-   - [ ] ttf-bitstream-vera
-   - [ ] urw-fonts
 * DONE Receive eval232r boards
 ** Ordered from Digi-Key on <2012-10-07 Sun>
    - Scheduled to ship via UPS 3-day
-* DONE Create a schematic part for ft232rl
-** Part has a 3.3V LDO regulator broken out to pin 17.
-   - Can source 50mA.
 * DONE Keystone 621 bracket [2/2]
 ** DONE Schematic part
 ** DONE Mechanical drawing
-* DONE Fix capacitor value for USB power -- make sure Butterfly boots
-  - Replaced the 1uF C402 with 3.3nF
-* DONE Create a schematic part for trs202e -- rs232 transceiver
-** The TI part is trs202ecd for 16-SOIC parts
-** DONE Use luciani's SOIC-127P-600L1-16N footprint
-* DONE Create schematic parts for eval232 schematic parts
-** DONE 10nF capacitor
-** DONE Ferrite bead
-** DONE 47p capacitor
-** DONE 4.7u capacitor
-
-* DONE Create makefile for schematics directory
-* DONE Create schematic page for usbio
-* DONE Add grounded mounting hole to power schematic.
-  - This will be a 4-40 mounting hole with a big "shoulder" for making connections to the chassis.  It should show up in the schematic so a net can be associated with it
-** DONE Create fat mounting hole footprint (4_40_mthole_fat.fp)
-* DONE Create 3-pin mta100 output symbol
-  - Make sure it has a footprint -- don't need a right angle connector for this board.
-  - Have to modify 2pin_mta100_pol.fp for 3 pins.
-* DONE Create the butterfly board schematic pages
-  - The Butterfly is its own board.
-* DONE Add feet for budbox to hardware page
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
@@ -98,7 +30,11 @@
 ** TODO Add makefile target to copy assembly list to website
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on USB board layout [18/21]
+* TODO Work on USB board layout [20/23]
+** DONE Compare 22 and 25 gauge needle soldering
+   DEADLINE: <2013-02-25 Mon>
+   - Compare the force needed to draw a line of solder across some SO-16 pins.  I think the problem I'm having with the SSOP-28 part is that I'm trying to draw too fast to thin out the solder line.  Drawing too fast results in leaving gaps in the solder.
+** DONE Create assembly plan that lets you test FTDI part before you finish assembly 
 ** DONE Create makefile target for editing
    - Should include all the command-line options you want
 ** DONE Decide on board outline
@@ -126,9 +62,8 @@
 *** TODO Did the solder mask make it between pins on U300?
 ** TODO Make a diagram in xfig showing what each of the numbers mean in 4_40_mthole_fat.fp
 ** DONE Submit board to Sierra
-* TODO Work on USB board kit [3/4]
-** TODO Fill kit 14 for two boards
-   DEADLINE: <2013-02-22 Fri>
+* TODO Work on USB board kit [4/4]
+** DONE Fill kit 14 for two boards
 ** DONE Make sure all parts have vendor entries
 ** DONE Create a "boards" category for symbols
    - Circuit boards will go in here.
@@ -137,6 +72,8 @@
    - Things like mounting holes with big annular rings will go in here.
 *** TODO Move the 4_40 mounting hole symbol to this directory, replace it in the schematics.
 *** TODO Create the paste format for digikey
+** TODO Fill kit 15 for four boards
+*** TODO Create kit 15
 * DONE Create 7pin mta100 header footprint
 * DONE Add budbox to hardware page for usb
 * DONE Add standoffs for mounting butterfly to hardware page

@@ -30,8 +30,11 @@ SCRIPTDIR = ./jpeda/scripts
 # Path to footprints
 FOOTDIR = ./jpeda/footprints
 
-# Kitnum -- this also needs to be set in the kitgen file :-(
-KITNUM = 14
+# The kit number
+KITNUM = 15
+
+# The kit quantity
+KITQTY = 3
 
 # Path to the file repository for the blog entry
 BLOGPATH = /home/john/projects/johnpeck/revb/src/boxcom
@@ -80,15 +83,23 @@ $(BOARDNAME).pj :
 # Create netlist
 .PHONY: netlist
 netlist : $(LAYOUTDIR)/$(NETLIST)
-
 $(LAYOUTDIR)/$(NETLIST) : $(LAYOUTDIR) \
                           $(PAGES)
 	gnetlist -g PCB $(PAGES) -o $@
 
 # Run kitgen
 .PHONY: kit
-kit : $(PAGES)
-	python $(SCRIPTDIR)/kitgen.py $^
+kit : $(PAGES) \
+      $(SCRIPTDIR)/kitconf.py
+	python $(SCRIPTDIR)/kitgen.py $(PAGES)
+
+.PHONY : $(SCRIPTDIR)/kitconf.py
+$(SCRIPTDIR)/kitconf.py:
+	@echo "# The configuration file for kitgen.py" > $@
+	@echo "# The kit number" >> $@
+	@echo "kitnum = "$(KITNUM) >> $@
+	@echo "# How many boards to kit for" >> $@
+	@echo "kitqty = "$(KITQTY) >> $@
 
 # Run buygen after kit has been filled by hand.  If there are repeated
 # vendors, run this target again after putting x's in the summary file
