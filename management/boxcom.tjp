@@ -16,7 +16,7 @@ project "Boxcom" 2013-02-01 +4m {
   currency "USD"
   # Uncomment this now attribute to look at the cost situation on
   # some other date than the present.
-  now 2013-03-15
+  # now 2013-03-15
 }
 
 # In order to do a simple profit and loss analysis of the project we

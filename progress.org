@@ -84,6 +84,7 @@
 ** TODO Use functional drawing to name schematic pages
 * TODO Work on mechanical drawing [3/4]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
+** TODO Create AVR Butterfly drawing in inkscape
 ** DONE Create 3-pin mta100 header drawing
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** DONE Make a drawing of the 21-1 rocker switch
