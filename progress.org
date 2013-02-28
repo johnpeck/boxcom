@@ -82,19 +82,15 @@
   - Functional drawing is [[file:implement/drawings/functional.fig][here]].
 ** DONE Add current monitor
 ** TODO Use functional drawing to name schematic pages
-* TODO Work on mechanical drawing [3/4]
+* TODO Work on mechanical drawing [4/9]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
 ** TODO Create AVR Butterfly drawing in inkscape
 ** DONE Create 3-pin mta100 header drawing
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** DONE Make a drawing of the 21-1 rocker switch
 ** TODO Add mounting holes to butterfly drawing in library
-** TODO Create an end-on view of a USB jack
+** DONE Create an end-on view of a USB jack
 ** TODO Create top-down view of angle bracket
-** TODO Set board dimensions.
-*** Y dimension is 2.5 inches
-** TODO Set USB connector position
-   - Board edge should be 50mils away from the box edge.
 * DONE Work on mechanical power switch [2/2]
 ** DONE Create schematic part for switch (21-1)
 ** DONE Create 4-pin mta100 footprint for switch.
