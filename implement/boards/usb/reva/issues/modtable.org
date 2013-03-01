@@ -1,0 +1,13 @@
+Modification list
+Board: USB board (13-7)
+Revision: A
+# Describe the modification in a separate file in this directory.  Create
+# a link to this file in the modification column using C-c u l
+#
+# When a board receives the modification, use C-c . <enter> to insert the
+# current date into the appropriate cell.
+|--------------+---------+---------|
+| Modification | Board 1 | Board 2 |
+|--------------+---------+---------|
+|              |         |         |
+|--------------+---------+---------|
