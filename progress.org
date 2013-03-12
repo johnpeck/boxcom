@@ -12,12 +12,6 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
-* DONE Receive eval232r boards
-** Ordered from Digi-Key on <2012-10-07 Sun>
-   - Scheduled to ship via UPS 3-day
-* DONE Keystone 621 bracket [2/2]
-** DONE Schematic part
-** DONE Mechanical drawing
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
@@ -30,6 +24,10 @@
 ** TODO Add makefile target to copy assembly list to website
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
+* TODO Work on Butterfly board [/]
+** TODO Run kit for 3
+** TODO Make a drawing in the howto showing connections
+*** TODO Show show connection to ADC7 at PF4 (J401 pins 1 and 2) 
 * TODO Work on USB board layout [20/23]
 ** DONE Compare 22 and 25 gauge needle soldering
    DEADLINE: <2013-02-25 Mon>
@@ -62,7 +60,7 @@
 *** TODO Did the solder mask make it between pins on U300?
 ** TODO Make a diagram in xfig showing what each of the numbers mean in 4_40_mthole_fat.fp
 ** DONE Submit board to Sierra
-* TODO Work on USB board kit [4/4]
+* TODO Work on USB board [4/4]
 ** DONE Fill kit 14 for two boards
 ** DONE Make sure all parts have vendor entries
 ** DONE Create a "boards" category for symbols
@@ -73,22 +71,20 @@
 *** TODO Move the 4_40 mounting hole symbol to this directory, replace it in the schematics.
 *** TODO Create the paste format for digikey
 ** TODO Fill kit 15 for four boards
-*** TODO Create kit 15
-* DONE Create 7pin mta100 header footprint
-* DONE Add budbox to hardware page for usb
-* DONE Add standoffs for mounting butterfly to hardware page
-  - These will go on the butterfly board schematics
+*** DONE Create kit 15
+*** DONE Digi-Key parts go into baggies
+    DEADLINE: <2013-03-03 Sun>
 * TODO Work on functional drawing [1/2]
   - Functional drawing is [[file:implement/drawings/functional.fig][here]].
 ** DONE Add current monitor
 ** TODO Use functional drawing to name schematic pages
-* TODO Work on mechanical drawing [4/9]
+* TODO Work on mechanical drawing [6/7]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
-** TODO Create AVR Butterfly drawing in inkscape
+** DONE Create AVR Butterfly drawing in inkscape
 ** DONE Create 3-pin mta100 header drawing
 ** DONE Bring Butterfly drawing from buttcom into doctools
 ** DONE Make a drawing of the 21-1 rocker switch
-** TODO Add mounting holes to butterfly drawing in library
+** DONE Add mounting holes to butterfly drawing in library
 ** DONE Create an end-on view of a USB jack
 ** TODO Create top-down view of angle bracket
 * DONE Work on mechanical power switch [2/2]

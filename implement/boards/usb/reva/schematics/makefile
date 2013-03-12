@@ -57,11 +57,10 @@ help:
 	@echo '   make pcb             Run gsch2pcb on the board                       '
 	@echo '                                                                        '
 
-
+# Create the schematics pdf in the blog entry
 .PHONY: blog
 blog: print
 	cp $(PRINTDIR)/$(PRINTNAME) $(BLOGPATH)/usb_board_schematics.pdf
-
 
 # Run gsch2pcb on the board's project file
 .PHONY: pcb
