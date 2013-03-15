@@ -8,7 +8,7 @@ PAGES = contents.sch \
 	hardware.sch
 
 # The Guile script to run in order to print schematics
-PRINTSCRIPT = print.scm
+PRINTSCRIPT = ./jpeda/scripts/print.scm
 
 # The directory for printed schematics
 PRINTDIR = ./printable

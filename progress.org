@@ -94,4 +94,7 @@
 
 * TODO Work on howto [1/1]
 ** DONE Write up how to do loopback test
+** TODO Write up how to wire up Butterfly [1/2]
+*** DONE Redraw Butterfly in inkscape for clipart
+*** TODO Make a drawing with arrows showing where connectors get soldered
 * TODO Plan using taskjuggler

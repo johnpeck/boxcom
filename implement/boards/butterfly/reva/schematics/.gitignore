@@ -1,2 +1,5 @@
 # Don't watch for changes in jpeda
 jpeda/
+
+# Don't version kits at all
+kit*/
