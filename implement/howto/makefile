@@ -68,7 +68,8 @@ $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  figs/usb_board_uart_to_db9.eps \
                  figs/serial_loopback_test.eps \
                  figs/monitor_test.eps \
-                 figs/butterfly_connect.eps
+                 figs/butterfly_connect.eps \
+                 figs/uart_cable.eps
 	latex $(MAINFILE).tex
 
 
@@ -130,6 +131,10 @@ figs/monitor_test.eps : figs/monitor_test.svg
 
 # Connections made to the AVR Butterfly
 figs/butterfly_connect.eps : figs/butterfly_connect.svg
+	inkscape --export-eps=$@ $<
+
+# Making the UART cable
+figs/uart_cable.eps : figs/uart_cable.svg
 	inkscape --export-eps=$@ $<
 
 # The pulsed waveform construction parameter figure
