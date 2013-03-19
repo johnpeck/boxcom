@@ -30,6 +30,7 @@
 *** DONE Show show connection to ADC7 at PF4 (J401 pins 1 and 2) 
 ** TODO Make a drawing showing how to make the USART cable
    DEADLINE: <2013-03-19 Tue>
+** TODO Make a UART cable
 * TODO Work on USB board layout [20/23]
 ** DONE Compare 22 and 25 gauge needle soldering
    DEADLINE: <2013-02-25 Mon>
@@ -80,15 +81,14 @@
   - Functional drawing is [[file:implement/drawings/functional.fig][here]].
 ** DONE Add current monitor
 ** TODO Use functional drawing to name schematic pages
-* TODO Work on mechanical drawing [6/7]
+* TODO Work on chassis [6/7]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
-** DONE Create AVR Butterfly drawing in inkscape
-** DONE Create 3-pin mta100 header drawing
-** DONE Bring Butterfly drawing from buttcom into doctools
-** DONE Make a drawing of the 21-1 rocker switch
-** DONE Add mounting holes to butterfly drawing in library
 ** DONE Create an end-on view of a USB jack
 ** TODO Create top-down view of angle bracket
+** TODO Create revb of the chassis
+   - This rev will use an online front panel creator for the detailed
+     holes, and just a great big square cut with a nibbler in the main
+     chassis.
 * DONE Work on mechanical power switch [2/2]
 ** DONE Create schematic part for switch (21-1)
 ** DONE Create 4-pin mta100 footprint for switch.
