@@ -67,7 +67,8 @@ $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  figs/panel_switch_wiring.eps \
                  figs/usb_board_uart_to_db9.eps \
                  figs/serial_loopback_test.eps \
-                 figs/monitor_test.eps
+                 figs/monitor_test.eps \
+                 figs/butterfly_connect.eps
 	latex $(MAINFILE).tex
 
 
@@ -125,6 +126,10 @@ figs/serial_loopback_test.eps : figs/serial_loopback_test.svg
 
 # The current monitor test figure
 figs/monitor_test.eps : figs/monitor_test.svg
+	inkscape --export-eps=$@ $<
+
+# Connections made to the AVR Butterfly
+figs/butterfly_connect.eps : figs/butterfly_connect.svg
 	inkscape --export-eps=$@ $<
 
 # The pulsed waveform construction parameter figure

@@ -199,7 +199,7 @@ T 60400 58100 5 10 1 1 0 0 1
 comment=Zinc-plated
 }
 T 47200 59200 9 10 1 0 0 0 1
-Power monitor output --> ADC input (ADC 7)
+Power monitor output --> ADC input (ADC 4)
 C 45900 59700 1 0 0 2pin_mta100_white_recept.sym
 {
 T 46300 60400 5 10 1 1 0 0 1
