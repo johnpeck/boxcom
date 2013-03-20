@@ -32,25 +32,45 @@ def getports():
     return portlist
 
 """ looptest(portlist)
-    Writes a character to one port, reads it from the other """
+    Writes a character to one port, reads it from the other.  Then repeats
+    the process in reverse 
+    Arguments: portlist -- list of serial objects created with getports()
+    Returns: True -- Communication successful in both directions
+             False -- Communication failed in one or both directions
+"""
 def looptest(portlist):
     sendstring = 'some junk that was in my trunk'
+    readok = {} # Dictionary of direction : read success
     """ The serial object will accept python's bytes objects, which
         are created from characters with a given encoding. """
-    portlist[0].write(bytes(sendstring,'ascii'))
-    """ Reading from the serial object will give you a bytes object,
-        which then has to be decoded. """
-    try:
-        readstring = (portlist[1].read(len(sendstring))).decode('ascii')
-        portlist[0].flushOutput()
-        portlist[1].flushInput()
-        if (sendstring == readstring):
-            return True
+    dataflow = ['forward','reverse']
+    for direction in dataflow:
+        if direction == 'forward':
+            writeport = 0
+            readport = 1
         else:
+            writeport = 1
+            readport = 0
+        portlist[writeport].write(bytes(sendstring,'ascii'))
+        """ Reading from the serial object will give you a bytes object,
+            which then has to be decoded. 
+        """
+        rawread = (portlist[readport].read(len(sendstring)))
+        try:
+            readstring = rawread.decode('ascii') # Decoding may fail for bad string
+            portlist[writeport].flushOutput()
+            portlist[readport].flushInput()
+            if (sendstring == readstring):
+                readok[direction] = True
+            else:
+                readok[direction] = False
+        except:
+            portlist[writeport].flushOutput()
+            portlist[readport].flushInput()
             return False
-    except:
-        portlist[0].flushOutput()
-        portlist[1].flushInput()
+    if list(readok.values()).count(False) == 0:
+        return True
+    else:
         return False
 
 """ setorder(portlist)
@@ -98,16 +118,16 @@ def main():
             testlib.passmessage(str(int(rate)) + ' baud loopback ok')
         else:
             testlib.failmessage(str(int(rate)) + ' baud loopback error')
-    portlist.reverse()
-    testlib.infomessage(portlist[0].name + '  --> ' + portlist[1].name)
-    for rate in stdbauds:
-        portlist = setbaud(portlist,rate)
-        time.sleep(1) # Allow 1 second for baud configuration
-        retval = looptest(portlist)
-        if retval:
-            testlib.passmessage(str(int(rate)) + ' baud loopback ok')
-        else:
-            testlib.failmessage(str(int(rate)) + ' baud loopback error')
+    # portlist.reverse()
+    # testlib.infomessage(portlist[0].name + '  --> ' + portlist[1].name)
+    # for rate in stdbauds:
+    #     portlist = setbaud(portlist,rate)
+    #     time.sleep(1) # Allow 1 second for baud configuration
+    #     retval = looptest(portlist)
+    #     if retval:
+    #         testlib.passmessage(str(int(rate)) + ' baud loopback ok')
+    #     else:
+    #         testlib.failmessage(str(int(rate)) + ' baud loopback error')
 
 
 if __name__ == '__main__':
