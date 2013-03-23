@@ -11,3 +11,7 @@ doctools/
 *.idx
 *.ilg
 *.ind
+
+# Don't watch eps outputs
+*.ps
+figs/*.eps
