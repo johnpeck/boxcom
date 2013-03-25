@@ -24,13 +24,18 @@
 ** TODO Add makefile target to copy assembly list to website
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on Butterfly board [2/2]
+* TODO Work on Butterfly board [5/5]
 ** DONE Fill kit 16
 ** DONE Make a drawing in the howto showing connections
 *** DONE Show show connection to ADC7 at PF4 (J401 pins 1 and 2) 
-** TODO Make a drawing showing how to make the USART cable
+** DONE Make a drawing showing how to make the USART cable
    DEADLINE: <2013-03-19 Tue>
-** TODO Make a UART cable
+** DONE Make a UART cable
+   DEADLINE: <2013-03-25 Mon>
+** DONE Add power and UART connections to butterfly
+   DEADLINE: <2013-03-25 Mon>
+** TODO Make power and ADC cables for Butterfly
+   DEADLINE: <2013-03-26 Tue>
 * TODO Work on USB board layout [20/23]
 ** DONE Compare 22 and 25 gauge needle soldering
    DEADLINE: <2013-02-25 Mon>

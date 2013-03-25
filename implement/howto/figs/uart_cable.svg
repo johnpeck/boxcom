@@ -10,7 +10,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="277.5871"
+   width="416.84277"
    height="105.91602"
    id="svg2"
    version="1.1"
@@ -136,8 +136,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="140.34742"
-     inkscape:cy="65.66213"
+     inkscape:cx="224.38476"
+     inkscape:cy="65.662119"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -161,8 +161,8 @@
        snapvisiblegridlinesonly="true"
        spacingx="0.01in"
        spacingy="0.01in"
-       originx="-2.5449414in"
-       originy="-2.8075738in" />
+       originx="-1.6191297in"
+       originy="-2.8075739in" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -172,7 +172,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -180,7 +180,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-229.04473,-693.76453)">
+     transform="translate(-145.72168,-693.76453)">
     <path
        style="fill:none;stroke:#ff0000;stroke-width:1.79999995;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 247.85714,718.46932 157.5,0"
@@ -380,17 +380,17 @@
        sodipodi:nodetypes="cssssscc" />
     <text
        xml:space="preserve"
-       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
-       x="414"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
+       x="238.5"
        y="723.86218"
        id="text4999"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5001"
-         x="414"
+         x="238.5"
          y="723.86218">3-pin MTA100 plug</tspan><tspan
          sodipodi:role="line"
-         x="414"
+         x="238.5"
          y="736.36218"
          id="tspan5003">14-10</tspan></text>
     <text
@@ -420,5 +420,31 @@
        inkscape:original-d="m 18.438192,58.95702 0,-22.5"
        inkscape:connector-curvature="0"
        transform="translate(260.56181,705.40516)" />
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
+       x="414"
+       y="737.36218"
+       id="text3044"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3046"
+         x="414"
+         y="737.36218">(This side shown inverted)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Helvetica"
+       x="414"
+       y="710.36218"
+       id="text3048"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3050"
+         x="414"
+         y="710.36218">All positions wired</tspan><tspan
+         sodipodi:role="line"
+         x="414"
+         y="722.86218"
+         id="tspan3052">straight-through: 1:1, 2:2, 3:3</tspan></text>
   </g>
 </svg>
