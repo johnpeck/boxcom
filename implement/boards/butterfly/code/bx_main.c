@@ -25,7 +25,7 @@
    Defines the received command state structure recv_cmd_state_t.  Use
    this to keep track of the remote interface state. */
 #include "bx_command.h"
-#include "bc_usart.h"
+#include "bx_usart.h"
 
 /* pgmspace.h
  * Contains macros and functions for saving and reading data out of
@@ -33,9 +33,10 @@
  */
 #include <avr/pgmspace.h>
 
-/* bc_logger.h sets up logging 
- */
-#include "bc_logger.h"
+/* bx_logger.h 
+
+   Sets up logging  */
+#include "bx_logger.h"
 
 /* bx_adc.h 
 

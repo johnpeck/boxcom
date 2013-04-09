@@ -22,26 +22,26 @@
    Provides some sample functions for the command handler to call. */
 #include "bx_functions.h"
 
-/* bc_usart.h provides functions for transmitting characters over the
- * usart.
- */
-#include "bc_usart.h"
+/* bx_usart.h 
 
-/* bc_ascii.h
- * Provides lowstring() for converting strings to lower case.
- */
-#include "bc_ascii.h"
+   Provides functions for transmitting characters over the usart. */
+#include "bx_usart.h"
 
-/* bc_logger.h
- * Provides logger_msg and logger_msg_p for log messages tagged with
- * a system and severity.
- */
-#include "bc_logger.h"
+/* bx_ascii.h
+ 
+   Provides lowstring() for converting strings to lower case. */
+#include "bx_ascii.h"
 
-/* bc_numbers.h
- * Provides ascii to number conversion.
- */
-#include "bc_numbers.h"
+/* bx_logger.h
+ 
+   Provides logger_msg and logger_msg_p for log messages tagged with a
+   system and severity. */
+#include "bx_logger.h"
+
+/* bx_numbers.h
+
+   Provides ascii to number conversion. */
+#include "bx_numbers.h"
 
 /* bx_adc.h
  

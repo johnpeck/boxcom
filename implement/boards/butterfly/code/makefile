@@ -77,10 +77,10 @@ OBJDIR = .
 SRC = $(TARGET).c \
       bx_functions.c \
       bx_command.c \
-      bc_usart.c \
-      bc_logger.c \
-      bc_numbers.c \
-      bc_ascii.c \
+      bx_usart.c \
+      bx_logger.c \
+      bx_numbers.c \
+      bx_ascii.c \
       bx_clock.c \
       bx_adc.c
 
@@ -407,6 +407,7 @@ help:
 	@echo 'Usage:                                                   '
 	@echo '   make edit           Edit the code with emacs          '
 	@echo '   make gccversion     Show the avr-gcc version          '
+	@echo '   make hex            Just build to create the hex file '
 	@echo '   make program        Build and program using avrdude   '
 	@echo '   make clean          Clean up temporary files          '
 	@echo '                                                         '

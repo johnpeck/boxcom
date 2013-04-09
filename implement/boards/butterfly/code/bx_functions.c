@@ -10,7 +10,7 @@
  * flash.
  */
 #include <avr/pgmspace.h>
-#include "bc_usart.h"
+#include "bx_usart.h"
 
 
 #include "bx_functions.h"
@@ -21,8 +21,10 @@
  */
 #include <avr/pgmspace.h>
 
-/* bc_logger.h sets up logging */
-#include "bc_logger.h"
+/* bx_logger.h 
+
+   Sets up logging */
+#include "bx_logger.h"
 
 
 void cmd_hello( uint16_t nonval ) {

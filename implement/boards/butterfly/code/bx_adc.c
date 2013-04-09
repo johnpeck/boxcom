@@ -1,10 +1,12 @@
 /* bx_adc.c
    Used to set up the ADC for the boxcom project. */
 
-/* bc_usart.h provides functions for transmitting characters over the
- * usart.
- */
-#include "bc_usart.h"
+/* bx_usart.h 
+
+   Provides functions for transmitting characters over the
+   usart.
+*/
+#include "bx_usart.h"
 
 /* pgmspace.h
  * Provides macros and functions for saving and reading data out of
@@ -22,11 +24,11 @@
  */
 #include <avr/io.h>
 
-/* bc_logger.h
- * Provides logger_msg and logger_msg_p for log messages tagged with
- * a system and severity.
- */
-#include "bc_logger.h"
+/* bx_logger.h
+
+   Provides logger_msg and logger_msg_p for log messages tagged with a
+   system and severity. */
+#include "bx_logger.h"
 
 #include "bx_adc.h"
 
