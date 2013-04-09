@@ -24,7 +24,7 @@
 ** TODO Add makefile target to copy assembly list to website
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on Butterfly board [5/5]
+* TODO Work on Butterfly board [7/7]
 ** DONE Fill kit 16
 ** DONE Make a drawing in the howto showing connections
 *** DONE Show show connection to ADC7 at PF4 (J401 pins 1 and 2) 
@@ -34,8 +34,11 @@
    DEADLINE: <2013-03-25 Mon>
 ** DONE Add power and UART connections to butterfly
    DEADLINE: <2013-03-25 Mon>
-** TODO Make power and ADC cables for Butterfly
+** DONE Make power and ADC cables for Butterfly
    DEADLINE: <2013-03-26 Tue>
+** Move buttcom code over to butterfly [/]
+*** TODO Rename all files with bx prefix
+** DONE Make sure toolchain is installed
 * TODO Work on USB board layout [20/23]
 ** DONE Compare 22 and 25 gauge needle soldering
    DEADLINE: <2013-02-25 Mon>
