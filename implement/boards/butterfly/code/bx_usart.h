@@ -1,6 +1,7 @@
 /* bx_usart.h
  
-   Used to set up the USART for the boxcom project. */
+   Used to set up the USART for the boxcom project. 
+*/
 
 /* stdint.h
  * Defines fixed-width integer types like uint8_t
@@ -44,8 +45,9 @@ void usart_puts(const char s[]);
  */
 void usart_puts_p(const char *data);
 
-/* usart_init()
- * Initialize the USART for 9600 baud, 8 data bits, 1 stop bit, no parity
- * checking. 
- */
+/* usart_init() 
+
+   Initialize the USART for 9600 baud, 8 data bits, 1
+   stop bit, no parity checking.
+*/
 void usart_init(void);

@@ -110,25 +110,36 @@ void usart_puts_p(const char *data_ptr) {
 }
 
 /* usart_init()
- * Initialize the USART.  The butterfly only has one USART, so all the
- * n values for configuration registers are 0. 
- */
+   
+   Initialize the USART.  The butterfly only has one USART, so all the
+   n values for configuration registers are 0.
+*/
 void usart_init(void) {
-    /* Set the USART baudrate registers for 9600.  With a fosc of 1MHz,
-     * and double speed operation enabled, this means UBRR0 = 12.  UBRR
-     * is a 12-bit register, so it has a high and a low byte. */
-    UBRR0H = 0;
-    UBRR0L = 12;
+  UCSR0A = (1<<U2X0); // Set double speed mode
 
-    /* Set double speed mode. */
-    UCSR0A = (1<<U2X0);
+  /* Set the USART baudrate registers for 9600.  With a fosc of
+     1MHz, and double speed operation enabled, this means UBRR0 =
+     12.  UBRR is a 12-bit register, so it has a high and a low
+     byte.
+       
+     fosc  UBRR0H  UBRROL
+     --------------------
+     1MHz    0        12
+     8MHz    0       103
+  */
+  UBRR0H = 0;
+  UBRR0L = 103;
 
-    /* Configure USART control register B */
-    UCSR0B = (1<<RXEN0)|(1<<TXEN0); // Enable receiver and transmitter.
-    UCSR0B |= (1<<RXCIE0); // Enable receive complete interrupts.
-    UCSR0B |= (0<<TXCIE0); // Enable transmit complete interrupts (not right now).
-    UCSR0B |= (0<<UDRIE0); // Enable data registter empty interrupts (not right now).
+  /* Configure USART control register B 
+   */
+  UCSR0B = (1<<RXEN0)|(1<<TXEN0); // Enable receiver and transmitter.
+  UCSR0B |= (1<<RXCIE0); // Enable receive complete interrupts.
+  UCSR0B |= (0<<TXCIE0); // Enable transmit complete interrupts (not
+			 // right now).
+  UCSR0B |= (0<<UDRIE0); // Enable data registter empty interrupts
+			 // (not right now).
 
-    /* Set the USART to asynchronous at 8 bits no parity and 1 stop bit */
-    UCSR0C = (0<<UMSEL0)|(0<<UPM00)|(0<<USBS0)|(3<<UCSZ00)|(0<<UCPOL0);
+  /* Set the USART to asynchronous at 8 bits no parity and 1 stop bit
+   */
+  UCSR0C = (0<<UMSEL0)|(0<<UPM00)|(0<<USBS0)|(3<<UCSZ00)|(0<<UCPOL0);
 }

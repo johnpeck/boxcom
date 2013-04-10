@@ -36,9 +36,8 @@
    DEADLINE: <2013-03-25 Mon>
 ** DONE Make power and ADC cables for Butterfly
    DEADLINE: <2013-03-26 Tue>
-** Move buttcom code over to butterfly [/]
-*** TODO Rename all files with bx prefix
 ** DONE Make sure toolchain is installed
+** TODO Increase USART baud
 * TODO Work on USB board layout [20/23]
 ** DONE Compare 22 and 25 gauge needle soldering
    DEADLINE: <2013-02-25 Mon>
@@ -85,6 +84,7 @@
 *** DONE Create kit 15
 *** DONE Digi-Key parts go into baggies
     DEADLINE: <2013-03-03 Sun>
+** TODO Fill kit 15a for 1 board (from kit 15)
 * TODO Work on functional drawing [1/2]
   - Functional drawing is [[file:implement/drawings/functional.fig][here]].
 ** DONE Add current monitor

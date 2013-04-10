@@ -13,8 +13,8 @@
 
 /* bx_clock.h
 
-   Provides fosc_cal() to set up a calibrated 1MHz system clock.
- */
+   Provides fosc_1mhz() and fosc_8mhz() for setting the system clock.
+*/
 #include "bx_clock.h"
 
 /* bx_command.h 
@@ -28,34 +28,44 @@
 #include "bx_usart.h"
 
 /* pgmspace.h
- * Contains macros and functions for saving and reading data out of
- * flash.
- */
+
+   Contains macros and functions for saving and reading data out of
+   flash.
+*/
 #include <avr/pgmspace.h>
 
 /* bx_logger.h 
 
-   Sets up logging  */
+   Sets up logging  
+*/
 #include "bx_logger.h"
 
 /* bx_adc.h 
 
    Provides functions for configuring and using the
-   Butterfly's ADC module. */
+   Butterfly's ADC module. 
+*/
 #include "bx_adc.h"
+
+
+
+
 
 
 // Define a pointer to the received command state
 recv_cmd_state_t  recv_cmd_state;
 recv_cmd_state_t *recv_cmd_state_ptr = &recv_cmd_state;
 
+
+
+// The main loop
 int main() {
     int retval = 0;
     sei(); // Enable interrupts
-    /* Set up the calibrated 1MHz system clock.  Do this before setting
-     * up the USART, as the USART depends on this for an accurate buad
-     * rate. */
-    fosc_1mhz();
+    /* Set up the system clock.  Do this before setting up the USART,
+       as the USART depends on this for an accurate buad rate.
+    */
+    fosc_8mhz();
     /* Set up the USART before setting up the logger -- the logger uses
      * the USART for output. */
     usart_init();
