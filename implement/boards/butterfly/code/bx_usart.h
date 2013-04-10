@@ -51,3 +51,11 @@ void usart_puts_p(const char *data);
    stop bit, no parity checking.
 */
 void usart_init(void);
+
+/* usart_76k8_baud()
+
+   Set the USART's baud rate to 76.8k baud.  This is a strange baud,
+   and it won't be available with slower system clocks.  Call
+   usart_init() before using this.
+*/
+void usart_76k8_baud(void);

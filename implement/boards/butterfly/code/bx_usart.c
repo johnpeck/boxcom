@@ -112,7 +112,9 @@ void usart_puts_p(const char *data_ptr) {
 /* usart_init()
    
    Initialize the USART.  The butterfly only has one USART, so all the
-   n values for configuration registers are 0.
+   n values for configuration registers are 0.  This will always
+   initialize the transfer rate to 9600 buad. If you change the system
+   clock, you also have to change this function to maintain 9600 baud.
 */
 void usart_init(void) {
   UCSR0A = (1<<U2X0); // Set double speed mode
@@ -143,3 +145,22 @@ void usart_init(void) {
    */
   UCSR0C = (0<<UMSEL0)|(0<<UPM00)|(0<<USBS0)|(3<<UCSZ00)|(0<<UCPOL0);
 }
+
+/* usart_76k8_baud()
+
+   Set the USART's baud rate to 76.8k baud.  This is a strange baud,
+   and it won't be available with slower system clocks.  Call
+   usart_init() before using this.
+*/
+void usart_76k8_baud() {
+  /* Set the USART baudrate registers for 76.8k.  With double speed
+     operation enabled:
+       
+     fosc  UBRR0H  UBRROL
+     --------------------
+     8MHz    0        12
+  */
+  UBRR0H = 0;
+  UBRR0L = 12;
+} // end usart_76k8_baud
+  

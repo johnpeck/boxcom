@@ -68,7 +68,8 @@ int main() {
     fosc_8mhz();
     /* Set up the USART before setting up the logger -- the logger uses
      * the USART for output. */
-    usart_init();
+    usart_init(); // Sets 9.6k baud
+    usart_76k8_baud(); // Sets 76.8k baud
     logger_init();
     /* To configure the logger, first clear the logger enable register
      * by disabling it with logger_disable().  Then set individual bits
