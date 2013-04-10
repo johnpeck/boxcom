@@ -159,7 +159,13 @@ void logger_msg( char *logsys, logger_level_t loglevel,char *logmsg, ... ) {
     return;
 }
 
-/* Send a log message with a string located in flash memory */
+/* logger_msg_p()
+
+   Send a log message with a string located in flash memory. 
+   Usage: logger_msg_p( system string (see system_array above),
+                        log level (see logger_level_t),
+			message string, another message string)
+*/
 void logger_msg_p( char *logsys, logger_level_t loglevel,const char *logmsg, ... ) {
     va_list args; 
     char printbuffer[LOGGER_BUFFERSIZE]; 

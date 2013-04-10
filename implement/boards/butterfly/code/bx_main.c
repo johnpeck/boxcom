@@ -58,36 +58,40 @@ recv_cmd_state_t *recv_cmd_state_ptr = &recv_cmd_state;
 
 
 
-// The main loop
+
 int main() {
-    int retval = 0;
-    sei(); // Enable interrupts
-    /* Set up the system clock.  Do this before setting up the USART,
-       as the USART depends on this for an accurate buad rate.
+  int retval = 0;
+  sei(); // Enable interrupts
+  /* Set up the system clock.  Do this before setting up the USART,
+     as the USART depends on this for an accurate buad rate.
+  */
+  fosc_8mhz();
+  /* Set up the USART before setting up the logger -- the logger uses
+     the USART for output. */
+  usart_init(); // Sets 9.6k baud
+  usart_76k8_baud(); // Sets 76.8k baud
+  logger_init();
+  /* To configure the logger, first clear the logger enable register
+     by disabling it with logger_disable().  Then set individual bits
+     with logger_setsystem().
+  */
+  logger_disable(); // Disable logging from all systems
+  logger_setsystem( "logger" ); // Enable logger system logging
+  logger_setsystem( "rxchar" ); // Enable received character logging
+  logger_setsystem( "command" ); // Enable command system logging
+  logger_setsystem( "adc" ); // Enable adc module logging
+  adc_init(); // Set the ADCs reference and SAR prescaler
+  usart_printf_p(PSTR("MCUCR 0x%x\r\n"),MCUCR);
+  adc_mux(4); // Set the ADC mux to channel 4
+  command_init( recv_cmd_state_ptr );
+  /* The main loop */
+  for(;;) {
+    /* Process the parse buffer to look for commands loaded with the
+       received character ISR. 
     */
-    fosc_8mhz();
-    /* Set up the USART before setting up the logger -- the logger uses
-     * the USART for output. */
-    usart_init(); // Sets 9.6k baud
-    usart_76k8_baud(); // Sets 76.8k baud
-    logger_init();
-    /* To configure the logger, first clear the logger enable register
-     * by disabling it with logger_disable().  Then set individual bits
-     * with logger_setsystem().
-     */
-    logger_disable(); // Disable logging from all systems
-    logger_setsystem( "logger" ); // Enable logger system logging
-    logger_setsystem( "rxchar" ); // Enable received character logging
-    logger_setsystem( "command" ); // Enable command system logging
-    logger_setsystem( "adc" ); // Enable adc module logging
-    adc_init(); // Set the ADCs reference and SAR prescaler
-    command_init( recv_cmd_state_ptr );
-    for(;;) {
-        /* Process the parse buffer to look for commands loaded with the
-         * received character ISR. */
-        process_pbuffer( recv_cmd_state_ptr, command_array );
-    }// end main for loop
-    return retval;
+    process_pbuffer( recv_cmd_state_ptr, command_array );
+  }// end main for loop
+  return retval;
 } // end main
 
 

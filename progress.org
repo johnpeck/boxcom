@@ -12,6 +12,17 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
+* Work on chassis [6/7]
+  - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
+** DONE Create an end-on view of a USB jack
+** TODO Create top-down view of angle bracket
+** TODO Finish cutting diagram for back panel
+* Work on code
+** DONE Switch to correct ADC channel (4)
+   - Need to figure out why this isn't reading correctly.  Is it set
+     to an output?
+** TODO Add log message warning that JTAG has been disabled
+   - Add this inside ADC init
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
@@ -24,7 +35,7 @@
 ** TODO Add makefile target to copy assembly list to website
 * TODO Work on makefile for butterfly board schematics [1/1]
 ** DONE Create this makefile
-* TODO Work on Butterfly board [7/7]
+* Work on Butterfly board [8/8]
 ** DONE Fill kit 16
 ** DONE Make a drawing in the howto showing connections
 *** DONE Show show connection to ADC7 at PF4 (J401 pins 1 and 2) 
@@ -37,7 +48,7 @@
 ** DONE Make power and ADC cables for Butterfly
    DEADLINE: <2013-03-26 Tue>
 ** DONE Make sure toolchain is installed
-** TODO Increase USART baud
+** DONE Increase USART baud
 * TODO Work on USB board layout [20/23]
 ** DONE Compare 22 and 25 gauge needle soldering
    DEADLINE: <2013-02-25 Mon>
@@ -89,14 +100,6 @@
   - Functional drawing is [[file:implement/drawings/functional.fig][here]].
 ** DONE Add current monitor
 ** TODO Use functional drawing to name schematic pages
-* TODO Work on chassis [6/7]
-  - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
-** DONE Create an end-on view of a USB jack
-** TODO Create top-down view of angle bracket
-** TODO Create revb of the chassis
-   - This rev will use an online front panel creator for the detailed
-     holes, and just a great big square cut with a nibbler in the main
-     chassis.
 * DONE Work on mechanical power switch [2/2]
 ** DONE Create schematic part for switch (21-1)
 ** DONE Create 4-pin mta100 footprint for switch.
