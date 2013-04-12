@@ -18,23 +18,22 @@ INTERNAL_CMDS_IDX=internal_cmds_index
 
 
 help:
-	@echo 'Makefile for the ec100 manual                                         '
-	@echo '                                                                      '
-	@echo 'Usage:                                                                '
-	@echo '   make edit                        Edit the manual with emacs        '
-	@echo '   make dvi                         Regenerate the dvi file           '
-	@echo '   make preview                     Fire up xdvi to view the dvi file '
-	@echo '   make howto                       Create the howto pdf in ./output  '
-	@echo '   make comcheck                    Check included remote commands    '
-	@echo '   make spell                       Check spelling                    '
-	@echo '   make clean                       Clean up temporary files          '
-	@echo '                                                                      '
+	@echo 'Makefile for the ec100 manual                                  '
+	@echo '                                                               '
+	@echo 'Usage:                                                         '
+	@echo '   make edit                 Edit the manual with emacs        '
+	@echo '   make dvi                  Regenerate the dvi file           '
+	@echo '   make preview              Fire up xdvi to view the dvi file '
+	@echo '   make howto                Create the howto pdf in ./output  '
+	@echo '   make comcheck             Check included remote commands    '
+	@echo '   make spell                Check spelling                    '
+	@echo '   make clean                Clean up temporary files          '
+	@echo '                                                               '
 
 .PHONY: edit
 edit :
-	emacs --geometry 120x40 \
-              --visit $(MAINFILE).tex \
-              --funcall visual-line-mode &
+	emacs --geometry 180x60 \
+              --visit $(MAINFILE).tex &
 
 howto: $(OUTPUTDIR)\
 	    $(OUTPUTDIR)/howto.pdf

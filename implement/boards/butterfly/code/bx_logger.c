@@ -164,7 +164,7 @@ void logger_msg( char *logsys, logger_level_t loglevel,char *logmsg, ... ) {
    Send a log message with a string located in flash memory. 
    Usage: logger_msg_p( system string (see system_array above),
                         log level (see logger_level_t),
-			message string, another message string)
+			message format string, values for format string)
 */
 void logger_msg_p( char *logsys, logger_level_t loglevel,const char *logmsg, ... ) {
     va_list args; 
@@ -177,7 +177,8 @@ void logger_msg_p( char *logsys, logger_level_t loglevel,const char *logmsg, ...
     
     if (loglevel >= (logger_config_ptr -> loglevel)) {
         /* If this message's level is high enough to be logged, we send
-         * it on to be filtered by system name. */
+	   it on to be filtered by system name. 
+	*/
         va_start (args, logmsg); 
             /* Make sure messages are never longer than printbuffer */
             vsnprintf_P (printbuffer, LOGGER_BUFFERSIZE, logmsg, args); 

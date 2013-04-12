@@ -41,8 +41,10 @@ uint8_t usart_printf (const char *fmt, ...) {
     return 0; 
 }
 
-/* Send a format string stored in flash memory to the USART.
- */
+/* usart_printf_p() 
+
+   Send a format string stored in flash memory to the USART.
+*/
 uint8_t usart_printf_p(const char *fmt, ...) {
     va_list args; 
     uint8_t i; 

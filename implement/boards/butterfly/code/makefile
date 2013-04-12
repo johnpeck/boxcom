@@ -414,9 +414,9 @@ help:
 
 .PHONY: edit
 edit :
-	emacs --geometry 80x40 \
-              --visit $(TARGET).c \
-              --c-mode &
+	find . -type f -iname "*.[ch]" | xargs etags -a
+	emacs --geometry 180x60 \
+              --visit $(TARGET).c &
 
 
 

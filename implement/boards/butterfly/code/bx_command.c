@@ -199,75 +199,75 @@ void rbuffer_erase( recv_cmd_state_t *recv_cmd_state_ptr ) {
  * Process the command (if there is one) in the parse buffer. 
  */
 void process_pbuffer( recv_cmd_state_t *recv_cmd_state_ptr ,
-                    struct command_struct *command_array) {
-    if ((recv_cmd_state_ptr -> pbuffer_lock) == 1) {
-        // Parse buffer is locked -- there's a command to process
-        logger_msg_p("command",log_level_INFO,
-            PSTR("The parse buffer is locked.\r\n"));
-        recv_cmd_state_ptr -> pbuffer_arg_ptr = strchr(recv_cmd_state_ptr -> pbuffer,' ');
-        if (recv_cmd_state_ptr -> pbuffer_arg_ptr != NULL) {
-            // Parse buffer contains a space -- there's an argument
-            logger_msg_p("command",log_level_INFO,
-                PSTR("The command contains a space.\r\n"));
-            *(recv_cmd_state_ptr -> pbuffer_arg_ptr) = '\0'; // Terminate the command string
-            (recv_cmd_state_ptr -> pbuffer_arg_ptr)++;
-            while (*(recv_cmd_state_ptr -> pbuffer_arg_ptr) == ' ') {
-                (recv_cmd_state_ptr -> pbuffer_arg_ptr)++; // Move to first non-space character
-            }
-            // pbuffer_arg_ptr now points to the beginning of the argument
-            logger_msg_p("command",log_level_INFO,
-                PSTR("The command's argument is '%s'.\r\n"),
-                (recv_cmd_state_ptr -> pbuffer_arg_ptr));
-        }
-        lowstring(recv_cmd_state_ptr -> pbuffer); // Convert command to lower case
-        // Look through the command list for a match
-        uint8_t pbuffer_match = 0;
-        while ((command_array -> execute) != 0) {
-            if (strcmp( recv_cmd_state_ptr -> pbuffer,
-                command_array -> name ) == 0) {
-                // We've found a matching command
-                logger_msg_p("command",log_level_INFO,
-                    PSTR("Command '%s' recognized.\r\n"),command_array -> name);
-                pbuffer_match = 1;
-                if (strcmp( command_array -> arg_type, "none") != 0) {
-                    // The command is specified to have an argument
-                    uint8_t arg_ok = check_argsize(recv_cmd_state_ptr,command_array);
-                    if (arg_ok != 0) {
-                        logger_msg_p("command",log_level_ERROR,
-                            PSTR("Argument to '%s' is out of range.\r\n"),
-                            command_array -> name);
-                        }
-                    else {
-                        // The argument is the right size
-                        logger_msg_p("command",log_level_INFO,
-                            PSTR("Argument to '%s' is within limits.\r\n"),
-                            command_array -> name);
-                        command_exec(command_array,recv_cmd_state_ptr -> pbuffer_arg_ptr);
-                    }
-                }
-                else  {
-                    // There's no argument specified
-                    if (recv_cmd_state_ptr -> pbuffer_arg_ptr != NULL) {
-                        // There's an argument, but we didn't expect one
-                        logger_msg_p("command",log_level_WARNING,
-                            PSTR("Ignoring argument for command '%s'.\r\n"),
-                            command_array -> name);
-                    }
-                    command_exec(command_array,NULL);
-                }
-                recv_cmd_state_ptr -> pbuffer_lock = 0;
-                break;
-            }
-            command_array++;
-        }
-        // If we didn't find a match, send an error message
-        if (pbuffer_match == 0) {
-            logger_msg_p("command",log_level_ERROR,
-                PSTR("Unrecognized command: '%s'.\r\n"),recv_cmd_state_ptr -> pbuffer);
-            recv_cmd_state_ptr -> pbuffer_lock = 0;
-        }
+		      struct command_struct *command_array) {
+  if ((recv_cmd_state_ptr -> pbuffer_lock) == 1) {
+    // Parse buffer is locked -- there's a command to process
+    logger_msg_p("command",log_level_INFO,
+		 PSTR("The parse buffer is locked.\r\n"));
+    recv_cmd_state_ptr -> pbuffer_arg_ptr = strchr(recv_cmd_state_ptr -> pbuffer,' ');
+    if (recv_cmd_state_ptr -> pbuffer_arg_ptr != NULL) {
+      // Parse buffer contains a space -- there's an argument
+      logger_msg_p("command",log_level_INFO,
+		   PSTR("The command contains a space.\r\n"));
+      *(recv_cmd_state_ptr -> pbuffer_arg_ptr) = '\0'; // Terminate the command string
+      (recv_cmd_state_ptr -> pbuffer_arg_ptr)++;
+      while (*(recv_cmd_state_ptr -> pbuffer_arg_ptr) == ' ') {
+	(recv_cmd_state_ptr -> pbuffer_arg_ptr)++; // Move to first non-space character
+      }
+      // pbuffer_arg_ptr now points to the beginning of the argument
+      logger_msg_p("command",log_level_INFO,
+		   PSTR("The command's argument is '%s'.\r\n"),
+		   (recv_cmd_state_ptr -> pbuffer_arg_ptr));
     }
-    return;
+    lowstring(recv_cmd_state_ptr -> pbuffer); // Convert command to lower case
+    // Look through the command list for a match
+    uint8_t pbuffer_match = 0;
+    while ((command_array -> execute) != 0) {
+      if (strcmp( recv_cmd_state_ptr -> pbuffer,
+		  command_array -> name ) == 0) {
+	// We've found a matching command
+	logger_msg_p("command",log_level_INFO,
+		     PSTR("Command '%s' recognized.\r\n"),command_array -> name);
+	pbuffer_match = 1;
+	if (strcmp( command_array -> arg_type, "none") != 0) {
+	  // The command is specified to have an argument
+	  uint8_t arg_ok = check_argsize(recv_cmd_state_ptr,command_array);
+	  if (arg_ok != 0) {
+	    logger_msg_p("command",log_level_ERROR,
+			 PSTR("Argument to '%s' is out of range.\r\n"),
+			 command_array -> name);
+	  }
+	  else {
+	    // The argument is the right size
+	    logger_msg_p("command",log_level_INFO,
+			 PSTR("Argument to '%s' is within limits.\r\n"),
+			 command_array -> name);
+	    command_exec(command_array,recv_cmd_state_ptr -> pbuffer_arg_ptr);
+	  }
+	}
+	else  {
+	  // There's no argument specified
+	  if (recv_cmd_state_ptr -> pbuffer_arg_ptr != NULL) {
+	    // There's an argument, but we didn't expect one
+	    logger_msg_p("command",log_level_WARNING,
+			 PSTR("Ignoring argument for command '%s'.\r\n"),
+			 command_array -> name);
+	  }
+	  command_exec(command_array,NULL);
+	}
+	recv_cmd_state_ptr -> pbuffer_lock = 0;
+	break;
+      }
+      command_array++;
+    }
+    // If we didn't find a match, send an error message
+    if (pbuffer_match == 0) {
+      logger_msg_p("command",log_level_ERROR,
+		   PSTR("Unrecognized command: '%s'.\r\n"),recv_cmd_state_ptr -> pbuffer);
+      recv_cmd_state_ptr -> pbuffer_lock = 0;
+    }
+  }
+  return;
 }
 
 
