@@ -81,7 +81,6 @@ int main() {
   logger_setsystem( "command" ); // Enable command system logging
   logger_setsystem( "adc" ); // Enable adc module logging
   adc_init(); // Set the ADCs reference and SAR prescaler
-  usart_printf_p(PSTR("MCUCR 0x%x\r\n"),MCUCR);
   adc_mux(4); // Set the ADC mux to channel 4
   command_init( recv_cmd_state_ptr );
   /* The main loop */

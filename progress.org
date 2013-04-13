@@ -17,11 +17,12 @@
 ** DONE Create an end-on view of a USB jack
 ** TODO Create top-down view of angle bracket
 ** TODO Finish cutting diagram for back panel
+** TODO Get 4-40 lock washers for standoffs below butterfly
 * Work on code
 ** DONE Switch to correct ADC channel (4)
    - Need to figure out why this isn't reading correctly.  Is it set
      to an output?
-** TODO Add log message warning that JTAG has been disabled
+** DONE Add log message warning that JTAG has been disabled
    - Add this inside ADC init
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
@@ -104,9 +105,10 @@
 ** DONE Create schematic part for switch (21-1)
 ** DONE Create 4-pin mta100 footprint for switch.
    - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
-* TODO Work on howto [1/1]
+* Work on howto [2/2]
 ** DONE Write up how to do loopback test
-** TODO Write up how to wire up Butterfly [1/2]
+** DONE Write up how to wire up Butterfly [3/3]
 *** DONE Redraw Butterfly in inkscape for clipart
-*** TODO Make a drawing with arrows showing where connectors get soldered
+*** DONE Make a drawing with arrows showing where connectors get soldered
+*** DONE Reverse ADC input connector
 * TODO Plan using taskjuggler

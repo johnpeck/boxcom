@@ -67,13 +67,15 @@ void cmd_voffset(uint16_t voffset) {
    Set the default ADC mux position to 1: the voltage reader
 */
 void adc_init(void) {
-  logger_msg_p("adc",log_level_INFO, PSTR("Initializing ADC.\r\n"));
+  logger_msg_p("adc",log_level_INFO, PSTR("Initializing ADC\r\n"));
   /* Disable JTAG.  In order to prevent unintentional writes to this
      bit, I need to write to it twice within 4 cycles.
   */
   for(uint8_t count = 0; count < 2; count++) {
     MCUCR |= ( 1<<JTD );
   }
+  if ( MCUCR & (1<<JTD))
+    logger_msg_p("adc",log_level_INFO, PSTR("JTAG disabled\r\n"));
 
   /* The butterfly has Vcc connected to AVcc via a low-pass filter.
      It also has a shunt capacitor at the Aref pin.  So I can use the
@@ -135,11 +137,13 @@ void adc_init(void) {
    channel = 7 -- ADC7
    
    The mux selection overrides any data direction selection made with
-   DDRF.  See section 13.3 of the datasheet.
+   DDRF.  See section 13.3 of the datasheet. (is this true?)
 */
 void adc_mux(uint8_t channel) {
   ADMUX &= (1<<REFS1) | (1<<REFS0) | (1<<ADLAR);
   ADMUX |= channel;
+  logger_msg_p("adc",log_level_INFO,
+	       PSTR("Switched to ADC channel %i\r\n"),channel);
 }
 
 /* adc_read() 

@@ -199,43 +199,42 @@ void logger_msg_p( char *logsys, logger_level_t loglevel,const char *logmsg, ...
  * [E] Error
  */
 void logger_system_filter( char *logsys, logger_level_t loglevel, char *logmsg ) {
-    char sysname[LOGGER_BUFFERSIZE];
-    struct system_struct *system_array_ptr = system_array;
-    // Go through all systems looking for a match to the system name
-    while (strcmp( system_array_ptr -> name, "" ) != 0) {
-        if (strcmp( logsys, system_array_ptr -> name ) == 0) {
-            // We've found a matching system
-            if ((logger_config_ptr -> enable) & 
-                (1<< (system_array_ptr -> bitshift))) {
-                /* The system is enabled for logging.  Send three strings
-                 * to the logging device:
-                 * 1. [Severity] 
-                 * 1. (System name)
-                 * 2. Log message */
-                switch( loglevel ) {
-                    case log_level_ISR:
-                        logger_output("[R]");
-                        break;
-                    case log_level_INFO:
-                        logger_output("[I]");
-                        break;
-                    case log_level_WARNING:
-                        logger_output("[W]");
-                        break;
-                    case log_level_ERROR:
-                        logger_output("[E]");
-                        break;    
-                }
-                snprintf(sysname,LOGGER_BUFFERSIZE,"(%s) ",
-                    system_array_ptr -> name);
-                logger_output(sysname);
-                logger_output(logmsg);
-            break;
-            }
-        }
-        system_array_ptr++;
+  char sysname[LOGGER_BUFFERSIZE];
+  struct system_struct *system_array_ptr = system_array;
+  // Go through all systems looking for a match to the system name
+  while (strcmp( system_array_ptr -> name, "" ) != 0) {
+    if (strcmp( logsys, system_array_ptr -> name ) == 0) {
+      // We've found a matching system
+      if ((logger_config_ptr -> enable) & 
+	  (1<< (system_array_ptr -> bitshift))) {
+	/* The system is enabled for logging.  Send three strings
+	 * to the logging device:
+	 * 1. [Severity] 
+	 * 1. (System name)
+	 * 2. Log message */
+	switch( loglevel ) {
+	case log_level_ISR:
+	  logger_output("[R]");
+	  break;
+	case log_level_INFO:
+	  logger_output("[I]");
+	  break;
+	case log_level_WARNING:
+	  logger_output("[W]");
+	  break;
+	case log_level_ERROR:
+	  logger_output("[E]");
+	  break;    
+	}
+	snprintf(sysname,LOGGER_BUFFERSIZE,"(%s) ", system_array_ptr -> name);
+	logger_output(sysname);
+	logger_output(logmsg);
+	break;
+      }
     }
-    return;
+    system_array_ptr++;
+  }
+  return;
 }
 
 /* Send the final string to the output device.  Change this function to

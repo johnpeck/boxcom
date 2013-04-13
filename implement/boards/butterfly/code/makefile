@@ -409,6 +409,8 @@ help:
 	@echo '   make gccversion     Show the avr-gcc version          '
 	@echo '   make hex            Just build to create the hex file '
 	@echo '   make program        Build and program using avrdude   '
+	@echo '   make reset          Reset the part with avrdude       '
+	@echo '   make terminal       Start a serial terminal           '
 	@echo '   make clean          Clean up temporary files          '
 	@echo '                                                         '
 
@@ -417,6 +419,22 @@ edit :
 	find . -type f -iname "*.[ch]" | xargs etags -a
 	emacs --geometry 180x60 \
               --visit $(TARGET).c &
+
+# Note that I can't use GNU screen with 76800 baud.  For whatever
+# reason, I can't set the tty baud rate to 76800.  At least GTKterm
+# lets me set this, though it pops up an error window.
+.PHONY: terminal
+terminal :
+	gtkterm --port /dev/ttyUSB0 --speed 76800 --echo &
+
+# Reset the part with the programmer 
+#
+# avrdude always does a signature check, and it resets the part when
+# it does this.  I can exploit this to just reset the part
+# programmatically, provided the programmer is connected.
+.PHONY: reset
+reset :
+	$(AVRDUDE) $(AVRDUDE_FLAGS)
 
 
 
