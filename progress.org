@@ -18,6 +18,8 @@
 ** TODO Create top-down view of angle bracket
 ** TODO Finish cutting diagram for back panel
 ** TODO Get 4-40 lock washers for standoffs below butterfly
+** TODO Get 4-40 socket-cap screws for front panel
+** TODO Get 4-40 hex driver
 * Work on code
 ** DONE Switch to correct ADC channel (4)
    - Need to figure out why this isn't reading correctly.  Is it set

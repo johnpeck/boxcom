@@ -6,6 +6,9 @@
 *.map
 *.sym
 
+# Don't know what's in this .dep directory
+.dep
+
 # I keep these, since I prefer having the reference of the final build
 # *.elf
 # *.hex
