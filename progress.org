@@ -12,6 +12,14 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
+* Work on howto [3/4]
+** DONE Write up how to do loopback test
+** DONE Write up how to wire up Butterfly [3/3]
+*** DONE Redraw Butterfly in inkscape for clipart
+*** DONE Make a drawing with arrows showing where connectors get soldered
+*** DONE Reverse ADC input connector
+** TODO Add index for firmware funcitons
+** DONE Add section on creating new remote command
 * Work on chassis [6/7]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
 ** DONE Create an end-on view of a USB jack
@@ -26,6 +34,18 @@
      to an output?
 ** DONE Add log message warning that JTAG has been disabled
    - Add this inside ADC init
+** TODO Remove normal log_message from code
+   - Sending a string stored in RAM is not ok
+** DONE Set up bx_rtc module
+   - This is the Real Time Clock module.  It will consist of the
+     asynchronous counter timer2.  When used with the 32.768 kHz
+     crystal clock, a prescaler of 32 will give you a ms counter within 3%.
+   - Timer2 is an 8-bit counter.  When you read time differences,
+     you'll have to take this into account.
+** TODO Set up bx_sound module
+   - Speaker is connected to PB5 (OC1A).  Remember that the LED is on
+     PB4 (OC0).
+*** TODO Initialization must deal with timer 1
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
@@ -107,10 +127,4 @@
 ** DONE Create schematic part for switch (21-1)
 ** DONE Create 4-pin mta100 footprint for switch.
    - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
-* Work on howto [2/2]
-** DONE Write up how to do loopback test
-** DONE Write up how to wire up Butterfly [3/3]
-*** DONE Redraw Butterfly in inkscape for clipart
-*** DONE Make a drawing with arrows showing where connectors get soldered
-*** DONE Reverse ADC input connector
 * TODO Plan using taskjuggler

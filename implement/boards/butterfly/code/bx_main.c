@@ -47,6 +47,12 @@
 */
 #include "bx_adc.h"
 
+/* bx_rtc.h
+
+   Provides functions for working with the real time clock.
+*/
+#include "bx_rtc.h"
+
 
 
 
@@ -82,13 +88,36 @@ int main() {
   logger_setsystem( "adc" ); // Enable adc module logging
   adc_init(); // Set the ADCs reference and SAR prescaler
   adc_mux(4); // Set the ADC mux to channel 4
+  rtc_init(); // Start the ms counter at timer2
   command_init( recv_cmd_state_ptr );
-  /* The main loop */
+  /* The main loop 
+   
+     Use the old_, new_, and all_ms variables to take care of pretty
+     good timing.
+  */
+  uint8_t old_ms = 0;
+  uint8_t new_ms = 0;
+  uint16_t all_ms = 0;
   for(;;) {
     /* Process the parse buffer to look for commands loaded with the
        received character ISR. 
     */
     process_pbuffer( recv_cmd_state_ptr, command_array );
+    
+    // Use this block for pretty good timing
+    new_ms = ms_counter();
+    if (new_ms >= old_ms)
+      all_ms += (new_ms - old_ms);
+    else
+      all_ms += (255 - old_ms + new_ms);
+    if (all_ms >= 1000) {
+      /* Do something here */
+      all_ms = 0;
+    }
+    old_ms = new_ms;
+    
+    
+
   }// end main for loop
   return retval;
 } // end main

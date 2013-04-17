@@ -82,7 +82,8 @@ SRC = $(TARGET).c \
       bx_numbers.c \
       bx_ascii.c \
       bx_clock.c \
-      bx_adc.c
+      bx_adc.c \
+      bx_rtc.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
@@ -478,7 +479,7 @@ sizebefore:
 	2>/dev/null; echo; fi
 
 sizeafter:
-	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_AFTER); $(ELFSIZE); \
+	@if test -f $(TARGET).hex; then echo; echo $(MSG_SIZE_AFTER); $(HEXSIZE); \
 	2>/dev/null; echo; fi
 
 

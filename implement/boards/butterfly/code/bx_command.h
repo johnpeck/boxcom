@@ -4,14 +4,16 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
-/* Define the size of the received character buffer.  This buffer must 
- * be big enough to hold the biggest remote command along with its 
- * biggest argument and a space between the two.
- * 
- * The parse buffer will also be made this size, since I don't allow
- * received commands to pile up -- they have to be processed one at a
- * time.
- */
+/* Received character (and parse) buffer size
+
+   Define the size of the received character buffer.  This buffer must
+   be big enough to hold the biggest remote command along with its
+   biggest argument and a space between the two.
+   
+   The parse buffer will also be made this size, since I don't allow
+   received commands to pile up -- they have to be processed one at a
+   time.
+*/
 #define RECEIVE_BUFFER_SIZE 20
 
 

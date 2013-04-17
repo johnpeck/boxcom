@@ -1,5 +1,102 @@
 \section{Firmware}
 
+
+\subsection{Adding a new remote command}
+\newcounter{comcount}
+
+\setcounter{comcount}{1}
+\paragraph{\arabic{comcount} --  Choose a name for the command}
+The command characters, the argument characters, one space, and one
+string terminator must all fit in the received command buffer. The
+definition of this size is shown below.
+
+\filesnip{bx\_command.h}
+{ \texttt{\#define RECEIVE\_BUFFER\_SIZE 20} }
+
+\addtocounter{comcount}{1}
+\paragraph{\arabic{comcount} -- Think about the command's arguments}
+The code can only handle unsigned hexadecimal number arguments
+formatted as strings.  If you need something else, you'll have to
+write more code.
+
+\addtocounter{comcount}{1}
+\paragraph{\arabic{comcount} -- Add a function for your command to call}
+I like to put the new function in the module where it belongs, and
+just add a ``cmd\_'' prefix to it.  If the command is a query, I add a
+``\_q'' suffix.  The command corresponding to the \texttt{vcounts?}
+query is shown below.
+
+\begin{center}
+  \vspace{-\baselineskip}
+  \begin{tabular}{|l|} \hline
+    \rowcolor[gray]{0.8}
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \textbf{File:}
+      bx\_adc.c
+    \end{minipage}\\
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \vspace{0.5\baselineskip}
+      $\cdots$ \\
+      \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+        \lstset{language=c}
+        \begin{lstlisting}
+void cmd_vcounts_q(uint16_t nonval) {
+  uint16_t adc_temp = 0;
+  adc_temp = adc_read();
+  usart_printf_p(PSTR("0x%x\r\n"),adc_temp);
+}
+        \end{lstlisting}
+      \end{minipage}
+      $\cdots$\\
+      \vspace{-0.5\baselineskip}
+    \end{minipage}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\addtocounter{comcount}{1}
+\paragraph{\arabic{comcount} -- Give the new command an entry in the command array}
+A sample entry in the command array is shown below.  New entries must
+be added before the ``end of table indicator.'' Remember that
+hexadecimal arguments larger than 4 characters don't make sense for
+16-bit integers (leading \texttt{0x} characters are not allowed).
+
+\begin{center}
+  \vspace{-\baselineskip}
+  \begin{tabular}{|l|} \hline
+    \rowcolor[gray]{0.8}
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \textbf{File:}
+      bx\_command.c
+    \end{minipage}\\
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \vspace{0.5\baselineskip}
+      $\cdots$ \\
+      \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+        \lstset{language=c}
+        \begin{lstlisting}
+command_t command_array[] ={
+  // hello -- Print a greeting.
+  {"hello",           // Name of the command
+    "none",            // Argument type (can be "none" or "hex" right now)
+    0,                 // Maximum number of characters in argument
+    &cmd_hello,        // Address of function to execute
+    helpstr_hello},    // The help text (defined above)  
+  // End of table indicator.  Must be last.
+  {"","",0,0,nullstr}
+};      
+\end{lstlisting}
+      \end{minipage}
+      $\cdots$\\
+      \vspace{-0.5\baselineskip}
+    \end{minipage}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\clearpage
 \subsection{Logger functions}
 
 % logger_msg_p
