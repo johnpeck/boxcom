@@ -53,6 +53,12 @@
 */
 #include "bx_rtc.h"
 
+/* bx_sound.h
+
+   Provides functions for using the noisemaker.
+*/
+#include "bx_sound.h"
+
 
 
 
@@ -86,10 +92,15 @@ int main() {
   logger_setsystem( "rxchar" ); // Enable received character logging
   logger_setsystem( "command" ); // Enable command system logging
   logger_setsystem( "adc" ); // Enable adc module logging
+  logger_setsystem( "sound" ); // Enable sound module logging
+  logger_setsystem( "rtc" ); // Enable real time clock module logging
   adc_init(); // Set the ADCs reference and SAR prescaler
   adc_mux(4); // Set the ADC mux to channel 4
-  rtc_init(); // Start the ms counter at timer2
+  sound_init(); // Start the sound module, using timer1
+  rtc_init(); // Start the ms counter at timer2 (needs sound)
   command_init( recv_cmd_state_ptr );
+  sound_play_timed(200,250);
+  sound_play_timed(100,250);
   /* The main loop 
    
      Use the old_, new_, and all_ms variables to take care of pretty

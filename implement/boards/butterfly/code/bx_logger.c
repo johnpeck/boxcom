@@ -49,6 +49,14 @@ logger_system_t system_array[] ={
     {"functions",
     5
     },
+    // The sound module
+    {"sound",
+     6
+    },
+    // The real time clock module (rtc)
+    {"rtc",
+     7
+    },
     // End of table indicator.  Must be last.
     {"",0}
 };

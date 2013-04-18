@@ -45,7 +45,20 @@
 ** TODO Set up bx_sound module
    - Speaker is connected to PB5 (OC1A).  Remember that the LED is on
      PB4 (OC0).
-*** TODO Initialization must deal with timer 1
+*** DONE Initialization must deal with timer 1
+*** TODO Write sound_play( frequency (Hz), time (ms) )
+    - This should set portb5 data direction
+    - For right now, system will hang when playing sound (busy loop).
+      Another way to do it would be to set up a 100ms interrupt and
+      have a structure to keep track of the sound generator's state.
+      Starting the tone would entail setting the frequency, and
+      duration members, and clearing a "endured" variable.  When the
+      100ms interrupt fires, you compare the duration and endured
+      variables, incrementing the endured variable.  When the endured
+      and duration variables are the same, you stop the sound.
+    - Another way to do this would be to create a tone list in flash,
+      with each list element being a frequency.  A busy loop could
+      play each element with a defined sample rate.
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.

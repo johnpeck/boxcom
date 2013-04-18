@@ -19,13 +19,19 @@ void rtc_init(void);
 
    Returns: uint8_t counter value (0-255)
 */
-uint8_t ms_counter(void);
+volatile uint8_t ms_counter(void);
 
 
 
 
 
+/* ms_delay( uint_16 duration_ms )
+   
+   Provides a delay by polling the ms_counter.
 
+   Returns: The number of ms actually waited
+*/
+uint16_t ms_delay( uint16_t duration_ms );
 
 
 

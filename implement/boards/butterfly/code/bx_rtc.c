@@ -16,6 +16,27 @@
 */
 #include <avr/io.h>
 
+/* pgmspace.h
+   
+   Provides macros and functions for saving and reading data out of
+   flash.
+*/
+#include <avr/pgmspace.h>
+
+/* bx_logger.h
+
+   Provides logger_msg and logger_msg_p for log messages tagged with a
+   system and severity.
+*/
+#include "bx_logger.h"
+
+/* bx_sound.h
+
+   Provides functions for using timer1 -- the timer used for the sound
+   module.
+*/
+#include "bx_sound.h"
+
 #include "bx_rtc.h"
 
 
@@ -26,6 +47,8 @@
    Configures timer2 to be clocked by the watch crystal.
 */
 void rtc_init(void) {
+  logger_msg_p("rtc",log_level_INFO,
+	       PSTR("Initializing rtc\r\n"));
   /* Set ASSR (asynchronous status register) value
 
      Set the AS2 bit to clock timer2 by the crystal oscillator.  Clear
@@ -47,7 +70,29 @@ void rtc_init(void) {
      configuration register is ready to take new values (TCR2UB = 0).
     */
   while((ASSR & _BV(TCR2UB)) | (ASSR & _BV(TCN2UB)));
-}
+  /* Wait for timer2 to settle.  It doesn't actually start counting
+     for a while after the board is turned on.  So we'll compare its
+     value against what we read from timer1 to see when it's counting
+     normally.
+   */
+  uint8_t mscount = 0;
+  uint16_t t1_topval = 10000; // What timer1 will count to
+  OCR1AH = (uint8_t)(t1_topval >> 8);
+  OCR1AL = (uint8_t)(t1_topval & 0xff);
+
+  while( (mscount < 9) | (mscount > 11) ) {
+    sound_counter_stop();
+    TCNT1H = 0;
+    TCNT1L = 0; // Clear timer1 with it stopped
+    TIFR1 &= _BV(OCF1A); // Clear timer1 output compare flag
+    TCNT2 = 0; // Reset timer2 with it still running
+    sound_counter_start();
+    while( (TIFR1 & 2) != 2 ); // Wait for output compare flag to be set
+    mscount = TCNT2;
+  }
+  logger_msg_p("rtc",log_level_INFO,
+  		 PSTR("Expected 10ms, got %i\r\n"),mscount);
+} // End rtc_init
 
 /* ms_counter()
 
@@ -56,7 +101,35 @@ void rtc_init(void) {
 
    Returns: uint8_t counter value (0-255)
 */
-uint8_t ms_counter(void) {
+volatile uint8_t ms_counter(void) {
   uint8_t countval = TCNT2;
   return countval;
 }
+
+/* ms_delay( uint_16 duration_ms )
+   
+   Provides a delay by polling the ms_counter.
+
+   Returns: The number of ms actually waited
+*/
+uint16_t ms_delay( uint16_t duration_ms ) {
+  uint8_t old_ms = ms_counter();
+  uint8_t new_ms = 0;
+  uint16_t all_ms = 0;
+  while ( all_ms < duration_ms ) {
+    new_ms = ms_counter();
+    if ( new_ms >= old_ms ) {
+      all_ms += ( new_ms - old_ms );
+      old_ms = new_ms; // Update the old value
+    }
+    else {
+      all_ms += ( 0xff - old_ms + new_ms ); // We've rolled over
+      old_ms = new_ms; // Update the old value
+    }
+  }// End delay while loop
+  return all_ms;
+} // End ms_delay
+
+
+    
+  
