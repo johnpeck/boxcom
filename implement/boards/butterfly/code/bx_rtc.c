@@ -12,7 +12,9 @@
 
 /* avr/io.h
    
-   Device-specific port definitions
+   Device-specific port definitions.  Also provides special
+   bit-manipulations functions like bit_is_clear and
+   loop_until_bit_is_set.
 */
 #include <avr/io.h>
 
@@ -79,19 +81,28 @@ void rtc_init(void) {
   uint16_t t1_topval = 10000; // What timer1 will count to
   OCR1AH = (uint8_t)(t1_topval >> 8);
   OCR1AL = (uint8_t)(t1_topval & 0xff);
+  /* Specify how tightly the millisecond timer should match up with
+     timer1.  The RC clock that sets the 1MHz clock for timer1 is
+     pretty good, and 10000 timer1 counts should be 10 timer2 counts
+     within 10 percent.
+   */
+  uint8_t lowlimit = (uint8_t)(t1_topval/1000 - 1);
+  uint8_t highlimit = lowlimit + 2;
 
-  while( (mscount < 9) | (mscount > 11) ) {
+  while( (mscount < lowlimit) | (mscount > highlimit) ) {
     sound_counter_stop();
-    TCNT1H = 0;
-    TCNT1L = 0; // Clear timer1 with it stopped
-    TIFR1 &= _BV(OCF1A); // Clear timer1 output compare flag
+    sound_counter_zero(); // Zero counter and clear overflow flag
     TCNT2 = 0; // Reset timer2 with it still running
     sound_counter_start();
-    while( (TIFR1 & 2) != 2 ); // Wait for output compare flag to be set
+    /* Busy loop while timer1 counts to the output compare value
+       t1_topval.  This should take t1_topval/1000 milliseconds. */
+    loop_until_bit_is_set(TIFR1,OCF1A);
+    /* The timer2 value after the busy loop will be too low until the
+       counter warms up. */
     mscount = TCNT2;
   }
   logger_msg_p("rtc",log_level_INFO,
-  		 PSTR("Expected 10ms, got %i\r\n"),mscount);
+  		 PSTR("Expected 10ms, got %ims\r\n"),mscount);
 } // End rtc_init
 
 /* ms_counter()
