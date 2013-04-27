@@ -38,11 +38,19 @@
 
 #include "bx_sound.h"
 
+// ----------------------- Canned music -------------------------------
 
-// ----------------------- Functions ----------------------------------
+/* Each canned music array must end with a zero! */
 
 const uint16_t sndramp[] PROGMEM = {100, 110, 120, 130, 140, 150, 
 				    160, 170, 180, 190, 200, 0};
+
+const uint16_t boot_sound[] PROGMEM = {200, 250, 300, 0};
+
+
+// ----------------------- Functions ----------------------------------
+
+
 
 
 /* sound_init()
@@ -157,11 +165,10 @@ void sound_play_timed( uint16_t frequency, uint16_t duration_ms ) {
 
 /* sound_play_array_p( array of frequency data) 
 
-   Each frequency point will be played for 1ms.  Because of the way
-   data is stored in flash, data must alternate high bytes and low
-   bytes in the data array.  For example, 100Hz would be {0,100}.
-
-   Plays each element in the array for 1ms
+   Accepts a pointer to an array of 16-bit numbers located in flash
+   memory.  Each number is a frequency in Hz, and each frequency will
+   be played for 100ms.  To play a tone for 200ms, give the tone two
+   entries.
 */
 void sound_play_array_p( uint16_t *data_ptr ) {
   uint16_t snd_data = 1; // Dummy initialization values
@@ -173,8 +180,13 @@ void sound_play_array_p( uint16_t *data_ptr ) {
   }
 } 
 
+/* sound_play_startup()
+
+   Play a sound after everything has initialized and we're starting
+   the main loop. 
+*/
 void sound_play_startup(void) {
-  sound_play_array_p( sndramp );
+  sound_play_array_p( boot_sound );
 }
 
 

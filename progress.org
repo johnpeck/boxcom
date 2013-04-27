@@ -12,22 +12,26 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
+* Plan using taskjuggler
+** TODO Give firmware a start date
+   - Firmware needs a start date.  Then the remote commands can just depend on other tasks.
 * Work on howto [3/4]
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
 *** DONE Redraw Butterfly in inkscape for clipart
 *** DONE Make a drawing with arrows showing where connectors get soldered
 *** DONE Reverse ADC input connector
-** TODO Add index for firmware funcitons
-** DONE Add section on creating new remote command
-* Work on chassis [6/7]
+** TODO Add index for firmware functions
+** Revise section on creating new remote commands
+*** TODO Each remote command should have the same length
+    - This is for communication time.  It shold be uniform.
+* Work on chassis [3/6]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
 ** DONE Create an end-on view of a USB jack
 ** TODO Create top-down view of angle bracket
-** TODO Finish cutting diagram for back panel
-** TODO Get 4-40 lock washers for standoffs below butterfly
-** TODO Get 4-40 socket-cap screws for front panel
-** TODO Get 4-40 hex driver
+** DONE Finish cutting diagram for back panel
+** DONE Get 4-40 lock washers for standoffs below butterfly
+** TODO Diagram how to make a cable for the binding posts
 * Work on code
 ** DONE Switch to correct ADC channel (4)
    - Need to figure out why this isn't reading correctly.  Is it set
@@ -42,11 +46,11 @@
      crystal clock, a prescaler of 32 will give you a ms counter within 3%.
    - Timer2 is an 8-bit counter.  When you read time differences,
      you'll have to take this into account.
-** TODO Set up bx_sound module
+** DONE Set up bx_sound module
    - Speaker is connected to PB5 (OC1A).  Remember that the LED is on
      PB4 (OC0).
 *** DONE Initialization must deal with timer 1
-*** TODO Write sound_play( frequency (Hz), time (ms) )
+*** DONE Write sound_play( frequency (Hz), time (ms) )
     - This should set portb5 data direction
     - For right now, system will hang when playing sound (busy loop).
       Another way to do it would be to set up a 100ms interrupt and
@@ -59,6 +63,17 @@
     - Another way to do this would be to create a tone list in flash,
       with each list element being a frequency.  A busy loop could
       play each element with a defined sample rate.
+*** DONE Make the sound array player play every 100ms
+** TODO Set up LED module
+   - The LED is on PB4 (OC0).  This module will just turn the LED on
+     and off.  There's no need to provide a blink function.  This will
+     keep timer0 free.
+**
+** TODO Set up current module
+   - Provides functions to turn counts from the ADC into mA or micro
+     amps.  Provides ways to set calibration constants with remote
+     commands.  Maybe this could be called the imeas module.  Provides
+     ways to write calibration coefficients to eeprom, and to extract them.
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
@@ -140,4 +155,3 @@
 ** DONE Create schematic part for switch (21-1)
 ** DONE Create 4-pin mta100 footprint for switch.
    - The 4-pin header (14-12) is currently using the wrong footprint.  Modify the 2pin_mta100_pol.fp footprint to take 4 pins.  Follow instructions in the howto for modifying footprints.
-* TODO Plan using taskjuggler

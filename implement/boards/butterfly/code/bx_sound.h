@@ -54,15 +54,21 @@ void sound_counter_zero(void);
 void sound_play_timed( uint16_t frequency, uint16_t duration_ms );
 
 
-/* sound_play_array_p( uint16_t array[] of frequencies in 100Hz) Each
-   frequency point will be played for 1ms.  To play 100Hz for 1ms,
-   have an array value of 1.
+/* sound_play_array_p( array of frequency data) 
 
-   Plays each element in the array for 1ms
+   Accepts a pointer to an array of 16-bit numbers located in flash
+   memory.  Each number is a frequency in Hz, and each frequency will
+   be played for 100ms.  To play a tone for 200ms, give the tone two
+   entries.
 */
 void sound_play_array_p( uint16_t *data_ptr );
 
 
+/* sound_play_startup()
+
+   Play a sound after everything has initialized and we're starting
+   the main loop. 
+*/
 void sound_play_startup(void);
 
 

@@ -101,8 +101,6 @@ int main() {
   sound_init(); // Start the sound module, using timer1
   rtc_init(); // Start the ms counter at timer2 (needs sound)
   command_init( recv_cmd_state_ptr );
-  //sound_play_timed(200,250);
-  //sound_play_timed(100,250);
   sound_play_startup();
   /* The main loop 
    

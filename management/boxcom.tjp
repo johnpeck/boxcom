@@ -6,7 +6,7 @@
 # /usr/local/lib/ruby/gems/1.9.1/gems/taskjuggler-3.4.0/manual/html
 
 
-project "Boxcom" 2013-02-01 +4m {
+project "Boxcom" 2013-02-01 +5m {
   timezone "US/Central"
   timeformat "%Y-%m-%d"
   # Use US format for numbers
@@ -42,6 +42,7 @@ flags a
 
 # The whole project is a task that contains subtasks
 task "Boxcom" {
+  # The USB board will be a top-level task.  It may recurr
   task usbboard "USB board" {
     flags a
     task kit14 "Fill kit 14" {
@@ -83,15 +84,15 @@ task "Boxcom" {
       effort 3d
       allocate john
       note -8<- 
-               Assembly takes less than 1 day, but schedule an
-               entire day for each board at the beginning. 
-           ->8-
-    } # End assembly
-    
+      Assembly takes less than 1 day, but schedule an
+      entire day for each board at the beginning. 
+                     ->8-
+                 } # End assembly
+      
 
 
-    # Kit 15
-    task kit15 "Fill kit 15" {
+      # Kit 15 is part of the usb board
+      task kit15 "Fill kit 15" {
         start 2013-02-25
         chargeset dev
         # If no resources (people) are allocated, those resources won't
@@ -100,10 +101,10 @@ task "Boxcom" {
         # of the resource.
         # allocate john
         journalentry 2013-02-26 "A headline" {
-        summary -8<-
+          summary -8<-
           We ran into some compatibility problems with the SQL
           Library.
-        ->8-
+          ->8-
         }
         note "Some crap"
         task pcb "PCB fabrication" {
@@ -151,42 +152,59 @@ task "Boxcom" {
         effort 3d
         allocate john
         note -8<- 
-               Assembly takes less than 1 day, but schedule an
-               entire day for each board at the beginning. 
-             ->8-
-      } # End assembly
-    #  There should always be visibility of the project
-    task web "Web report" {
-      allocate john
-      task overview "Generate overview text" {
-        effort 1d
-        start 2013-02-09
+        Assembly takes less than 1 day, but schedule an
+        entire day for each board at the beginning. 
+                       ->8-
+                   } # End assembly
+        
+        #  There should always be visibility of the project
+        task web "Web report" {
+          allocate john
+          task overview "Generate overview text" {
+            effort 1d
+            start 2013-02-09
+          }
+          task schematics "Publish schematics" {
+            effort 1d
+          }
+          task layout "Publish pretty layout picture" {
+            effort 1d
+          }
+          task partslist "Publish parts list" {
+            effort 1d
+          }
+        } # End web reporting
+      } # End USB board
+      
+      # Chassis will be a top-level task
+      task chassis "Chassis" {
+        flags a # Revision code for the chassis
+        task overlay "Create overlay drawings" {
+          allocate john
+          effort 1d
+        }
+      } # End Chassis
+      
+      # Firmware will be a top-level task
+      task "Firmware" {
+        task commands "Remote commands" {
+          depends !!chassis
+          task "ioutp?" {
+            note "Some stuff"
+            allocate john
+            effort 1d
+          }
+        }
+      } # End firmware
+
+
+      task checkpoints "Milestones" {
+        task usbworks "3 USB boards assembled and functional" {
+          depends !!usbboard.assemble15
+          note "Board powers up and passes tests in howto"
+        }
       }
-      task schematics "Publish schematics" {
-        effort 1d
-      }
-      task layout "Publish pretty layout picture" {
-        effort 1d
-      }
-      task partslist "Publish parts list" {
-        effort 1d
-      }
-    } # End web reporting
-  } # End USB board
-  task "Chassis" {
-    flags a # Revision code for the chassis
-    task overlay "Create overlay drawings" {
-      allocate john
-      effort 1d
-    }
-  } # End Chassis
-  task checkpoints "Milestones" {
-    task usbworks "3 USB boards assembled and functional" {
-      depends !!usbboard.assemble15
-      note "Board powers up and passes tests in howto"
-    }
-  }
-} # End Boxcom
+    } # End Boxcom
 
 
 navigator navbar {
@@ -199,16 +217,14 @@ macro TaskTip [
                -8<-
                '''Start: ''' <-query attribute='start'->
                '''End: ''' <-query attribute='end'->
-               ---
+               ----
                '''Notes: ''' <-query attribute='note'->
                ----
-               '''Resources:''' <-query attribute='resources'->
+               '''Effort:''' <-query attribute='effort'-> days
                ----
                '''Precursors: ''' <-query attribute='precursors'->
                ----
                '''Followers: ''' <-query attribute='followers'->
-               ----
-               '''Notes: ''' <-query attribute='note'->
                ----
                ->8-
 ]
@@ -232,15 +248,67 @@ taskreport overview "" {
   footer "Staffing"
 }
 
+# Specify the content of the output with taskreports.  Note that gantt
+# charts (generated with the chart columnid) always have the same day
+# density, about 30 days per inch of screen.
+#
+# The id of the task report will be used in textreports
+taskreport narrow "" {
+  header "Boxcom planning"
+  columns name, chart { ${TaskTip} }
+  # For this report we like to have the abbreviated weekday in front
+  # of the date. %a is the tag for this.
+  timeformat "%a %Y-%m-%d"
+  loadunit days
+  hideresource @all
+  balance cost rev
+  caption 'All effort values are in man days.'
+}
+
 
 textreport frame "" {
   header -8<-
-    == Accounting Software Project ==
+    == Boxcom ==
     <[navigator id="navbar"]>
   ->8-
   footer "----"
   textreport index "Overview" {
     formats html
     center '<[report id="overview"]>'
+  }
+}
+
+# textreport: specify the page layout and format of the report output
+# (specified with taskreport)
+#
+# Specify which taskreport to pull in with the id of the report.  For
+# example, '<[report id="junk"]>' represents the output created with
+# the junk taskreport specification.
+#
+# textreports can contain more textreports.  They'll inherit
+# properties from their container.  The bottom-level textreport should
+# contain an output format.  Each bottom-level report should have a
+# non-empty name string so that it generates a file.
+#
+# The first bottom-level report to appear will also be the first to
+# appear in the navbar.  The navbar will be visible in each report --
+# there's no superpage to look at.
+#
+# The textreport name attribute (the one in quotes) is the name of the
+# file to be generated.  It will also be the entry in the navbar.
+
+textreport morejunk "" {
+  header -8<-
+    == More stuff ==
+    <[navigator id="navbar"]>
+  ->8-
+  footer "----"
+  textreport "gantt" {
+    formats html
+    center '<[report id="narrow"]>'
+  }
+  textreport "Crap" {
+    formats html
+    center '<[report id="narrow"]>'
   }
 }
