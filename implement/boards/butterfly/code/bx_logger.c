@@ -57,6 +57,10 @@ logger_system_t system_array[] ={
     {"rtc",
      7
     },
+    // The eeprom module
+    {"eeprom",
+     8
+    },
     // End of table indicator.  Must be last.
     {"",0}
 };
@@ -144,28 +148,7 @@ void logger_disable() {
     return;
 }
 
-/* Send a log message */
-void logger_msg( char *logsys, logger_level_t loglevel,char *logmsg, ... ) {
-    va_list args; 
-    char printbuffer[LOGGER_BUFFERSIZE]; 
-    
-    if (logger_config_ptr -> enable == 0) {
-        // Logging has been disabled.  Nothing to do.
-        return;
-    }     
-    
-    va_start (args, logmsg); 
-    /* Make sure messages are never longer than printbuffer */
-        vsnprintf (printbuffer, LOGGER_BUFFERSIZE, logmsg, args); 
-    va_end (args); 
-    
-    if (loglevel >= (logger_config_ptr -> loglevel)) {
-        /* If this message's level is high enough to be logged, we send
-         * it on to be filtered by system. */
-        logger_system_filter( logsys, loglevel, printbuffer );
-    }
-    return;
-}
+
 
 /* logger_msg_p()
 

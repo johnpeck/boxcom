@@ -22,6 +22,12 @@
 *** DONE Make a drawing with arrows showing where connectors get soldered
 *** DONE Reverse ADC input connector
 ** TODO Add index for firmware functions
+** TODO Add drawing of power cable for butterfly
+   - 6 inches.  Page 87 of notebook.
+** TODO Add drawing of Isense connection
+   - 3 inches.  Page 90 of notebook.
+** TODO Add drawing of binding post connection.
+   - 7 inches.  Page 90 of notebook.
 ** Revise section on creating new remote commands
 *** TODO Each remote command should have the same length
     - This is for communication time.  It shold be uniform.
@@ -38,7 +44,7 @@
      to an output?
 ** DONE Add log message warning that JTAG has been disabled
    - Add this inside ADC init
-** TODO Remove normal log_message from code
+** DONE Remove normal log_message from code
    - Sending a string stored in RAM is not ok
 ** DONE Set up bx_rtc module
    - This is the Real Time Clock module.  It will consist of the

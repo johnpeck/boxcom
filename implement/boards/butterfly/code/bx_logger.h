@@ -30,7 +30,11 @@ typedef enum log_level {
     log_level_ERROR
 } logger_level_t;
 
-/* Logging configuration structure. 
+/* Logging configuration structure
+
+   Up to 16 unique systems can have logging enabled or disabled (there
+   are 16 bits that can be toggled).  Systems can share bits, so you
+   can have more than 16 systems total.
  */
 typedef struct logger_config_struct { 
     uint16_t enable; /* Bitfield in which each bit enables or disables
@@ -81,21 +85,21 @@ void cmd_logreg_q( uint16_t nonval );
  */
 void logger_disable( void );
 
-/* The interface to the logging system.  Use this function to send log
- * messages.  
- * 
- * logsys is a freeform string that must match one of the system name
- *     strings defined in an array of system structures.
- * 
- * loglevel is an enum defined above. 
- * 
- * logmsg is a format string -- the log message payload.
- */
-void logger_msg( char *logsys, logger_level_t loglevel, char *logmsg, ... );
 
-/* The same as logger_msg, but called with a string located in flash
- * memory.
- */
+/* logger_msg_p ( system, loglevel, message )
+
+   The interface to the logging system.  Use this function to send log
+   messages.
+  
+   The system name (logsys) is a freeform string that must match one
+   of the system name strings defined in an array of system
+   structures.
+  
+   loglevel is an enum defined above. 
+  
+   The message (logmsg) is a format string -- the log message payload.
+   It must be located in flash memory.
+*/
 void logger_msg_p( char *logsys, logger_level_t loglevel,const char *logmsg, ... );
 
 

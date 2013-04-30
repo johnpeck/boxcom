@@ -96,6 +96,7 @@ int main() {
   logger_setsystem( "adc" ); // Enable adc module logging
   logger_setsystem( "sound" ); // Enable sound module logging
   logger_setsystem( "rtc" ); // Enable real time clock module logging
+  logger_setsystem( "eeprom" ); // Enable eeprom module logging
   adc_init(); // Set the ADCs reference and SAR prescaler
   adc_mux(4); // Set the ADC mux to channel 4
   sound_init(); // Start the sound module, using timer1

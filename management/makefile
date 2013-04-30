@@ -3,6 +3,8 @@
 # The main taskjuggler file (without the tjp)
 MAINFILE = boxcom
 
+
+
 #------------------------- Done with configuration ---------------------
 
 
@@ -12,6 +14,7 @@ help:
 	@echo 'Usage:                                                         '
 	@echo '   make edit                 Edit the plan with emacs          '
 	@echo '   make output               Regenerate the output files       '
+	@echo '   make view                 View the project with a browser   '
 
 
 .PHONY: edit
@@ -22,3 +25,7 @@ edit :
 .PHONY : output
 output :
 	tj3 $(MAINFILE).tjp
+
+.PHONY : view
+view :
+	surf file:///$(shell pwd)/Overview.html &

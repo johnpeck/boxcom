@@ -187,14 +187,21 @@ task "Boxcom" {
       
       # Firmware will be a top-level task
       task "Firmware" {
-        task commands "Remote commands" {
-          depends !!chassis
+        
+        task statcal "Persistent calibration" {
+          start 2013-4-30
+          effort 3d
+	  allocate john
+	}
+	task commands "Remote commands" {
+          depends !statcal
           task "ioutp?" {
             note "Some stuff"
             allocate john
             effort 1d
           }
         }
+
       } # End firmware
 
 
@@ -236,8 +243,7 @@ macro TaskTip [
 taskreport overview "" {
   header "Project overview"
   columns bsi { title 'Work index' },
-      name, flags { title 'Revision'}, 
-      start, end, cost, chart { ${TaskTip} }
+      name, flags { title 'Revision'}, cost, chart { ${TaskTip} }
   # For this report we like to have the abbreviated weekday in front
   # of the date. %a is the tag for this.
   timeformat "%a %Y-%m-%d"
