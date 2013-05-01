@@ -65,6 +65,12 @@
 */
 #include "bx_eeprom.h"
 
+/* bx_led.h
+
+   Provides functions for turning the LED on and off.
+*/
+#include "bx_led.h"
+
 
 
 
@@ -108,6 +114,7 @@ int main() {
   sound_init(); // Start the sound module, using timer1
   rtc_init(); // Start the ms counter at timer2 (needs sound)
   command_init( recv_cmd_state_ptr );
+  led_init();
   sound_play_startup();
 
   /* The main loop 
@@ -117,7 +124,7 @@ int main() {
   */
   uint8_t old_ms = 0;
   uint8_t new_ms = 0;
-  uint16_t all_ms = 0;
+  uint16_t all_ms = 0; // The elapsed time in milliseconds
   for(;;) {
     /* Process the parse buffer to look for commands loaded with the
        received character ISR. 
@@ -126,15 +133,26 @@ int main() {
     
     // Use this block for pretty good timing
     new_ms = ms_counter();
-    if (new_ms >= old_ms)
+    if (new_ms >= old_ms) {
       all_ms += (new_ms - old_ms);
-    else
-      all_ms += (255 - old_ms + new_ms);
+      old_ms = new_ms; // Update the old value
+    }
+    else {
+      all_ms += ( 0xff - old_ms + new_ms); // We've rolled over
+      old_ms = new_ms; // Update the old value
+    }
+    /* Choose the timing interval here.  A value of 1000 means that
+       something will be done roughly every second.
+    */
     if (all_ms >= 1000) {
       /* Do something here */
+      led_toggle();
       all_ms = 0;
     }
-    old_ms = new_ms;
+    else if (all_ms >= (0xffff - 100))
+      all_ms = 0; // Don't let value overflow
+
+
     
     
 

@@ -70,7 +70,7 @@
       with each list element being a frequency.  A busy loop could
       play each element with a defined sample rate.
 *** DONE Make the sound array player play every 100ms
-** TODO Set up LED module
+** DONE Set up LED module
    - The LED is on PB4 (OC0).  This module will just turn the LED on
      and off.  There's no need to provide a blink function.  This will
      keep timer0 free.
@@ -80,8 +80,16 @@
      amps.  Provides ways to set calibration constants with remote
      commands.  Maybe this could be called the imeas module.  Provides
      ways to write calibration coefficients to eeprom, and to extract them.
-** TODO Set up eeprom module
+** DONE Set up eeprom module
    - Implement an eeprom read function.
+** TODO Plan cal module
+   - The cal module will have a master structure of cal values.  It
+     will have a function that will return a pointer to this
+     structure.  That pointer can be used by the individual modules to
+     set their individual cal values.
+   - What types are pointers in the AVR?  Doesn't matter.  The
+     function that returns the pointer will have the type of pointer
+     to cal structure.
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
