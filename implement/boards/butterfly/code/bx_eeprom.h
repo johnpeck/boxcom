@@ -14,7 +14,13 @@
 void eeprom_write_char( uint16_t address, uint8_t data );
 
 
+/* eeprom_read_char( address )
 
+   Reads an eeprom address.
+
+   Returns: 8-bit unsigned integer
+*/
+uint8_t eeprom_read_char( uint16_t address );
 
 
 

@@ -43,6 +43,8 @@
 /* eeprom_write_char( address, data )
 
    Writes an 8-bit data value to an eeprom address.
+
+   Returns: none
 */
 void eeprom_write_char( uint16_t address, uint8_t data ) {
   /* Disable all interrupts by clearing the global interrupt mask.
@@ -67,7 +69,32 @@ void eeprom_write_char( uint16_t address, uint8_t data ) {
   EECR |= _BV(EEWE); // Write the data
   sei(); // Turn interrupts back on 
   logger_msg_p("eeprom",log_level_INFO,
-	       PSTR("Wrote %i to address %i"),data,address);
+	       PSTR("Wrote %i to address %i\r\n"),data,address);
+}
+
+/* eeprom_read_char( address )
+
+   Reads an eeprom address.
+
+   Returns: 8-bit unsigned integer
+*/
+uint8_t eeprom_read_char( uint16_t address ) {
+  cli(); // Disable all interrupts
+  /* Wait for all writes to finish.  If the EEWE (eeprom write enable)
+     bit in the EECR register is set, data is being written.
+  */
+  loop_until_bit_is_clear(EECR, EEWE);
+  /* EEAR is the eeprom address register.  Even though there's 9 bits
+     of address space, you can just write to the EEAR location. 
+  */
+  EEAR = address;
+  /* Start eeprom read by writing EERE */
+  EECR |= _BV(EERE);
+  /* Return data from data register */
+  sei(); // Turn interrupts back on
+  logger_msg_p("eeprom",log_level_INFO,
+	       PSTR("Read %i from address %i\r\n"),EEDR,address);
+  return EEDR;
 }
 
 

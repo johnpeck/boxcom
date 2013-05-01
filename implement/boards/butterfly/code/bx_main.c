@@ -59,6 +59,12 @@
 */
 #include "bx_sound.h"
 
+/* bx_eeprom.h
+
+   Provides functions for writing to and reading from the eeprom.
+*/
+#include "bx_eeprom.h"
+
 
 
 
@@ -103,6 +109,7 @@ int main() {
   rtc_init(); // Start the ms counter at timer2 (needs sound)
   command_init( recv_cmd_state_ptr );
   sound_play_startup();
+
   /* The main loop 
    
      Use the old_, new_, and all_ms variables to take care of pretty

@@ -302,7 +302,7 @@ AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 
 # Uncomment the following if you do /not/ wish a verification to be
 # performed after programming the device.
-#AVRDUDE_NO_VERIFY = -V
+# AVRDUDE_NO_VERIFY = -V
 
 # Increase verbosity level.  Please use this when submitting bug
 # reports about avrdude. See <http://savannah.nongnu.org/projects/avrdude>
@@ -410,7 +410,10 @@ help:
 	@echo 'Usage:                                                   '
 	@echo '   make edit           Edit the code with emacs          '
 	@echo '   make gccversion     Show the avr-gcc version          '
+	@echo '   make hfuse          Read fuse high byte               '
 	@echo '   make hex            Just build to create the hex file '
+	@echo '   make lockprom       EEPROM not erased during program  '
+	@echo '   make unlockprom     EEPROM erased during program      '
 	@echo '   make program        Build and program using avrdude   '
 	@echo '   make reset          Reset the part with avrdude       '
 	@echo '   make terminal       Start a serial terminal           '
@@ -438,6 +441,23 @@ terminal :
 .PHONY: reset
 reset :
 	$(AVRDUDE) $(AVRDUDE_FLAGS)
+
+# Read the fuse high byte
+.PHONY: hfuse
+hfuse :
+	$(AVRDUDE) $(AVRDUDE_FLAGS) -U hfuse:r:highfuse:b
+	@echo 'Fuse high byte value:'
+	@cat highfuse
+
+# Lock the eeprom values by clearing EESAVE bit in high fuse byte
+.PHONY: lockprom
+lockprom :
+	$(AVRDUDE) $(AVRDUDE_FLAGS) -U hfuse:w:0x90:m
+
+# Unlock the eeprom values by setting EESAVE bit in high fuse byte
+.PHONY: unlockprom
+unlockprom :
+	$(AVRDUDE) $(AVRDUDE_FLAGS) -U hfuse:w:0x98:m
 
 
 

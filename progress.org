@@ -80,6 +80,8 @@
      amps.  Provides ways to set calibration constants with remote
      commands.  Maybe this could be called the imeas module.  Provides
      ways to write calibration coefficients to eeprom, and to extract them.
+** TODO Set up eeprom module
+   - Implement an eeprom read function.
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
