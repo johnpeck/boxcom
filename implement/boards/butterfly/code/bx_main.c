@@ -42,8 +42,8 @@
 
 /* bx_adc.h 
 
-   Provides functions for configuring and using the
-   Butterfly's ADC module. 
+   Provides functions for configuring and using the Butterfly's ADC
+   module.
 */
 #include "bx_adc.h"
 

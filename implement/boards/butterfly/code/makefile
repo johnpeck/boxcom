@@ -86,7 +86,8 @@ SRC = $(TARGET).c \
       bx_rtc.c \
       bx_sound.c \
       bx_eeprom.c \
-      bx_led.c
+      bx_led.c \
+      bx_cal.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
