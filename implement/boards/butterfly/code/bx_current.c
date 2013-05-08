@@ -47,6 +47,15 @@
 */
 #include "bx_adc.h"
 
-#include bx_current.h
+#include "bx_current.h"
 
 // ----------------------- Functions ----------------------------------
+
+/* current init()
+
+   Calls load_current_cal(pointer to cal structure) to fill in the cal
+   structure members.
+
+ */
+void current_init(void) {
+}

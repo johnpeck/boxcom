@@ -33,7 +33,7 @@
 /* Define the offset for each calibration coefficient in the array
  */
 #define TEST_OFF_LOW 0
-#define END_OF_CALARRAY = 1
+#define END_OF_CALARRAY 1
 
 uint8_t cal_array[END_OF_CALARRAY]; 
 

@@ -90,6 +90,41 @@
    - What types are pointers in the AVR?  Doesn't matter.  The
      function that returns the pointer will have the type of pointer
      to cal structure.
+** DONE Write up how calibration factors will be managedj
+** TODO Make a variable current_cal scoped global to current module
+*** TODO Make a structure to define the current cal type
+    - Call this current_cal_t
+*** TODO Make a variable with the type current_cal_t
+    - Call this current_cal
+*** TODO Make a pointer to the current calibration
+    - Call this current_cal_ptr.  This pointer will be passed to the
+      calibration module to have its members initialized.  I guess
+      this should happen in the current module's init function.  The
+      function in the calibration module should be called load_current_cal
+** TODO Write function to load current calibration factors (in cal module)
+   - Call this load_current_cal
+   - Pulls calibration factors out of eeprom, processes them, and
+     writes members of the calibration structure.
+   - First step could be to just report values back to stdout
+   - Getting calibration constants will involve the interested module
+     sending an address for a calibration structure to the calibration
+     module.  The calibration module will then fill in the constants.
+     So...the interested module will need to communicate the structure
+     of the calibration constant to the calibration module.
+     Basically, the interested module should tell the calibration
+     module how to fill in the calibration struture.  But only the
+     calibration module should talk to eeprom.
+** TODO Write function to write current slope (in cal module)
+   - Slope will be a 16-bit signed integer.  The function will have to
+     break this up according to the cal factor structure.
+** TODO Write remote command to write current slope
+   - Call this $curslp
+** TODO Write function to write current offset (in cal module)
+   - Offset will be a 16-bit signed integer.  The function will have
+     to break this up according to the cal factor structure.
+** TODO Write remote command to write current offset
+   - Call this $curoff
+** TODO Write function to write current offset
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
