@@ -1,6 +1,109 @@
 \section{Firmware}
 
 
+\subsection{Received character flow}
+
+Receiving remote commands begins with receiving characters. Reception
+of these characters triggers an interrupt service routine (ISR), which
+handles them according to the flow shown in figure
+\ref{fig:recflow}. The first step in this flow is loading the
+characters into the receive buffer.
+
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[clip,scale=0.8]{./tikz/recv_cmd_flow}
+    \draftnote{recv\_cmd\_flow.tex}
+    \caption{Program flow for processing characters received over the
+      Butterfly's USART.  Sending a command terminator (carriage
+      return) will always result in an empty receive buffer.  This is
+      a good way to make sure there's no garbage in the buffer before
+      writing to it.\label{fig:recflow}}
+  \end{center}
+\end{figure}
+
+Figure \ref{fig:recbuffer} illustrates the receive buffer loaded with
+a combined string.  The buffer is accessed with a pointer to its
+beginning and a second pointing to the next index to be written.
+These pointers are members of the \texttt{recv\_cmd\_state\_t} type
+variable \texttt{recv\_cmd\_state}.  This is just style -- I like to
+try to organize variables used in a flow by making them members of
+their own structure.  Naming conventions aside, it's important to
+notice that there are no limitations on command or argument size
+imposed in this first step, provided that the total character count
+stays under the \texttt{RECEIVE\_BUFFER\_SIZE} limit.
+ 
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[clip,scale=1.1]{recbuffer}
+    \draftnote{recbuffer.fig}
+    \caption{The received character buffer and pointers used to fill
+      it.  There is no limit to the size of commands and their
+      arguments, as long as the entire combined string and terminator
+      fit inside \texttt{RECEIVE\_BUFFER\_SIZE}.\label{fig:recbuffer}}
+  \end{center}
+\end{figure}
+
+
+
+When a combined string in the receive buffer is finished with a
+carriage return, the string is copied over to a second buffer.  I call
+this the parse buffer, since this is where the string will be searched
+for recognized commands and arguments.  This buffer is locked until
+its contents can be processed to keep it from being clobbered by new
+combined strings.  Sending commands faster than they can be processed
+will generate an error, and combined strings sent to a locked parse
+buffer will be dropped.  The maximum command processing frequency will
+depend on the system clock and other system tasks.  Not having larger
+parse or receive buffers is a limitation that puts this project at the
+hobby level.  Extending these buffers to hold more than just one
+command would make the system more robust.
+
+\clearpage{}
+\subsection{How remote commands are processed}
+
+After combined strings are copied from the receive to the parse
+buffer, the system separates them into command and argument strings
+using the flow shown in figure \ref{fig:cmdflow}.  Commands in the
+parse buffer are then separated from their arguments with a string
+terminator inserted into the first space between the two.  As
+illustrated in figure \ref{fig:prsbuffer}, pointers to the beginning
+of the parse buffer and the beginning of the argument will then
+reference two separate strings.  The first of these two, the command
+string, is converted to lowercase and compared with those in the
+command definition array to look for a match.
+
+% The parse buffer processing flowchart
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[clip,scale=0.7]{./tikz/parse_cmd_flow}
+    \draftnote{parse\_cmd\_flow.tex}
+    \caption{Program flow for processing fully-formed commands.  This
+      processing step happens in the main loop, so it will only run
+      when the system isn't busy doing something else.  Notice that
+      all incoming commands are converted to lowercase, so there's no
+      case sensitivity.\label{fig:cmdflow}}
+  \end{center}
+\end{figure}
+
+
+% The parse buffer figure showing command and argument strings
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[clip,scale=1]{prsbuffer}
+    \draftnote{prsbuffer.fig}
+    \caption{The parse buffer with pointers to the command and
+      argument strings.  The single combined string copied from the
+      receive buffer is made into two strings by inserting a string
+      terminator.\label{fig:prsbuffer}}
+  \end{center}
+\end{figure}
+
+
+
+
+
+
+\clearpage{}
 \subsection{Adding a new remote command}
 \newcounter{comcount}
 

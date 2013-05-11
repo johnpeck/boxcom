@@ -15,22 +15,28 @@
 * Plan using taskjuggler
 ** TODO Give firmware a start date
    - Firmware needs a start date.  Then the remote commands can just depend on other tasks.
-* Work on howto [3/4]
+* Work on howto [7/7]
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
 *** DONE Redraw Butterfly in inkscape for clipart
 *** DONE Make a drawing with arrows showing where connectors get soldered
 *** DONE Reverse ADC input connector
-** TODO Add index for firmware functions
-** TODO Add drawing of power cable for butterfly
+** DONE Add drawing of power cable for butterfly
    - 6 inches.  Page 87 of notebook.
-** TODO Add drawing of Isense connection
+** DONE Add drawing of Isense connection
    - 3 inches.  Page 90 of notebook.
-** TODO Add drawing of binding post connection.
+** DONE Add drawing of binding post connection.
    - 7 inches.  Page 90 of notebook.
+** DONE Add firmware section describing received character flow
+** DONE Add firmware section describing how commands are executed
 ** Revise section on creating new remote commands
 *** TODO Each remote command should have the same length
     - This is for communication time.  It shold be uniform.
+*** TODO Remote command argument types must be in structure
+    - command_arg_struct in command.h must contain the argument type
+      defined for the remote command.  The function command_exec must
+      know how to deal with the argument type to send it on to a
+      function.
 * Work on chassis [3/6]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
 ** DONE Create an end-on view of a USB jack
@@ -125,6 +131,12 @@
 ** TODO Write remote command to write current offset
    - Call this $curoff
 ** TODO Write function to write current offset
+** TODO Restructure how remote commands work
+*** DONE Add a command argument structure
+    - Remote commands will take pointers to this structure instead of
+*** TODO Rename "hex" type to "hex16"
+    - These will be unsigned 16-bit integers that come in with hex formatting
+** DONE Add a warning sound
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.

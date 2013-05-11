@@ -68,7 +68,14 @@ $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  figs/serial_loopback_test.eps \
                  figs/monitor_test.eps \
                  figs/butterfly_connect.eps \
-                 figs/uart_cable.eps
+                 figs/uart_cable.eps \
+                 tikz/recv_cmd_flow.eps \
+                 figs/recbuffer.eps \
+                 tikz/parse_cmd_flow.eps \
+                 figs/prsbuffer.eps \
+                 figs/butterfly_power_cable.eps \
+                 figs/current_sense_cable.eps \
+                 figs/post_cable.eps
 	latex $(MAINFILE).tex
 
 
@@ -111,6 +118,39 @@ srs_commands.idx: $(wildcard ./commands/*.tex)
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Figure files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# The current sense cable
+figs/current_sense_cable.eps : figs/current_sense_cable.svg
+	inkscape --export-eps=$@ $<
+
+# The binding post cable
+figs/post_cable.eps : figs/post_cable.svg
+	inkscape --export-eps=$@ $<
+
+# The butterfly power cable
+figs/butterfly_power_cable.eps : figs/butterfly_power_cable.svg
+	inkscape --export-eps=$@ $<
+
+# Make the parse buffer flow diagram
+./tikz/parse_cmd_flow.eps: ./tikz/parse_cmd_flow.tex\
+                           ./doctools/latex/tikzstuff.tex
+	cd tikz; pdflatex parse_cmd_flow.tex
+	pdftops -eps ./tikz/parse_cmd_flow.pdf
+
+# Make the parse buffer figure
+./figs/prsbuffer.eps: ./figs/prsbuffer.fig
+	fig2dev -L eps -m 1 ./figs/prsbuffer.fig ./figs/prsbuffer.eps
+
+
+# Make the received character buffer figure
+./figs/recbuffer.eps: ./figs/recbuffer.fig
+	fig2dev -L eps -m 1 ./figs/recbuffer.fig ./figs/recbuffer.eps
+
+# The received character flow diagram
+./tikz/recv_cmd_flow.eps: ./tikz/recv_cmd_flow.tex\
+                          ./doctools/latex/tikzstuff.tex
+	cd tikz; pdflatex recv_cmd_flow.tex
+	pdftops -eps ./tikz/recv_cmd_flow.pdf
 
 # The panel switch wiring figure
 figs/panel_switch_wiring.eps : figs/panel_switch_wiring.svg
