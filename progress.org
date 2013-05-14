@@ -16,8 +16,10 @@
 ** TODO Give firmware a start date
    - Firmware needs a start date.  Then the remote commands can just depend on other tasks.
 * Work on host software
-** TODO Work through chapter 4.5 of Pratt
+** DONE Work through chapter 4.5 of Pratt
    DEADLINE: <2013-05-13 Mon>
+** TODO Work through chapter 4.6 of Pratt
+   DEADLINE: <2013-05-14 Tue>
 * Work on howto [7/7]
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
@@ -49,9 +51,16 @@
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
 * Work on code
-** DONE Switch to correct ADC channel (4)
-   - Need to figure out why this isn't reading correctly.  Is it set
-     to an output?
+** TODO Write current measurement function
+   - Takes data from the ADC, applies calibration, and returns output in uA.
+** TODO Hello function becomes *idn
+   - Write the function for the command to call in the command module.
+*** *IDN? output
+    - johnpeck (the company)
+    - bx100 (the instrument name)
+    - sn001 (the serial number)
+    - 0.0.1 (the release number)
+    - These numbers should be set in bx_main
 ** DONE Add log message warning that JTAG has been disabled
    - Add this inside ADC init
 ** DONE Remove normal log_message from code
@@ -85,14 +94,9 @@
      and off.  There's no need to provide a blink function.  This will
      keep timer0 free.
 **
-** TODO Set up current module
-   - Provides functions to turn counts from the ADC into mA or micro
-     amps.  Provides ways to set calibration constants with remote
-     commands.  Maybe this could be called the imeas module.  Provides
-     ways to write calibration coefficients to eeprom, and to extract them.
 ** DONE Set up eeprom module
    - Implement an eeprom read function.
-** TODO Plan cal module
+** DONE Plan cal module
    - The cal module will have a master structure of cal values.  It
      will have a function that will return a pointer to this
      structure.  That pointer can be used by the individual modules to
@@ -101,7 +105,7 @@
      function that returns the pointer will have the type of pointer
      to cal structure.
 ** DONE Write up how calibration factors will be managedj
-** TODO Make a variable current_cal scoped global to current module
+** DONE Make a variable current_cal scoped global to current module
 *** TODO Make a structure to define the current cal type
     - Call this current_cal_t
 *** TODO Make a variable with the type current_cal_t
@@ -111,7 +115,7 @@
       calibration module to have its members initialized.  I guess
       this should happen in the current module's init function.  The
       function in the calibration module should be called load_current_cal
-** TODO Write function to load current calibration factors (in cal module)
+** DONE Write function to load current calibration factors (in cal module)
    - Call this load_current_cal
    - Pulls calibration factors out of eeprom, processes them, and
      writes members of the calibration structure.
@@ -136,14 +140,6 @@
 ** DONE Write remote command to write current offset
    - Call this $curoff
 ** DONE Write function to write current offset
-** TODO Restructure how remote commands work
-*** DONE Add a command argument structure
-    - Remote commands will take pointers to this structure instead of
-*** DONE Rename "hex" type to "hex16"
-    - These will be unsigned 16-bit integers that come in with hex formatting
-*** TODO Fix remote commands to use the new structure
-    - As commands are fixed, add them to the user command list in the
-      howto.  Use logreg as a template.
 ** DONE Add command handler for 16-bit integers
    - Call this int16.  The atoi function converts numbers from 0 to
      65535 correctly for unsigned integers, and -32767 to 32767 for

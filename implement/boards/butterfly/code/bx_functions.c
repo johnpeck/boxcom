@@ -1,7 +1,12 @@
 /* bx_functions.c
 
-   Sample functions for the boxcom project */
+   Miscellaneous system functions for the boxcom project 
+*/
 
+
+
+
+// ----------------------- Include files ------------------------------
 #include <stdio.h>
 #include <string.h>
 
@@ -27,10 +32,22 @@
 #include "bx_logger.h"
 
 
-void cmd_hello( uint16_t nonval ) {
-    usart_printf_p(PSTR("Hello yourself!\r\n"));
-    return;
+
+const char idnstr[] PROGMEM = "johnpeck,bx100,sn001,0.0.1\r\n";
+
+// ----------------------- Functions ----------------------------------
+
+
+
+
+/* cmd_idn_q( pointer to command argument structure )
+
+   The function called by the "*IDN?" query
+*/
+void cmd_idn_q( command_arg_t *command_arg_ptr ) {
+  usart_printf_p(idnstr);
 }
+
 
 void cmd_help( uint16_t nonval ) {
     print_help( command_array );

@@ -15,10 +15,7 @@ struct cal_struct {
 		    // slope is applied
 };
 
-/* cmd_hello()
- * Print a greeting.
- */
-void cmd_hello( uint16_t nonval );
+
 
 /* cmd_help()
  * Call print_help() to print the help strings for all recognized
@@ -31,3 +28,9 @@ void cmd_help( uint16_t nonval );
  * commands.
  */
 void print_help(command_t *command_array);
+
+/* cmd_idn_q( pointer to command argument structure )
+
+   The function called by the "*IDN?" query
+*/
+void cmd_idn_q( command_arg_t *command_arg_ptr );

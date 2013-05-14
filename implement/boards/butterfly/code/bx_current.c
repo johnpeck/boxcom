@@ -57,7 +57,7 @@ current_cal_t current_cal;
 current_cal_t *current_cal_ptr = &current_cal;
 
 
-/* current init()
+/* current_init()
 
    Calls load_current_cal(pointer to cal structure) to fill in the cal
    structure members.

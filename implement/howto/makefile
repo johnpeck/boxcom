@@ -98,21 +98,21 @@ $(OUTPUTDIR):
 
 
 
-# The SRS commands idx file has a cln extension
-#srs_commands.ind: srs_commands.cln
-#	makeindex srs_commands.cln
+# The internal commands idx file has a cln extension
+internal_cmds_index.ind: internal_cmds_index.cln
+	makeindex $<
 
 
 
 # LaTeX has a problem with index entries containing escaped characters
 # when the entries occur inside macro arguments.  Need to remove all
 # spaces in entries with escaped $ signs.
-srs_commands.cln: srs_commands.idx
-	cat srs_commands.idx | sed -e 's/ //' > srs_commands.cln
+internal_cmds_index.cln: internal_cmds_index.idx
+	cat $< | sed -e 's/ //' > $@
 
 # The idx files are generated when the latex file is processed with the 
 # multind.sty package included.
-srs_commands.idx: $(wildcard ./commands/*.tex)
+internal_cmds_index.idx: $(wildcard ./commands/*.tex)
 	latex $(MAINFILE).tex
 
 

@@ -66,10 +66,10 @@
    better way to do this.
  
 */
-const char helpstr_hello[] PROGMEM = 
-    "hello -- Print a greeting.\r\n"
+const char helpstr_idn[] PROGMEM = 
+    "*IDN? -- Print instrument identifier.\r\n"
     "    Argument: None\r\n"
-    "    Return: A greeting\r\n";
+    "    Return: Identification string\r\n";
 const char helpstr_loglevel[] PROGMEM =
     "loglevel -- Set the logger severity level.\r\n"
     "    Argument: 0-3\r\n"
@@ -113,12 +113,12 @@ const char nullstr[] PROGMEM = "";
 /* Define the remote commands recognized by the system.
  */
 command_t command_array[] ={
-  // hello -- Print a greeting.
-  {"hello",           // Name of the command
+  // *IDN? -- Print the instrument identification string.
+  {"*idn?",           // Name of the command
    "none",            // Argument type (can be "none" or "hex" right now)
    0,                 // Maximum number of characters in argument
-   &cmd_hello,        // Address of function to execute
-   helpstr_hello},    // The help text (defined above)
+   &cmd_idn_q,        // Address of function to execute
+   helpstr_idn},      // The help text (defined above)
   //loglevel -- Set the logger severity level.
   {"loglevel",
    "hex",

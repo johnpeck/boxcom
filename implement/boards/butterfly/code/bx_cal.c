@@ -46,15 +46,15 @@
 /* Define the offset for each calibration coefficient in the array.
    The eeprom has 512 total locations.  I'll allocate 100-200 for
    calibration factors.
- */
+*/
+/* The base address for the current slope factor.  The slope occupies
+   two locations. The next open address is 102.
+*/
 #define I_SLOPE_ADDR 100
+/* The base address for the current offset factor.  The offset
+   occupies two locations.  The next open address is 104.
+*/
 #define I_OFFSET_ADDR 102
-#define END_OF_CALARRAY 103
-
-
-
-
-uint8_t cal_array[END_OF_CALARRAY]; 
 
 
 
