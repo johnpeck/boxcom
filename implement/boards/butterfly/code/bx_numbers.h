@@ -17,3 +17,12 @@ uint8_t asc2num(char n_asc);
    Converts a string of ascii characters into a decimal by repeatedly
    calling asc2num(). */
 uint16_t hex2num(char *hexstr);
+
+
+/* uint2num( string representing unsigned integer )
+
+   Converts a string of ascii characters into an integer.  Doesn't do
+   any size checking.  If the number is larger than 65535, output will
+   be undefined.
+*/
+uint16_t uint2num(char *uintstr);

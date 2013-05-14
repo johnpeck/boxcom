@@ -18,10 +18,12 @@
 
 
 /* Define the received command state structure.
- * 
- * A structure of this type must be instantiated in the file containing
- * main() so that it can work with the received character ISR. 
- */
+  
+   A structure of this type must be instantiated in the file
+   containing main() so that it can work with the received character
+   ISR.
+ 
+*/
 typedef struct recv_cmd_struct { 
     char rbuffer[RECEIVE_BUFFER_SIZE]; // Received character buffer
     /* rbuffer_write_ptr will always point to the next write location
@@ -38,31 +40,43 @@ typedef struct recv_cmd_struct {
     uint8_t pbuffer_lock; // Parse buffer lock.  1 = locked
 } recv_cmd_state_t;
 
+/* Define a remote command argument structure
+
+   This makes dealing with remote commands more flexible, in that
+   functions called by remote commands need only accept pointer to
+   remote command argument types, instead of some fixed type like int.
+
+*/
+typedef struct command_arg_struct {
+  uint16_t uint16_arg; // Signed 16-bit
+  int16_t sint16_arg; // Unsigned 16-bit
+} command_arg_t;
 
 
- 
-/* Define fpointer_t to be a pointer to a function called by a remote
- * command.
- * 
- * In order to make all functions called by remote commands take the same
- * arguments, we settle on them all taking a 16-bit argument.  Functions
- * called by remote commands should be prefixed by 'cmd_' to make the
- * reason for their argument type clear.
+/* Define a pointer to a function called by a remote command.
+  
+   In order to make all functions called by remote commands take the
+   same arguments, we settle on them all taking a 16-bit argument.
+   Functions called by remote commands should be prefixed by 'cmd_' to
+   make the reason for their argument type clear.
+*/
+typedef void (*fpointer_t)(command_arg_t *command_arg_ptr);
+
+
+/* Define a remote command structure 
  */
-typedef void (*fpointer_t)(uint16_t argval);
-
-/* Each command_struct will describe one command */
 typedef struct command_struct {
-    char *name; // The name of the command
-    char *arg_type; // A string representing the type of argument expected
-    uint8_t arg_max_chars; // The maximum number of characters in the argument
-    fpointer_t execute; // The function to execute
-    const char *help;
+  char *name; // The name of the command
+  char *arg_type; // A string representing the type of argument expected
+  uint8_t arg_max_chars; // The maximum number of characters in the argument
+  fpointer_t execute; // The function to execute
+  const char *help;
 } command_t;
 
-/* The array of command structures will have global scope.  The variable
- * command_array should be initialized in bx_command.c 
- */
+
+/* The array of command structures will have global scope.  The
+   variable command_array should be initialized in bx_command.c
+*/
 extern command_t command_array[];
 
 
@@ -75,7 +89,8 @@ void command_init( recv_cmd_state_t *recv_cmd_state_ptr );
 
 /* Execute a valid command received over the remote interface.
  */
-void command_exec( command_t *command, char *argument );
+void command_exec( command_t *command, char *argument,
+		   command_arg_t *command_arg_ptr);
 
 
 

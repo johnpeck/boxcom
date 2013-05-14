@@ -6,6 +6,12 @@
 #define LED_H
 
 
+/* led_init()
+
+   Sets the data direction of the LED pin to be an output.
+*/
+void led_init(void);
+
 
 /* led_on()
 

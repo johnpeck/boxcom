@@ -2,10 +2,26 @@
    
    Functions for handling log messages.
  */
+#ifndef LOGGER_H
+#define LOGGER_H
+
+
 #include <stdint.h> // Defines uint8_t
 
-/* Define the maximum log message size */
-#define LOGGER_BUFFERSIZE 80
+/* bx_command.h 
+
+   Contains the definition of command_arg_t -- the data type used to
+   hold arguments to functions executed by remote commands.
+   
+ */
+#include "bx_command.h"
+
+/* Define the maximum log message size 
+
+   Remember that each character is 1 byte, and that we only have 1k of
+   RAM.  50 bytes is a good number here.
+*/
+#define LOGGER_BUFFERSIZE 50
  
 /* Each system_struct will describe one system.  Create an array of these
  * to define all systems recognized by the machine.  Each system can have
@@ -74,7 +90,7 @@ void logger_setsystem( char *logsys );
  * enable byte directly.  You have to know which systems correspond to 
  * which bitshifts to make use of this.
  */
-void cmd_logreg( uint16_t setval );
+void cmd_logreg( command_arg_t *command_arg_ptr );
 
 /* Called by the remote command "logreg?" Returns the logger configuration
  * register value in hex.
@@ -121,3 +137,5 @@ void logger_system_filter( char *logsys, logger_level_t loglevel, char *logmsg )
  * can be simply printf() for prototyping on a PC.
  */
 void logger_output( char *logmsg );
+
+#endif // End the include guard

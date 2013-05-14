@@ -15,6 +15,9 @@
 * Plan using taskjuggler
 ** TODO Give firmware a start date
    - Firmware needs a start date.  Then the remote commands can just depend on other tasks.
+* Work on host software
+** TODO Work through chapter 4.5 of Pratt
+   DEADLINE: <2013-05-13 Mon>
 * Work on howto [7/7]
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
@@ -29,6 +32,7 @@
    - 7 inches.  Page 90 of notebook.
 ** DONE Add firmware section describing received character flow
 ** DONE Add firmware section describing how commands are executed
+** TODO Document how output current calibration works
 ** Revise section on creating new remote commands
 *** TODO Each remote command should have the same length
     - This is for communication time.  It shold be uniform.
@@ -120,7 +124,8 @@
      Basically, the interested module should tell the calibration
      module how to fill in the calibration struture.  But only the
      calibration module should talk to eeprom.
-** TODO Write function to write current slope (in cal module)
+** DONE Write function to write current slope (in cal module)
+   DEADLINE: <2013-05-13 Mon>
    - Slope will be a 16-bit signed integer.  The function will have to
      break this up according to the cal factor structure.
 ** TODO Write remote command to write current slope
@@ -134,8 +139,17 @@
 ** TODO Restructure how remote commands work
 *** DONE Add a command argument structure
     - Remote commands will take pointers to this structure instead of
-*** TODO Rename "hex" type to "hex16"
+*** DONE Rename "hex" type to "hex16"
     - These will be unsigned 16-bit integers that come in with hex formatting
+*** TODO Fix remote commands to use the new structure
+    - As commands are fixed, add them to the user command list in the
+      howto.  Use logreg as a template.
+** TODO Add command handler for 16-bit integers
+   - Call this int16.  The atoi function converts numbers from 0 to
+     65535 correctly for unsigned integers, and -32767 to 32767 for
+     signed integers.  It looks like it's ok to just cast the output
+     however you like.  For example, if you want 16-bit unsigned, it's
+     ok to save the output to a uint16_t.
 ** DONE Add a warning sound
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb

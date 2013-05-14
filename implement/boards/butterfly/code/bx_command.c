@@ -49,13 +49,23 @@
    measurements. */
 #include "bx_adc.h"
 
+/* bx_cal.h
+
+   Provides cmd_write_islope()
+*/
+#include "bx_cal.h"
+
+
+
+
 /* Initialize command help strings.
- * 
- * The help text for each command needs to be defined outside of the
- * rest of the command array initialization.  I don't know another way
- * to keep the text from being copied into RAM.  There's probably a better
- * way to do this.
- */
+ 
+   The help text for each command needs to be defined outside of the
+   rest of the command array initialization.  I don't know another way
+   to keep the text from being copied into RAM.  There's probably a
+   better way to do this.
+ 
+*/
 const char helpstr_hello[] PROGMEM = 
     "hello -- Print a greeting.\r\n"
     "    Argument: None\r\n"
@@ -88,74 +98,100 @@ const char helpstr_volt_q[] PROGMEM =
     "volt? -- Query the calibrated voltage measurement.\r\n"
     "    Argument: None\r\n"
     "    Return: Voltage in millivolts\r\n";
+const char helpstr_curslp[] PROGMEM =
+  "$curslp -- Set the current slope value.\r\n"
+  "    Argument: 16-bit unsigned integer\r\n"
+  "    Return: None\r\n";
 const char helpstr_help[] PROGMEM =
     "help -- Print the command help.\r\n";
 const char nullstr[] PROGMEM = "";
 
 /* Define the remote commands recognized by the system.
-*/
+ */
 command_t command_array[] ={
-    // hello -- Print a greeting.
-    {"hello",           // Name of the command
-     "none",            // Argument type (can be "none" or "hex" right now)
-     0,                 // Maximum number of characters in argument
-     &cmd_hello,        // Address of function to execute
-     helpstr_hello},    // The help text (defined above)
-    //loglevel -- Set the logger severity level.
-    {"loglevel",
-     "hex",
-     1,
-     &cmd_loglevel,
-     helpstr_loglevel},
-    // logreg -- Set the logger enable register.
-    {"logreg",
-     "hex",
-     4,
-     &cmd_logreg,
-     helpstr_logreg},
-     // logreg? -- Query the logger enable register.
-    {"logreg?",
-     "none",
-     0,
-     &cmd_logreg_q,
-     helpstr_logreg_q},
-     // vslope -- Set the voltage measurement slope calibration factor
-     {"vslope",
-     "hex",
-     4,
-     &cmd_vslope,
-     helpstr_vslope},
-     // voffset -- Set the voltage measurement offset calibration factor
-     {"voffset",
-     "hex",
-     4,
-     &cmd_voffset,
-     helpstr_voffset},
-     // vcounts? -- Query the raw ADC counts from the voltage measurement
-     {"vcounts?",
-     "none",
-     0,
-     &cmd_vcounts_q,
-     helpstr_vcounts_q},
-     // volt? -- Query the calibrated voltage measurement
-     {"volt?",
-     "none",
-     0,
-     &cmd_volt_q,
-     helpstr_volt_q},
-     // help -- Print all the help strings
-     {"help",
-     "none",
-     0,
-     &cmd_help,
-     helpstr_help},
-     // End of table indicator.  Must be last.
-    {"","",0,0,nullstr}
+  // hello -- Print a greeting.
+  {"hello",           // Name of the command
+   "none",            // Argument type (can be "none" or "hex" right now)
+   0,                 // Maximum number of characters in argument
+   &cmd_hello,        // Address of function to execute
+   helpstr_hello},    // The help text (defined above)
+  //loglevel -- Set the logger severity level.
+  {"loglevel",
+   "hex",
+   1,
+   &cmd_loglevel,
+   helpstr_loglevel},
+  // logreg -- Set the logger enable register.
+  {"logreg",
+   "hex16",
+   4,
+   &cmd_logreg,
+   helpstr_logreg},
+  // logreg? -- Query the logger enable register.
+  {"logreg?",
+   "none",
+   0,
+   &cmd_logreg_q,
+   helpstr_logreg_q},
+  // vslope -- Set the voltage measurement slope calibration factor
+  {"vslope",
+   "hex16",
+   4,
+   &cmd_vslope,
+   helpstr_vslope},
+  // voffset -- Set the voltage measurement offset calibration factor
+  {"voffset",
+   "hex",
+   4,
+   &cmd_voffset,
+   helpstr_voffset},
+  // vcounts? -- Query the raw ADC counts from the voltage measurement
+  {"vcounts?",
+   "none",
+   0,
+   &cmd_vcounts_q,
+   helpstr_vcounts_q},
+  // volt? -- Query the calibrated voltage measurement
+  {"volt?",
+   "none",
+   0,
+   &cmd_volt_q,
+   helpstr_volt_q},
+  // $curslp -- Write the output current slope value
+  {"$curslp",
+   "uint16",
+   5,
+   &cmd_write_islope,
+   helpstr_curslp},
+  // help -- Print all the help strings
+  {"help",
+   "none",
+   0,
+   &cmd_help,
+   helpstr_help},
+  // End of table indicator.  Must be last.
+  {"","",0,0,nullstr}
 };
 
-/* Making this function explicitly take a pointer to the received command
- * state structure makes it clear that it modifies this structure.
+/* Declare a structure to hold function arguments
  */
+command_arg_t command_arg;
+command_arg_t *command_arg_ptr = &command_arg;
+
+
+
+
+
+// ----------------------- Functions ----------------------------------
+
+
+/* command_init( received command state pointer ) 
+
+   Making this function explicitly take a pointer to the received
+   command state structure makes it clear that it modifies this
+   structure.
+ 
+*/
 void command_init( recv_cmd_state_t *recv_cmd_state_ptr ) {
     memset((recv_cmd_state_ptr -> rbuffer),0,RECEIVE_BUFFER_SIZE);
     recv_cmd_state_ptr -> rbuffer_write_ptr =
@@ -195,24 +231,28 @@ void rbuffer_erase( recv_cmd_state_t *recv_cmd_state_ptr ) {
 }
 
 /* process_pbuffer( recv_cmd_state_t *recv_cmd_state_ptr,
- *                  command_struct *commands )
- * Process the command (if there is one) in the parse buffer. 
- */
+   command_struct *commands )
+   
+   Process the command (if there is one) in the parse buffer. 
+*/
 void process_pbuffer( recv_cmd_state_t *recv_cmd_state_ptr ,
 		      struct command_struct *command_array) {
   if ((recv_cmd_state_ptr -> pbuffer_lock) == 1) {
     // Parse buffer is locked -- there's a command to process
     logger_msg_p("command",log_level_INFO,
 		 PSTR("The parse buffer is locked.\r\n"));
-    recv_cmd_state_ptr -> pbuffer_arg_ptr = strchr(recv_cmd_state_ptr -> pbuffer,' ');
+    recv_cmd_state_ptr -> pbuffer_arg_ptr = 
+      strchr(recv_cmd_state_ptr -> pbuffer,' ');
     if (recv_cmd_state_ptr -> pbuffer_arg_ptr != NULL) {
       // Parse buffer contains a space -- there's an argument
       logger_msg_p("command",log_level_INFO,
 		   PSTR("The command contains a space.\r\n"));
+      // Terminate the command string
       *(recv_cmd_state_ptr -> pbuffer_arg_ptr) = '\0'; // Terminate the command string
       (recv_cmd_state_ptr -> pbuffer_arg_ptr)++;
       while (*(recv_cmd_state_ptr -> pbuffer_arg_ptr) == ' ') {
-	(recv_cmd_state_ptr -> pbuffer_arg_ptr)++; // Move to first non-space character
+	// Move to first non-space character
+	(recv_cmd_state_ptr -> pbuffer_arg_ptr)++;
       }
       // pbuffer_arg_ptr now points to the beginning of the argument
       logger_msg_p("command",log_level_INFO,
@@ -242,7 +282,8 @@ void process_pbuffer( recv_cmd_state_t *recv_cmd_state_ptr ,
 	    logger_msg_p("command",log_level_INFO,
 			 PSTR("Argument to '%s' is within limits.\r\n"),
 			 command_array -> name);
-	    command_exec(command_array,recv_cmd_state_ptr -> pbuffer_arg_ptr);
+	    command_exec(command_array,recv_cmd_state_ptr -> pbuffer_arg_ptr,
+			 command_arg_ptr);
 	  }
 	}
 	else  {
@@ -253,7 +294,7 @@ void process_pbuffer( recv_cmd_state_t *recv_cmd_state_ptr ,
 			 PSTR("Ignoring argument for command '%s'.\r\n"),
 			 command_array -> name);
 	  }
-	  command_exec(command_array,NULL);
+	  command_exec(command_array,NULL,command_arg_ptr);
 	}
 	recv_cmd_state_ptr -> pbuffer_lock = 0;
 	break;
@@ -263,7 +304,8 @@ void process_pbuffer( recv_cmd_state_t *recv_cmd_state_ptr ,
     // If we didn't find a match, send an error message
     if (pbuffer_match == 0) {
       logger_msg_p("command",log_level_ERROR,
-		   PSTR("Unrecognized command: '%s'.\r\n"),recv_cmd_state_ptr -> pbuffer);
+		   PSTR("Unrecognized command: '%s'.\r\n"),
+		   recv_cmd_state_ptr -> pbuffer);
       recv_cmd_state_ptr -> pbuffer_lock = 0;
     }
   }
@@ -271,25 +313,49 @@ void process_pbuffer( recv_cmd_state_t *recv_cmd_state_ptr ,
 }
 
 
-/* Execute a valid command received over the remote interface.
- */
-void command_exec( command_t *command, char *argument ) {
-    // uint16_t argval = 0; // Decimal value of the argument
-    if (strcmp( command -> arg_type,"none" ) == 0) {
-        // There's no argument
-        logger_msg_p("command",log_level_INFO,
-            PSTR("Executing command with no argument.\r\n"));
-        command -> execute(0);
-    }
-    else if (strcmp( command -> arg_type,"hex" ) == 0) {
-        // There's a hex argument
-        logger_msg_p("command",log_level_INFO,
-            PSTR("Executing command with hex argument.\r\n"));
-        
-        uint16_t argval = hex2num(argument);
-        logger_msg_p("command",log_level_INFO,
-            PSTR("The argument value is %u.\r\n"),argval);
-        command -> execute(argval);
-    }
+/* command_exec( remote command string, argument string,
+                 command argument structure pointer )
+
+   Execute a valid command received over the remote interface.  The
+   command's arguments simply come in as strings.  The command's
+   definition sets the argument type.  This function matches a string
+   to that argument type string to figure out how to convert the
+   argument string to a number.
+*/
+void command_exec( command_t *command, char *argument, 
+		   command_arg_t *command_arg_ptr ) {
+  if (strcmp( command -> arg_type,"none" ) == 0) {
+    // There's no argument
+    logger_msg_p("command",log_level_INFO,
+		 PSTR("Executing command with no argument.\r\n"));
+    command -> execute(0);
+  }
+  else if (strcmp( command -> arg_type,"hex16" ) == 0) {
+    // There's a hex argument
+    logger_msg_p("command",log_level_INFO,
+		 PSTR("Executing command with hex argument.\r\n"));
+    command_arg_ptr -> uint16_arg = hex2num(argument);
+
+    logger_msg_p("command",log_level_INFO,
+		 PSTR("The argument value is %u.\r\n"),
+		 command_arg_ptr -> uint16_arg);
+
+    command -> execute(command_arg_ptr);
+  }
+  else if (strcmp( command -> arg_type,"uint16" ) == 0) {
+    // There's a unsigned 16-bit integer argument
+    logger_msg_p("command",log_level_INFO,
+		 PSTR("Executing command with unsigned int argument.\r\n"));
+    command_arg_ptr -> uint16_arg = uint2num(argument);
+    command -> execute(command_arg_ptr);
+  }
+  /* If we've reached the end, we haven't found a match for the
+     command's argument type.  That's an error.
+   */
+  else {
+    logger_msg_p("command",log_level_ERROR,
+		 PSTR("No handler specified for %s argument.\r\n"),
+		 command -> arg_type);
+  }
 }
 

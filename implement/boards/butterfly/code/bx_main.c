@@ -71,6 +71,14 @@
 */
 #include "bx_led.h"
 
+/* bx_current.h
+
+   Provides functions for measuring output current.
+*/
+#include "bx_current.h"
+
+
+
 
 
 
@@ -109,12 +117,16 @@ int main() {
   logger_setsystem( "sound" ); // Enable sound module logging
   logger_setsystem( "rtc" ); // Enable real time clock module logging
   logger_setsystem( "eeprom" ); // Enable eeprom module logging
+  logger_setsystem( "current" ); // Enable output current module logging
+  logger_setsystem( "cal" ); // Enable calibration module logging
   adc_init(); // Set the ADCs reference and SAR prescaler
   adc_mux(4); // Set the ADC mux to channel 4
   sound_init(); // Start the sound module, using timer1
   rtc_init(); // Start the ms counter at timer2 (needs sound)
   command_init( recv_cmd_state_ptr );
   led_init();
+  current_init();
+
   sound_play_startup();
 
   /* The main loop 

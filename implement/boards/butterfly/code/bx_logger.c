@@ -2,6 +2,10 @@
    
    Functions for handling log messages. 
 */
+
+
+// ----------------------- Include files ------------------------------
+
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h> // Allows functions to accept an indefinite number
@@ -15,6 +19,21 @@
  * flash.
  */
 #include <avr/pgmspace.h>
+
+/* bx_sound.h
+
+   Provides functions for using the noisemaker.
+*/
+#include "bx_sound.h"
+
+
+/* bx_command.h 
+
+   Contains the definition of command_arg_t -- the data type used to
+   hold arguments to functions executed by remote commands.
+   
+ */
+#include "bx_command.h"
 
 // Define a pointer to the logging configuration
 log_config_t logger_config;
@@ -61,9 +80,20 @@ logger_system_t system_array[] ={
     {"eeprom",
      8
     },
+    // The calibration module
+    {"cal",
+     9
+    },
+    // The output current measurement module
+    {"current",
+     10
+    },
     // End of table indicator.  Must be last.
     {"",0}
 };
+
+// ----------------------- Functions ----------------------------------
+
 
 /* Initialize the logger system:
  * Log messages above the "informational" level
@@ -105,15 +135,22 @@ void cmd_loglevel( uint16_t setval ) {
 
 
 
-/* Called by the remote command "logreg." Sets the logger configuration 
- * enable byte directly.  You have to know which systems correspond to 
- * which bitshifts to make use of this.
- */
-void cmd_logreg( uint16_t setval ) {
-    logger_msg_p( "logger", log_level_INFO,
-                  PSTR("Logger enable register set to 0x%x.\r\n"),setval );
-    (logger_config_ptr -> enable) = setval;
+/* Function called by the remote command "logreg." 
+
+   Sets the logger configuration enable byte directly.  You have to
+   know which systems correspond to which bitshifts to make use of
+   this.
+ 
+*/
+void cmd_logreg( command_arg_t *command_arg_ptr ) {
+  logger_msg_p( "logger", log_level_INFO,
+		PSTR("Logger enable register set to 0x%x.\r\n"),
+		command_arg_ptr -> uint16_arg );
+  (logger_config_ptr -> enable) = (command_arg_ptr -> uint16_arg);
 }
+
+
+
 
 /* Called by the remote command "logreg?" Returns the logger configuration
  * register value in hex.
@@ -157,7 +194,9 @@ void logger_disable() {
                         log level (see logger_level_t),
 			message format string, values for format string)
 */
-void logger_msg_p( char *logsys, logger_level_t loglevel,const char *logmsg, ... ) {
+void logger_msg_p( char *logsys, logger_level_t loglevel,
+		   const char *logmsg, ... ) 
+{
     va_list args; 
     char printbuffer[LOGGER_BUFFERSIZE]; 
     
@@ -211,9 +250,11 @@ void logger_system_filter( char *logsys, logger_level_t loglevel, char *logmsg )
 	  logger_output("[I]");
 	  break;
 	case log_level_WARNING:
+	  sound_play_warn();
 	  logger_output("[W]");
 	  break;
 	case log_level_ERROR:
+	  sound_play_error();
 	  logger_output("[E]");
 	  break;    
 	}

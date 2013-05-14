@@ -9,19 +9,20 @@
 
 /* Calibration structure for current output
 
-   The slope and offset coefficients will have pA units.
+   The slope and offset coefficients will have pA units.  The slope
+   value will always be positive, but the offset may be negative.
  */
 typedef struct current_cal_struct {
-    int16_t slope;
+    uint16_t slope;
     int16_t offset;
-} logger_system_t;
+} current_cal_t;
 
 /* current init()
 
    Calls load_current_cal(pointer to cal structure) to fill in the cal
    structure members.
 
- */
+*/
 void current_init(void);
 
 

@@ -78,13 +78,14 @@ unsigned char usart_receive(void) {
 }
 
 /* usart_putc(char data)
- * Sends a character to the USART 
- */
+   
+   Sends a character to the USART 
+*/
 void usart_putc(char data) {
-    /* Wait for empty transmit buffer */
-    while( !( UCSR0A & (1<<UDRE0)) );
-    /* Put data into buffer -- sends the data */
-    UDR0 = data;
+  /* Wait for empty transmit buffer */
+  loop_until_bit_is_set(UCSR0A,UDRE0);
+  /* Put data into buffer -- sends the data */
+  UDR0 = data;
 }
 
 /* usart_puts(char s[])

@@ -4,6 +4,12 @@
 #include "bx_usart.h" // For debugging
 #include <avr/pgmspace.h> // For strings in flash
 
+/* stdlib.h
+
+   Provides atoi for ascii to integer conversions.
+*/
+#include <stdlib.h>
+
 
 /* asc2num() 
 
@@ -44,4 +50,15 @@ uint16_t hex2num(char *hexstr) {
         digits--;
     }
     return totval;
+}
+
+/* uint2num( string representing unsigned integer )
+
+   Converts a string of ascii characters into an integer.  Doesn't do
+   any size checking.  If the number is larger than 65535, output will
+   be undefined.
+*/
+uint16_t uint2num(char *uintstr) {
+  uint16_t retval = atoi(uintstr);
+  return retval;
 }

@@ -71,7 +71,17 @@ void sound_play_array_p( uint16_t *data_ptr );
 */
 void sound_play_startup(void);
 
+/* sound_play_warn()
 
+   Play a warning sound.
+*/
+void sound_play_warn(void);
+
+/* sound_play_error()
+
+   Play an error sound.
+*/
+void sound_play_error(void);
 
 
 #endif // End the include guard

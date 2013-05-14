@@ -47,6 +47,10 @@ const uint16_t sndramp[] PROGMEM = {100, 110, 120, 130, 140, 150,
 
 const uint16_t boot_sound[] PROGMEM = {200, 250, 300, 0};
 
+const uint16_t warn_sound[] PROGMEM = {200, 1, 200, 0};
+
+const uint16_t error_sound[] PROGMEM = {300, 200, 0};
+
 
 // ----------------------- Functions ----------------------------------
 
@@ -138,6 +142,8 @@ void sound_play_timed( uint16_t frequency, uint16_t duration_ms ) {
   /* Use the old_, new_, and all_ms variables to take care of pretty
      good timing.
    */
+  const uint16_t minfreq = 10; // Hz -- minimum possible freq
+  const uint16_t maxfreq = 20000; // Hz -- maximum possible freq
   sound_counter_stop();
   sound_counter_zero();
   DDRB |= _BV(DDB5); // Make PB5 (OCR1A) an output
@@ -146,7 +152,12 @@ void sound_play_timed( uint16_t frequency, uint16_t duration_ms ) {
      reaches the compare value (OCR1A).  Calculating the compare
      value here is expensive, but not a big deal. */
   uint16_t compval = 0; // Will be the output compare value
-  compval = (uint16_t) (1e6 / (2 * frequency) + 0.5) - 1;
+  if ( (frequency >= minfreq) & (frequency <= maxfreq) ){
+    compval = (uint16_t) (1e6 / (2 * frequency) + 0.5) - 1;
+  }
+  else {
+    compval = 0xffff;
+  }
   logger_msg_p("sound",log_level_INFO,
 	       PSTR("Compare value is %i\r\n"),compval);
   OCR1AH = (uint8_t)(compval >> 8);
@@ -156,11 +167,9 @@ void sound_play_timed( uint16_t frequency, uint16_t duration_ms ) {
   
   // Busy loop for the specified duration
   uint16_t retval = ms_delay( duration_ms );
+  sound_counter_stop(); // Stop the sound
   logger_msg_p("sound",log_level_INFO,
 	       PSTR("Played for %i ms\r\n"),retval);
-  sound_counter_stop();
-  //DDRB &= ~(_BV(DDB5)); // Make PB5 (OCR1A) and input, stopping the sound
-  
 }
 
 /* sound_play_array_p( array of frequency data) 
@@ -189,5 +198,20 @@ void sound_play_startup(void) {
   sound_play_array_p( boot_sound );
 }
 
+/* sound_play_warn()
+
+   Play a warning sound.
+*/
+void sound_play_warn(void) {
+  sound_play_array_p( warn_sound );
+}
+
+/* sound_play_error()
+
+   Play an error sound.
+*/
+void sound_play_error(void) {
+  sound_play_array_p( error_sound );
+}
 
      

@@ -51,6 +51,12 @@
 
 // ----------------------- Functions ----------------------------------
 
+/* The current calibration
+ */
+current_cal_t current_cal;
+current_cal_t *current_cal_ptr = &current_cal;
+
+
 /* current init()
 
    Calls load_current_cal(pointer to cal structure) to fill in the cal
@@ -58,4 +64,7 @@
 
  */
 void current_init(void) {
+  cal_load_current(current_cal_ptr);
+  logger_msg_p("current",log_level_INFO,
+	       PSTR("Current slope value is %i\r\n"),(current_cal_ptr -> slope));
 }
