@@ -48,7 +48,8 @@
    calibration factors.
  */
 #define I_SLOPE_ADDR 100
-#define END_OF_CALARRAY 100
+#define I_OFFSET_ADDR 102
+#define END_OF_CALARRAY 103
 
 
 
@@ -97,6 +98,35 @@ void cmd_write_islope( command_arg_t *command_arg_ptr ) {
   cal_save_islope(slope);
 }
 
+/* cal_save_ioffset( current output offset calibration factor )
+
+   Writes the current output offset calibration factor to eeprom.  The
+   offset factor is a 16-bit signed integer with units of pA.
+
+   The eeprom is organized into 8-bit bytes.  So we'll need two memory
+   locations.
+ */
+void cal_save_ioffset(int16_t offset) {
+  logger_msg_p( "cal", log_level_INFO,
+		PSTR("Writing current offset value of %i\r\n"),offset);
+  uint8_t lowbyte = (uint8_t)(offset & 0xff);
+  uint8_t highbyte = (uint8_t)( (offset & 0xff00) >> 8);
+  eeprom_write_char(I_OFFSET_ADDR,lowbyte);
+  eeprom_write_char(I_OFFSET_ADDR + 1, highbyte);
+}
+
+/* cmd_write_ioffset( pointer to command argument structure )
+
+   Function called by the remote command "$curoff."  Writes the
+   current output slope calibration factor to a value supplied over
+   the remote interface.
+ */
+void cmd_write_ioffset( command_arg_t *command_arg_ptr ) {
+  int16_t offset = (command_arg_ptr -> sint16_arg);
+  cal_save_ioffset(offset);
+}
+
+
 /* cal_load_current( pointer to current calibration structure )
 
    Loads the values for the current output calibration from eeprom.
@@ -104,5 +134,8 @@ void cmd_write_islope( command_arg_t *command_arg_ptr ) {
 void cal_load_current( current_cal_t *current_cal ) {
   uint8_t lowbyte = eeprom_read_char(I_SLOPE_ADDR);
   uint8_t highbyte = eeprom_read_char(I_SLOPE_ADDR + 1);
-  current_cal -> slope = (int16_t)( (highbyte << 8) + lowbyte);
+  current_cal -> slope = (uint16_t)( (highbyte << 8) + lowbyte);
+  lowbyte = eeprom_read_char(I_OFFSET_ADDR);
+  highbyte = eeprom_read_char(I_OFFSET_ADDR + 1);
+  current_cal -> offset = (int16_t)( (highbyte << 8) + lowbyte);
 }

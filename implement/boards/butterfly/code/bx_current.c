@@ -66,5 +66,9 @@ current_cal_t *current_cal_ptr = &current_cal;
 void current_init(void) {
   cal_load_current(current_cal_ptr);
   logger_msg_p("current",log_level_INFO,
-	       PSTR("Current slope value is %i\r\n"),(current_cal_ptr -> slope));
+	       PSTR("Current slope value is %u pA/count\r\n"),
+	       (current_cal_ptr -> slope));
+  logger_msg_p("current",log_level_INFO,
+	       PSTR("Current offset value is %i pA\r\n"),
+	       (current_cal_ptr -> offset));
 }

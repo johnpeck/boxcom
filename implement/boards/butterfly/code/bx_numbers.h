@@ -26,3 +26,11 @@ uint16_t hex2num(char *hexstr);
    be undefined.
 */
 uint16_t uint2num(char *uintstr);
+
+/* sint2num( string representing signed integer )
+ 
+   Converts a string of ascii characters into a signed integer.
+   Doesn't do any size checking.  If the number is larger than 65535,
+   output will be undefined.
+*/
+uint16_t sint2num(char *sintstr);

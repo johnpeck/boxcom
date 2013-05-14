@@ -102,6 +102,10 @@ const char helpstr_curslp[] PROGMEM =
   "$curslp -- Set the current slope value.\r\n"
   "    Argument: 16-bit unsigned integer\r\n"
   "    Return: None\r\n";
+const char helpstr_curoff[] PROGMEM =
+  "$curoff -- Set the current offset value.\r\n"
+  "    Argument: 16-bit signed integer.\r\n"
+  "    Return: None\r\n";
 const char helpstr_help[] PROGMEM =
     "help -- Print the command help.\r\n";
 const char nullstr[] PROGMEM = "";
@@ -163,6 +167,12 @@ command_t command_array[] ={
    5,
    &cmd_write_islope,
    helpstr_curslp},
+  // $curoff -- Write the output current offset value
+  {"$curoff",
+   "sint16",
+   5,
+   &cmd_write_ioffset,
+   helpstr_curoff},
   // help -- Print all the help strings
   {"help",
    "none",
@@ -347,6 +357,13 @@ void command_exec( command_t *command, char *argument,
     logger_msg_p("command",log_level_INFO,
 		 PSTR("Executing command with unsigned int argument.\r\n"));
     command_arg_ptr -> uint16_arg = uint2num(argument);
+    command -> execute(command_arg_ptr);
+  }
+  else if (strcmp( command -> arg_type,"sint16" ) == 0) {
+    // There's a signed 16-bit integer argument
+    logger_msg_p("command",log_level_INFO,
+		 PSTR("Executing command with signed int argument.\r\n"));
+    command_arg_ptr -> sint16_arg = sint2num(argument);
     command -> execute(command_arg_ptr);
   }
   /* If we've reached the end, we haven't found a match for the

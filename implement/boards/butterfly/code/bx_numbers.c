@@ -62,3 +62,14 @@ uint16_t uint2num(char *uintstr) {
   uint16_t retval = atoi(uintstr);
   return retval;
 }
+
+/* sint2num( string representing signed integer )
+ 
+   Converts a string of ascii characters into a signed integer.
+   Doesn't do any size checking.  If the number is larger than 65535,
+   output will be undefined.
+*/
+uint16_t sint2num(char *sintstr) {
+  uint16_t retval = atoi(sintstr);
+  return retval;
+}

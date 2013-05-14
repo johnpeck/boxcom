@@ -128,14 +128,14 @@
    DEADLINE: <2013-05-13 Mon>
    - Slope will be a 16-bit signed integer.  The function will have to
      break this up according to the cal factor structure.
-** TODO Write remote command to write current slope
+** DONE Write remote command to write current slope
    - Call this $curslp
-** TODO Write function to write current offset (in cal module)
+** DONE Write function to write current offset (in cal module)
    - Offset will be a 16-bit signed integer.  The function will have
      to break this up according to the cal factor structure.
-** TODO Write remote command to write current offset
+** DONE Write remote command to write current offset
    - Call this $curoff
-** TODO Write function to write current offset
+** DONE Write function to write current offset
 ** TODO Restructure how remote commands work
 *** DONE Add a command argument structure
     - Remote commands will take pointers to this structure instead of
@@ -144,7 +144,7 @@
 *** TODO Fix remote commands to use the new structure
     - As commands are fixed, add them to the user command list in the
       howto.  Use logreg as a template.
-** TODO Add command handler for 16-bit integers
+** DONE Add command handler for 16-bit integers
    - Call this int16.  The atoi function converts numbers from 0 to
      65535 correctly for unsigned integers, and -32767 to 32767 for
      signed integers.  It looks like it's ok to just cast the output
