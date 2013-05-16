@@ -78,8 +78,22 @@
 #include "bx_current.h"
 
 
+/* Set the measurement array size.
 
+   As things are now, this will also be the number of readings to
+   average to create an output datum.  But this size can grow
+   independent of the number of averages.
+*/
+#define MEASUREMENT_ARRAY_SIZE 4
 
+/* Set the period in milliseconds for things to happen in the main
+   loop
+ */
+#define MAIN_LOOP_PERIOD_MS 100
+
+/* This array will hold measurements made in the main loop.
+ */
+uint16_t measurement_array[MEASUREMENT_ARRAY_SIZE];
 
 
 
@@ -101,7 +115,8 @@ int main() {
   */
   fosc_8mhz();
   /* Set up the USART before setting up the logger -- the logger uses
-     the USART for output. */
+     the USART for output. 
+  */
   usart_init(); // Sets 9.6k baud
   usart_76k8_baud(); // Sets 76.8k baud
   logger_init();
@@ -126,7 +141,9 @@ int main() {
   command_init( recv_cmd_state_ptr );
   led_init();
   current_init();
-
+  memset(measurement_array,0,MEASUREMENT_ARRAY_SIZE);
+  /* Play a startup sound after all the init functions have been called. 
+   */
   sound_play_startup();
 
   /* The main loop 
@@ -137,6 +154,8 @@ int main() {
   uint8_t old_ms = 0;
   uint8_t new_ms = 0;
   uint16_t all_ms = 0; // The elapsed time in milliseconds
+  uint16_t *meas_ptr = measurement_array;
+  uint8_t meas_count = 0; // Incremented when measurement made
   for(;;) {
     /* Process the parse buffer to look for commands loaded with the
        received character ISR. 
@@ -156,9 +175,23 @@ int main() {
     /* Choose the timing interval here.  A value of 1000 means that
        something will be done roughly every second.
     */
-    if (all_ms >= 1000) {
+    if (all_ms >= MAIN_LOOP_PERIOD_MS) {
       /* Do something here */
+
+      /*  Write to the measurement array.  We'll use this array to make
+	  a moving average of the incoming data.
+      */
+      if (meas_count == (MEASUREMENT_ARRAY_SIZE)) {
+      	meas_ptr = measurement_array;
+	meas_count = 0;
+      }
+      
+      *meas_ptr = adc_read();
+      meas_count++;
+      meas_ptr++;
+     
       led_toggle();
+      /* end of timed tasks */ 
       all_ms = 0;
     }
     else if (all_ms >= (0xffff - 100))

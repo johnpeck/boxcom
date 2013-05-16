@@ -61,7 +61,7 @@ void cmd_voffset(uint16_t voffset) {
     volt_calfactor_ptr -> cal_offset = voffset;
 }
 
-/* adc_init(void)
+/* adc_init()
  
    Initialize the Butterfly's 10-bit SAR ADC module.
    Set the default ADC mux position to 1: the voltage reader

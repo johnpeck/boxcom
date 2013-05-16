@@ -18,8 +18,10 @@
 * Work on host software
 ** DONE Work through chapter 4.5 of Pratt
    DEADLINE: <2013-05-13 Mon>
-** TODO Work through chapter 4.6 of Pratt
+** DONE Work through chapter 4.6 of Pratt
    DEADLINE: <2013-05-14 Tue>
+** TODO Work through chapter 4.7 of Pratt
+   DEADLINE: <2013-05-15 Wed>
 * Work on howto [7/7]
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
@@ -51,9 +53,13 @@
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
 * Work on code
-** TODO Write current measurement function
-   - Takes data from the ADC, applies calibration, and returns output in uA.
-** TODO Hello function becomes *idn
+** TODO ADC measurements written to array in main()
+   - See page 98 of notebook.  I'll need to define a measurement array
+     in the main module to hold data coming in.  The size of the array
+     should be set with a #define.  The main loop should write to this
+     array on a schedule so that it contains the latest and n previous
+     measurements.
+** DONE Hello function becomes *idn
    - Write the function for the command to call in the command module.
 *** *IDN? output
     - johnpeck (the company)
