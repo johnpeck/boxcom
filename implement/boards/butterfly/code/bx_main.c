@@ -89,7 +89,7 @@
 /* Set the period in milliseconds for things to happen in the main
    loop
  */
-#define MAIN_LOOP_PERIOD_MS 100
+#define MAIN_LOOP_PERIOD_MS 1000
 
 /* This array will hold measurements made in the main loop.
  */
@@ -186,7 +186,8 @@ int main() {
 	meas_count = 0;
       }
       
-      *meas_ptr = adc_read();
+      *meas_ptr = adc_read(); // Make a measurement
+      current_process_array( measurement_array, MEASUREMENT_ARRAY_SIZE );
       meas_count++;
       meas_ptr++;
      

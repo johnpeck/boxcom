@@ -70,12 +70,12 @@ void logger_init( void );
  */
 void logger_setlevel( logger_level_t loglevel );
 
-/* cmd_loglevel()
- * Called by the remote command "loglevel."  Sets the logger's loglevel
- * member.  If no level matches the user's parameter, issue an error
- * and leave the level as it was.
- */
-void cmd_loglevel( uint16_t setval );
+/* Function called by the remote command "loglev"
+ 
+   Sets the logger's loglevel member.  If no level matches the user's
+   parameter, issue an error and leave the level as it was.
+*/
+void cmd_loglevel( command_arg_t *command_arg_ptr );
 
 
 /* Enable a system for logging.  This sets a bit in the logging configuration

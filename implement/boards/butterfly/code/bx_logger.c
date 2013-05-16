@@ -113,24 +113,25 @@ void logger_setlevel( logger_level_t loglevel ) {
                  PSTR("Logging set to level %i\r\n"),loglevel);
 }
 
-/* cmd_loglevel()
- * Called by the remote command "loglevel."  Sets the logger's loglevel
- * member.  If no level matches the user's parameter, issue an error
- * and leave the level as it was.
- */
-void cmd_loglevel( uint16_t setval ) {
-    switch(setval) {
-        case 0: logger_setlevel(log_level_ISR);
-                break;
-        case 1: logger_setlevel(log_level_INFO);
-                break;
-        case 2: logger_setlevel(log_level_WARNING);
-                break;
-        case 3: logger_setlevel(log_level_ERROR);
-                break;
-        default: logger_msg_p( "logger", log_level_ERROR,
-                              PSTR("Log level %u is not recognized.\r\n"),setval);
-        }
+/* Function called by the remote command "loglev"
+ 
+   Sets the logger's loglevel member.  If no level matches the user's
+   parameter, issue an error and leave the level as it was.
+*/
+void cmd_loglevel( command_arg_t *command_arg_ptr ) {
+  uint16_t setval = command_arg_ptr -> uint16_arg;
+  switch(setval) {
+  case 0: logger_setlevel(log_level_ISR);
+    break;
+  case 1: logger_setlevel(log_level_INFO);
+    break;
+  case 2: logger_setlevel(log_level_WARNING);
+    break;
+  case 3: logger_setlevel(log_level_ERROR);
+    break;
+  default: logger_msg_p( "logger", log_level_ERROR,
+			 PSTR("Log level %u is not recognized.\r\n"),setval);
+  }
 }
 
 

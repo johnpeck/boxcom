@@ -34,3 +34,9 @@ uint16_t uint2num(char *uintstr);
    output will be undefined.
 */
 uint16_t sint2num(char *sintstr);
+
+/* bitshifts_max8 ( 8-bit number )
+
+   Returns the maximum power of bitshifts that will fit in the number.
+*/
+uint8_t bitshifts_max8 (uint8_t number);

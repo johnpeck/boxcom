@@ -73,3 +73,20 @@ uint16_t sint2num(char *sintstr) {
   uint16_t retval = atoi(sintstr);
   return retval;
 }
+
+/* bitshifts_max8 ( 8-bit number )
+
+   Returns the maximum power of bitshifts that will fit in the number.
+*/
+uint8_t bitshifts_max8 (uint8_t number) {
+  uint8_t powtwo = 1;
+  uint8_t shift = 0;
+
+  while (powtwo < number) {
+    powtwo <<= 1;
+    shift++;
+  }
+    
+  return shift;
+}
+

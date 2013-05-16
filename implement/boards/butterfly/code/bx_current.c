@@ -47,6 +47,12 @@
 */
 #include "bx_adc.h"
 
+/* bx_numbers.h
+
+   Provides bitshifts_max8 to get the bit shifts in a number.
+*/
+#include "bx_numbers.h"
+
 #include "bx_current.h"
 
 // ----------------------- Functions ----------------------------------
@@ -56,6 +62,10 @@
 current_cal_t current_cal;
 current_cal_t *current_cal_ptr = &current_cal;
 
+/* current status
+ */
+current_state_t current_state;
+current_state_t *current_state_ptr = &current_state;
 
 /* current_init()
 
@@ -65,10 +75,29 @@ current_cal_t *current_cal_ptr = &current_cal;
  */
 void current_init(void) {
   cal_load_current(current_cal_ptr);
+  (current_state_ptr -> lastmeas) = 0;
   logger_msg_p("current",log_level_INFO,
 	       PSTR("Current slope value is %u pA/count\r\n"),
 	       (current_cal_ptr -> slope));
   logger_msg_p("current",log_level_INFO,
 	       PSTR("Current offset value is %i pA\r\n"),
 	       (current_cal_ptr -> offset));
+}
+
+/* current_process_array( array of raw data, number of averages )
+
+   The array of raw data probably comes directly from the ADC.  Use
+   the calibration values to turn them into currents in uA.
+
+   The number of averages may be less than the size of the data array.
+ */
+void current_process_array( uint16_t *array, uint8_t averages ) {
+  uint8_t shiftnum = bitshifts_max8(averages);
+  uint16_t sum = 0;
+  /* Average the array */
+  for (uint8_t count = 0; count < (1 << shiftnum); count++) {
+    sum += array[count];
+  }
+  sum >>= shiftnum;  // Make the average value of raw data
+
 }

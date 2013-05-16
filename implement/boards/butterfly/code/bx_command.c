@@ -119,9 +119,9 @@ command_t command_array[] ={
    0,                 // Maximum number of characters in argument
    &cmd_idn_q,        // Address of function to execute
    helpstr_idn},      // The help text (defined above)
-  //loglevel -- Set the logger severity level.
-  {"loglevel",
-   "hex",
+  //loglev -- Set the logger severity level.
+  {"loglev",
+   "uint16",
    1,
    &cmd_loglevel,
    helpstr_loglevel},

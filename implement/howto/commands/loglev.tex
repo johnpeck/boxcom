@@ -1,0 +1,45 @@
+\asciicmd{loglev\{i\}}{
+    \index{user_cmds_index}{loglev}
+    \label{cmd:loglev}
+
+    \textbf{Name:} \texttt{loglev} -- Set the logger severity level.\\
+    \textbf{Description:} System log messages more severe than the
+    programmed severity level (\texttt{i}) will be logged.  All others
+    will be muted.
+
+    \begin{center}
+      \begin{tabular}{|c|c|} \hline
+        i   &Log level\\
+        \hline \hline
+        0   &ISR\\
+        \hline
+        1   &Information\\
+        \hline
+        2   &Warning\\
+        \hline
+        3   &Error\\
+
+        \hline
+      \end{tabular}
+    \end{center}    
+
+    \textbf{Example:}
+    \boxtext{\texttt{loglev 2}
+      \codecomment{Warnings and errors will be reported}\\
+      \texttt{loglev 3}    \codecomment{Only error messages will be reported}
+    }
+    
+    \nailnote{Error sounds are tied to the error levels.  If you set
+      the log level to 3, you won't hear warning sounds.  You'll still
+      hear error sounds.  Use the \texttt{logreg} command described
+      \vpageref{cmd:logreg} to turn off all log messages and sounds.}
+
+
+    \rednote{Setting the log level too low can make the system
+      unstable.  For example, if the log level is set to ``ISR,'' the
+      sytem will report every single character received via the remote
+      interface.  The extra time spent reporting may cause the system
+      to ignore incoming characters.}
+
+
+}
