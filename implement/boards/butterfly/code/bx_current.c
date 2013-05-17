@@ -34,6 +34,12 @@
 */
 #include "bx_logger.h"
 
+/* bx_usart.h
+
+   Provides usart_printf.
+*/
+#include "bx_usart.h"
+
 /* bx_cal.h
 
    Provides functions to supply calibration factors.
@@ -106,4 +112,15 @@ void current_process_array( uint16_t *array, uint8_t averages ) {
   current_state_ptr -> lastmeas = 
     (( (int32_t)sum * current_cal_ptr -> slope ) - 1000000 +
      current_cal_ptr -> offset ) >> 10 ;
+  /* logger_msg_p("current",log_level_INFO, */
+  /* 	       PSTR("Measured current is %li uA\r\n"), */
+  /* 	       current_state_ptr -> lastmeas); */
+}
+
+/* Command called by curout?
+   
+   Writes the latest value of the measured output current in uA
+ */
+void cmd_curout_q( command_arg_t *command_arg_ptr ) {
+  usart_printf_p( PSTR("%li\r\n"), current_state_ptr -> lastmeas);
 }

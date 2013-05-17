@@ -22,8 +22,8 @@
    DEADLINE: <2013-05-14 Tue>
 ** TODO Work through chapter 4.7 of Pratt
    DEADLINE: <2013-05-15 Wed>
-* Work on howto [7/9]
-** TODO Document the logreg function
+* Work on howto [8/9]
+** DONE Document the logreg function
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
 *** DONE Redraw Butterfly in inkscape for clipart
@@ -54,13 +54,17 @@
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
 * Work on code
+** TODO Change argument used by logreg command
+   - I don't want the user using hex arguments
+** TODO Get rid of vslope command
+** TODO Get rid of voffset command
 ** DONE ADC measurements written to array in main()
    - See page 98 of notebook.  I'll need to define a measurement array
      in the main module to hold data coming in.  The size of the array
      should be set with a #define.  The main loop should write to this
      array on a schedule so that it contains the latest and n previous
      measurements.
-** TODO Current calibration applied in current_process_array function
+** DONE Current calibration applied in current_process_array function
 ** DONE Change loglevel to loglev
    - Also add this command to the howto
 ** DONE Hello function becomes *idn

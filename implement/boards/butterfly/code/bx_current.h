@@ -52,7 +52,11 @@ void current_init(void);
 void current_process_array( uint16_t *array, uint8_t averages );
 
 
-
+/* Command called by curout?
+   
+   Writes the latest value of the measured output current in uA
+ */
+void cmd_curout_q( command_arg_t *command_arg_ptr );
 
 
 

@@ -55,6 +55,12 @@
 */
 #include "bx_cal.h"
 
+/* bx_current.h
+
+   Provides functions for measuring output current.
+*/
+#include "bx_current.h"
+
 
 
 
@@ -106,6 +112,10 @@ const char helpstr_curoff[] PROGMEM =
   "$curoff -- Set the current offset value.\r\n"
   "    Argument: 16-bit signed integer.\r\n"
   "    Return: None\r\n";
+const char helpstr_curout[] PROGMEM =
+  "curout? -- Query the output current in uA.\r\n"
+  "    Argument: None\r\n"
+  "    Return: integer current in uA\r\n";
 const char helpstr_help[] PROGMEM =
     "help -- Print the command help.\r\n";
 const char nullstr[] PROGMEM = "";
@@ -173,6 +183,12 @@ command_t command_array[] ={
    5,
    &cmd_write_ioffset,
    helpstr_curoff},
+  // curout? -- Query the output current
+  {"curout?",
+   "none",
+   0,
+   &cmd_curout_q,
+   helpstr_curout},
   // help -- Print all the help strings
   {"help",
    "none",
@@ -338,7 +354,7 @@ void command_exec( command_t *command, char *argument,
     // There's no argument
     logger_msg_p("command",log_level_INFO,
 		 PSTR("Executing command with no argument.\r\n"));
-    command -> execute(0);
+    command -> execute(command_arg_ptr);
   }
   else if (strcmp( command -> arg_type,"hex16" ) == 0) {
     // There's a hex argument

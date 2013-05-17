@@ -25,7 +25,6 @@
  */
 uint8_t usart_printf (const char *fmt, ...) { 
     va_list args; 
-    uint8_t i; 
     char printbuffer[USART_TXBUFFERSIZE]; 
 
     va_start (args, fmt); 
@@ -33,7 +32,7 @@ uint8_t usart_printf (const char *fmt, ...) {
     /* For this to work, printbuffer must be larger than 
     * anything we ever want to print. 
     */ 
-    i = vsprintf (printbuffer, fmt, args); 
+    vsprintf (printbuffer, fmt, args);
     va_end (args); 
 
     /* Print the string */ 
@@ -47,14 +46,13 @@ uint8_t usart_printf (const char *fmt, ...) {
 */
 uint8_t usart_printf_p(const char *fmt, ...) {
     va_list args; 
-    uint8_t i; 
     char printbuffer[USART_TXBUFFERSIZE]; 
 
     va_start (args, fmt); 
         /* For this to work, printbuffer must be larger than 
         * anything we ever want to print. 
         */ 
-        i = vsnprintf_P (printbuffer, USART_TXBUFFERSIZE, fmt, args); 
+        vsnprintf_P (printbuffer, USART_TXBUFFERSIZE, fmt, args); 
     va_end (args); 
 
     /* Print the string */ 
