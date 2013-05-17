@@ -1,8 +1,115 @@
+\newlength{\logregColWidth}
+\setlength{\logregColWidth}{9.1cm}
+
+
 \asciicmd{logreg(?)\{i\}}{
     \index{user_cmds_index}{logreg}
     \label{cmd:logreg}
 
     \textbf{Name:} \texttt{logreg} -- Set or query the logger enable register.\\
-    \textbf{Description:} No description.
+    \textbf{Description:} Logging for each system is enabled by
+    setting a bit in the logger enable register.  The bit locations
+    are shown in the table below.  Sending \texttt{logreg?} will
+    return the register value in decimal format.  Sending
+    \texttt{logreg i} will set the register to the value corresponding
+    to the decimal \texttt{i}.
+
+
+    \begin{center}
+      \begin{tabular}{|c|c|c|} \hline
+        Bit &System &Description\\ \hline \hline
+        
+        0 &logger &\wksentry{\logregColWidth}{System logger module}\\
+        
+        \hline
+        
+        1 &command &\wksentry{\logregColWidth}{Handles processing of
+          remote commands}\\
+
+        \hline
+        
+        2 &rxchar &\wksentry{\logregColWidth}{Handles receiving and
+          storing characters from the remote interface} \\
+
+        \hline
+        
+        3 &adc &\wksentry{\logregColWidth}{Handles reading from the
+          system ADC} \\
+
+        \hline
+
+        4 &reserved &\wksentry{\logregColWidth}{For internal use} \\
+        
+        \hline
+
+        5 &functions &\wksentry{\logregColWidth}{Miscellaneous system
+          functions}\\
+        
+        \hline
+
+        6 &sound &\wksentry{\logregColWidth}{Handles making sounds}\\
+
+        \hline
+
+        7 &rtc &\wksentry{\logregColWidth}{Handles the real time clock
+          module}\\
+
+        \hline
+
+        8 &eeprom &\wksentry{\logregColWidth}{Handles writing to and
+          reading from the eeprom}\\
+
+        \hline
+
+        9 &cal &\wksentry{\logregColWidth}{Handles calibration
+          constants used in the system}\\
+
+        \hline
+
+        10 &current &\wksentry{\logregColWidth}{Handles the output current
+          measurement module}\\
+
+        \hline
+
+        11 &reserved &\wksentry{\logregColWidth}{For internal use}\\
+
+        \hline
+
+        12 &reserved &\wksentry{\logregColWidth}{For internal use}\\
+
+        \hline
+
+        13 &reserved &\wksentry{\logregColWidth}{For internal use}\\
+
+        \hline
+
+        14 &reserved &\wksentry{\logregColWidth}{For internal use}\\
+
+        \hline
+
+        15 &reserved &\wksentry{\logregColWidth}{For internal use}\\
+
+        \hline
+        
+      \end{tabular} 
+    \end{center}
+
+    \textbf{Example:}
+    \boxtext{\texttt{logreg?}
+      \codecomment{Query the logger enable register}\\
+      \texttt{logreg 3}
+      \codecomment{Enable only the logger and command modules}\\
+      \texttt{logreg 0}    
+      \codecomment{Disable all logging}
+    }
+
+
+
+
+
+
+
+
+
 
 }
