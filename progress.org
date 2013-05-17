@@ -22,7 +22,8 @@
    DEADLINE: <2013-05-14 Tue>
 ** TODO Work through chapter 4.7 of Pratt
    DEADLINE: <2013-05-15 Wed>
-* Work on howto [7/7]
+* Work on howto [7/9]
+** TODO Document the logreg function
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
 *** DONE Redraw Butterfly in inkscape for clipart
@@ -60,7 +61,7 @@
      array on a schedule so that it contains the latest and n previous
      measurements.
 ** TODO Current calibration applied in current_process_array function
-** TODO Change loglevel to loglev
+** DONE Change loglevel to loglev
    - Also add this command to the howto
 ** DONE Hello function becomes *idn
    - Write the function for the command to call in the command module.

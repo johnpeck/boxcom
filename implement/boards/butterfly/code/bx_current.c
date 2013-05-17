@@ -99,5 +99,11 @@ void current_process_array( uint16_t *array, uint8_t averages ) {
     sum += array[count];
   }
   sum >>= shiftnum;  // Make the average value of raw data
+  /* Calculate calibrated uA from raw ADC counts:
 
+     ( adcval * slope - 1mA + offset ) >> 10
+  */
+  current_state_ptr -> lastmeas = 
+    (( (int32_t)sum * current_cal_ptr -> slope ) - 1000000 +
+     current_cal_ptr -> offset ) >> 10 ;
 }

@@ -20,12 +20,13 @@ typedef struct current_cal_struct {
 
 
 /* Structure containing the state of the current module
-
-   Contains:
-     Most recent measurement
- */
+*/
 typedef struct current_state_struct {
-  uint16_t lastmeas;
+  /* Most recent measurement.  Slope calibration factor is 16-bit, ADC
+     value is 16-bit, so the result has to be 32.  And it has be
+     signed, since calibration could make it negative.
+   */
+  int32_t lastmeas;
 } current_state_t;
 
 

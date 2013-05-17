@@ -21,8 +21,7 @@
 
 
 int main(void) {
-  char astring[20] = "-32767";
-  uint16_t cnum = atoi(astring);
-  printf("Converted string is %i\r\n",cnum);
+  uint32_t bignum = 4233600;
+  printf("bignum is %u\r\n",bignum);
   return 0;
 }
