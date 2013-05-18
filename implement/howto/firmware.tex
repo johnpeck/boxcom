@@ -247,25 +247,24 @@ Output (After receiving the \texttt{hello} command):
 \boxcmd{[I](command) Command 'hello' recognized.}
 
 \clearpage{}
-\subsection{Calibration factors}
+\subsection{Handling calibration factors}
 
-\begin{table}[ht]
-  \begin{center}
-    \begin{tabular}{|c|c|}
-      \hline
-      Data type &Description\\
-      \hline\hline
-      \texttt{uint8\_t} &Unsigned 8-bit integer\\
-      \hline
-      \texttt{int8\_t}   &Signed 8-bit integer\\
-      \hline
-      \texttt{unit16\_t} &16-bit eeprom address\\
-      \hline
-      \end{tabular}
-      \caption{The calibration factor structure will consist of two
-        8-bit integers and a base address for the calibration factor
-        in eeprom memory.  The eeprom memory locations will need to be
-        two addresses apart.}
-  \end{center}
+Calibration factors must be stored in non-volatile memory (eeprom) in
+order to persist.  The calibration module keeps the permanent
+addresses of all calibration values in a central location, and handles
+writing and reading values out of memory.  The consumer module -- the
+module that needs to use the calibration factors -- must supply a
+calibration structure for the calibration module to fill in.  Table
+\ref{tab:cal_organization} shows the duties of each module.
+
+\begin{table}[ht}
+\begin{center}
+  \begin{tabular}{|c|c|} \hline
+    In the 
+
+\end{tabular}
+\caption{How calibration duties are split between the calibration and
+  consumer modules.\label{tab:cal_organization}}
+\end{center}
 \end{table}
 

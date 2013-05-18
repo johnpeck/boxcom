@@ -45,21 +45,7 @@ adc_cal_t volt_calfactor = {
 };
 adc_cal_t *volt_calfactor_ptr = &volt_calfactor;
 
-/* cmd_vslope(uint16_t vslope)
-   
-   Set the voltage measurement's slope calibration factor.
-*/
-void cmd_vslope(uint16_t vslope) {
-    volt_calfactor_ptr -> cal_slope = vslope;
-}
 
-/* cmd_voffset(uint16_t voffset)
-   
-   Set the voltage measurement's offset calibration factor.
-*/
-void cmd_voffset(uint16_t voffset) {
-    volt_calfactor_ptr -> cal_offset = voffset;
-}
 
 /* adc_init()
  
@@ -165,31 +151,14 @@ uint16_t adc_read(void) {
   return adc_temp;
 }
 
-/* cmd_vcounts_q()
+/* Function called by the remote command "adcval?" 
    
-   Query the raw ADC counts from the voltage measurement.
- */
-void cmd_vcounts_q(uint16_t nonval) {
+   Query the raw ADC counts.
+*/
+void cmd_adcval_q( command_arg_t *command_arg_ptr ) {
   uint16_t adc_temp = 0;
   adc_temp = adc_read();
   usart_printf_p(PSTR("0x%x\r\n"),adc_temp);
 }
 
-/* cmd_volt_q()
-   
-   Query the calibrated voltage measurement.  The voltage in mV is
-   arrived at using:
-   
-   mV = ((ADC counts) * vslope >> 16) - voffset 
-   
-   Notice that voffset is assumed to be positive -- all these numbers
-   are unsigned 16-bit integers.
-*/
-void cmd_volt_q(uint16_t nonval) {
-  uint16_t raw_counts = 0;
-  uint16_t result_mv = 0;
-  raw_counts = adc_read();
-  result_mv = ((raw_counts * volt_calfactor_ptr -> cal_slope) >> 4) +
-    volt_calfactor_ptr -> cal_offset;
-  usart_printf_p(PSTR("%u\r\n"),result_mv);
-}
+

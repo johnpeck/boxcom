@@ -95,7 +95,7 @@ void cmd_logreg( command_arg_t *command_arg_ptr );
 /* Called by the remote command "logreg?" Returns the logger configuration
  * register value in hex.
  */
-void cmd_logreg_q( uint16_t nonval );
+void cmd_logreg_q( command_arg_t *command_arg_ptr );
 
 /* Turn off all logging. 
  */

@@ -22,7 +22,8 @@
    DEADLINE: <2013-05-14 Tue>
 ** TODO Work through chapter 4.7 of Pratt
    DEADLINE: <2013-05-15 Wed>
-* Work on howto [8/9]
+* Work on howto [9/10]
+** DONE Document curout? command
 ** DONE Document the logreg function
 ** DONE Write up how to do loopback test
 ** DONE Write up how to wire up Butterfly [3/3]
@@ -54,10 +55,12 @@
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
 * Work on code
-** TODO Change argument used by logreg command
+** DONE Change argument used by logreg command
    - I don't want the user using hex arguments
-** TODO Get rid of vslope command
-** TODO Get rid of voffset command
+** DONE Get rid of vslope command
+** DONE Get rid of voffset command
+** TODO Change name of vcounts to be adccnt
+   - This shold be made a dollar command
 ** DONE ADC measurements written to array in main()
    - See page 98 of notebook.  I'll need to define a measurement array
      in the main module to hold data coming in.  The size of the array

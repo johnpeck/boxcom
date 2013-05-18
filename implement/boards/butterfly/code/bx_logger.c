@@ -144,10 +144,10 @@ void cmd_loglevel( command_arg_t *command_arg_ptr ) {
  
 */
 void cmd_logreg( command_arg_t *command_arg_ptr ) {
+  logger_config_ptr -> enable = command_arg_ptr -> uint16_arg;
   logger_msg_p( "logger", log_level_INFO,
-		PSTR("Logger enable register set to 0x%x.\r\n"),
+		PSTR("Logger enable register set to %u.\r\n"),
 		command_arg_ptr -> uint16_arg );
-  (logger_config_ptr -> enable) = (command_arg_ptr -> uint16_arg);
 }
 
 
@@ -156,8 +156,8 @@ void cmd_logreg( command_arg_t *command_arg_ptr ) {
 /* Called by the remote command "logreg?" Returns the logger configuration
  * register value in hex.
  */
-void cmd_logreg_q( uint16_t nonval ) {
-    usart_printf_p(PSTR("0x%x\r\n"),logger_config_ptr -> enable);
+void cmd_logreg_q( command_arg_t *command_arg_ptr ) {
+    usart_printf_p(PSTR("%u\r\n"),logger_config_ptr -> enable);
 }
 
 /* Set a bit in the logger configuration enable bitfield.  The system 
