@@ -175,7 +175,8 @@ int main() {
     /* Choose the timing interval here.  A value of 1000 means that
        something will be done roughly every second.
     */
-    if (all_ms >= MAIN_LOOP_PERIOD_MS) {
+    // if (all_ms >= MAIN_LOOP_PERIOD_MS) {
+    if (all_ms >= current_state_ptr -> period_ms) {
       /* Do something here */
 
       /*  Write to the measurement array.  We'll use this array to make

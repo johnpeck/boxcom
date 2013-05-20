@@ -117,6 +117,11 @@ const char helpstr_curout[] PROGMEM =
   "    Argument: None\r\n"
   "    Return: integer current in uA\r\n";
 
+const char helpstr_curper[] PROGMEM =
+  "curper -- Set the sampling perild in ms.\r\n"
+  "    Argument: 16-bit unsigned integer.\r\n"
+  "    Return: None\r\n";
+
 const char helpstr_help[] PROGMEM =
     "help -- Print the command help.\r\n";
 
@@ -173,6 +178,12 @@ command_t command_array[] ={
    0,
    &cmd_curout_q,
    helpstr_curout},
+  // curper -- Set the period between current measurements
+  {"curper",
+   "uint16",
+   4,
+   &cmd_curper,
+   helpstr_curper},
   // help -- Print all the help strings
   {"help",
    "none",

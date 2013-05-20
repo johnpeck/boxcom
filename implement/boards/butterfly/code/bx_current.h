@@ -22,6 +22,7 @@ typedef struct current_cal_struct {
 /* Structure containing the state of the current module
 */
 typedef struct current_state_struct {
+  uint16_t period_ms; // Time between current samples in ms
   /* Most recent measurement.  Slope calibration factor is 16-bit, ADC
      value is 16-bit, so the result has to be 32.  And it has be
      signed, since calibration could make it negative.
@@ -29,6 +30,12 @@ typedef struct current_state_struct {
   int32_t lastmeas;
 } current_state_t;
 
+/* Extern declaration of current_state_ptr
+
+   The current state pointer is defined inside the current module, but
+   made available everywhere this header is included.
+ */
+extern current_state_t *current_state_ptr;
 
 /* current init()
 
@@ -58,7 +65,12 @@ void current_process_array( uint16_t *array, uint8_t averages );
  */
 void cmd_curout_q( command_arg_t *command_arg_ptr );
 
-
+/* Function called by curper
+ 
+   Writes a new value for the sample period to the current module
+   status structure.
+*/
+void cmd_curper( command_arg_t *command_arg_ptr );
 
 
 

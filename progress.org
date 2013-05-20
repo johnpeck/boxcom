@@ -24,7 +24,8 @@
    DEADLINE: <2013-05-15 Wed>
 ** DONE Work through chapter 4.8 of Pratt
 ** TODO Work through chapter 4.9 of Pratt
-* Work on howto [10/10]
+* Work on howto [11/11]
+** DONE Add butterfly board schematics to howto
 ** DONE Document curout? command
 ** DONE Document the logreg function
 ** DONE Write up how to do loopback test
@@ -57,8 +58,11 @@
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
 * Work on code
-** TODO Make sampling period a variable
+** DONE Make sampling period a variable
    - Call the command that sets this curper.  
+** TODO Add curper command to howto
+** TODO Better limit checking for curper
+   - Lower limit should probably be 10ms.  
 ** DONE Change argument used by logreg command
    - I don't want the user using hex arguments
 ** DONE Get rid of vslope command

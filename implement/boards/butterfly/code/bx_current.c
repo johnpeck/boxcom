@@ -68,7 +68,11 @@
 current_cal_t current_cal;
 current_cal_t *current_cal_ptr = &current_cal;
 
-/* current status
+/* current status structrue
+
+   Keeps track of the current module status:
+   -- Sample period
+   -- Most recent measurement
  */
 current_state_t current_state;
 current_state_t *current_state_ptr = &current_state;
@@ -81,7 +85,8 @@ current_state_t *current_state_ptr = &current_state;
  */
 void current_init(void) {
   cal_load_current(current_cal_ptr);
-  (current_state_ptr -> lastmeas) = 0;
+  current_state_ptr -> period_ms = 100;
+  current_state_ptr -> lastmeas = 0;
   logger_msg_p("current",log_level_INFO,
 	       PSTR("Current slope value is %u pA/count\r\n"),
 	       (current_cal_ptr -> slope));
@@ -117,10 +122,19 @@ void current_process_array( uint16_t *array, uint8_t averages ) {
   /* 	       current_state_ptr -> lastmeas); */
 }
 
-/* Command called by curout?
+/* Function called by curout?
    
    Writes the latest value of the measured output current in uA
  */
 void cmd_curout_q( command_arg_t *command_arg_ptr ) {
   usart_printf_p( PSTR("%li\r\n"), current_state_ptr -> lastmeas);
+}
+
+/* Function called by curper
+ 
+   Writes a new value for the sample period to the current module
+   status structure.
+*/
+void cmd_curper( command_arg_t *command_arg_ptr ) {
+  current_state_ptr -> period_ms = command_arg_ptr -> uint16_arg;
 }
