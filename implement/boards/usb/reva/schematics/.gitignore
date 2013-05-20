@@ -1,5 +1,8 @@
 # Don't watch the jpeda directory
 jpeda/
 
+# Don't worry about ps files for printing
+printable/*.ps
+
 # Don't version kits at all
 kit*/

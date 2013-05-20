@@ -20,9 +20,11 @@
    DEADLINE: <2013-05-13 Mon>
 ** DONE Work through chapter 4.6 of Pratt
    DEADLINE: <2013-05-14 Tue>
-** TODO Work through chapter 4.7 of Pratt
+** DONE Work through chapter 4.7 of Pratt
    DEADLINE: <2013-05-15 Wed>
-* Work on howto [9/10]
+** DONE Work through chapter 4.8 of Pratt
+** TODO Work through chapter 4.9 of Pratt
+* Work on howto [10/10]
 ** DONE Document curout? command
 ** DONE Document the logreg function
 ** DONE Write up how to do loopback test
@@ -38,7 +40,7 @@
    - 7 inches.  Page 90 of notebook.
 ** DONE Add firmware section describing received character flow
 ** DONE Add firmware section describing how commands are executed
-** TODO Document how output current calibration works
+** DONE Document how output current calibration works
 ** Revise section on creating new remote commands
 *** TODO Each remote command should have the same length
     - This is for communication time.  It shold be uniform.
@@ -55,11 +57,13 @@
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
 * Work on code
+** TODO Make sampling period a variable
+   - Call the command that sets this curper.  
 ** DONE Change argument used by logreg command
    - I don't want the user using hex arguments
 ** DONE Get rid of vslope command
 ** DONE Get rid of voffset command
-** TODO Change name of vcounts to be adccnt
+** DONE Change name of vcounts to be adccnt
    - This shold be made a dollar command
 ** DONE ADC measurements written to array in main()
    - See page 98 of notebook.  I'll need to define a measurement array

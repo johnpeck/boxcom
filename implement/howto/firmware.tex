@@ -254,17 +254,102 @@ order to persist.  The calibration module keeps the permanent
 addresses of all calibration values in a central location, and handles
 writing and reading values out of memory.  The consumer module -- the
 module that needs to use the calibration factors -- must supply a
-calibration structure for the calibration module to fill in.  Table
-\ref{tab:cal_organization} shows the duties of each module.
+calibration structure for the calibration module to fill in.
 
-\begin{table}[ht}
+The supplied calibration structure may look something like:
 \begin{center}
-  \begin{tabular}{|c|c|} \hline
-    In the 
-
-\end{tabular}
-\caption{How calibration duties are split between the calibration and
-  consumer modules.\label{tab:cal_organization}}
+  \vspace{-\baselineskip}
+  \begin{tabular}{|l|} \hline
+    \rowcolor[gray]{0.8}
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \textbf{File:}
+      bx\_current.h
+    \end{minipage}\\
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \vspace{0.5\baselineskip}
+      $\cdots$ \\
+      \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+        \lstset{language=c}
+        \begin{lstlisting}
+typedef struct current_cal_struct {
+  uint16_t slope;
+  int16_t offset;
+} current_cal_t;
+        \end{lstlisting}
+      \end{minipage}
+      $\cdots$\\
+      \vspace{-0.5\baselineskip}
+    \end{minipage}\\
+    \hline
+  \end{tabular}
 \end{center}
-\end{table}
+...showing the calibration module that each calibration value is going
+to need two addresses in eeprom memory.  The calibration module has functions like:
+\begin{center}
+  \vspace{-\baselineskip}
+  \begin{tabular}{|l|} \hline
+    \rowcolor[gray]{0.8}
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \textbf{File:}
+      bx\_cal.c
+    \end{minipage}\\
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \vspace{0.5\baselineskip}
+      $\cdots$ \\
+      \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+        \lstset{language=c}
+        \begin{lstlisting}
+void cal_save_islope(uint16_t slope){
+  logger_msg_p( "cal", log_level_INFO,
+		PSTR("Writing current slope value of %u\r\n"),slope);
+  uint8_t lowbyte = (uint8_t)(slope & 0xff);
+  uint8_t highbyte = (uint8_t)( (slope & 0xff00) >> 8);
+  eeprom_write_char(I_SLOPE_ADDR,lowbyte);
+  eeprom_write_char(I_SLOPE_ADDR + 1, highbyte);
+}
+        \end{lstlisting}
+      \end{minipage}
+      $\cdots$\\
+      \vspace{-0.5\baselineskip}
+    \end{minipage}\\
+    \hline
+  \end{tabular}
+\end{center}
+to handle writing calibration values to the correct locations.  It
+also has functions called by remote commands to write values received
+from the remote interface.  Finally, it has a function like
+\begin{center}
+  \vspace{-\baselineskip}
+  \begin{tabular}{|l|} \hline
+    \rowcolor[gray]{0.8}
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \textbf{File:}
+      bx\_cal.c
+    \end{minipage}\\
+    \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+      \vspace{0.5\baselineskip}
+      $\cdots$ \\
+      \begin{minipage}[c]{\textwidth - 2\tabcolsep}
+        \lstset{language=c}
+        \begin{lstlisting}
+void cal_load_current( current_cal_t *current_cal ) {
+  uint8_t lowbyte = eeprom_read_char(I_SLOPE_ADDR);
+  uint8_t highbyte = eeprom_read_char(I_SLOPE_ADDR + 1);
+  current_cal -> slope = (uint16_t)( (highbyte << 8) + lowbyte);
+  lowbyte = eeprom_read_char(I_OFFSET_ADDR);
+  highbyte = eeprom_read_char(I_OFFSET_ADDR + 1);
+  current_cal -> offset = (int16_t)( (highbyte << 8) + lowbyte);
+}
+        \end{lstlisting}
+      \end{minipage}
+      $\cdots$\\
+      \vspace{-0.5\baselineskip}
+    \end{minipage}\\
+    \hline
+  \end{tabular}
+\end{center}
+that supplies calibration values pulled out of eeprom memory to the
+consumer module.  This function would be called during the cosumer
+module's initialization.
+
 

@@ -12,6 +12,12 @@ USER_CMDS_IDX=user_cmds_index
 # The base name of the internal command index file
 INTERNAL_CMDS_IDX=internal_cmds_index
 
+# USB board schematics directory
+USBSCHDIR = schematics/usb
+
+# Butterfly board schematics directory
+BFLYSCHDIR = schematics/butterfly
+
 
 
 #------------------------- Done with configuration ---------------------
@@ -75,7 +81,13 @@ $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  figs/prsbuffer.eps \
                  figs/butterfly_power_cable.eps \
                  figs/current_sense_cable.eps \
-                 figs/post_cable.eps
+                 figs/post_cable.eps \
+                 $(USBSCHDIR)/usb_input.eps \
+                 $(USBSCHDIR)/usbio.eps \
+                 $(USBSCHDIR)/rs232io.eps \
+                 $(USBSCHDIR)/aux_power.eps \
+                 $(USBSCHDIR)/current_monitor.eps \
+                 $(USBSCHDIR)/hardware.eps
 	latex $(MAINFILE).tex
 
 
@@ -118,6 +130,13 @@ internal_cmds_index.idx: $(wildcard ./commands/*.tex)
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Figure files ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Schematics
+$(USBSCHDIR)/%.eps : $(USBSCHDIR)/%.ps
+	@echo
+	@echo 'Converting $< to eps...'
+	ps2eps $<
+
 
 # The current sense cable
 figs/current_sense_cable.eps : figs/current_sense_cable.svg

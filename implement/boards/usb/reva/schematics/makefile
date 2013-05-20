@@ -39,6 +39,10 @@ KITQTY = 3
 # Path to the file repository for the blog entry
 BLOGPATH = /home/john/projects/johnpeck/revb/src/boxcom
 
+# Path to the schematic directory of the howto
+HOWTOPATH = /home/john/projects/boxcom/implement/howto/schematics/usb
+
+
 #------------------------- Done with configuration ---------------------
 
 
@@ -49,6 +53,7 @@ help:
 	@echo 'Usage:                                                                  '
 	@echo '   make print           Print schematic pages to PDF                    '
 	@echo '   make blog            Copy outputs to blog                            '
+	@echo '   make howto           Copy postscript pages to howto                  '
 	@echo '   make edit            Open all schematic pages with gschem            '
 	@echo '   make netlist         Extract netlist from schematics                 '
 	@echo '   make kit             Run kitgen on the schematic pages               '
@@ -61,6 +66,11 @@ help:
 .PHONY: blog
 blog: print
 	cp $(PRINTDIR)/$(PRINTNAME) $(BLOGPATH)/usb_board_schematics.pdf
+
+# Copy schematic postscript output to howto
+.PHONY: howto
+howto: print
+	cp $(PSPAGES) $(HOWTOPATH)
 
 # Run gsch2pcb on the board's project file
 .PHONY: pcb
@@ -123,10 +133,11 @@ PSPAGES = $(PAGES:%.sch=$(PRINTDIR)/%.ps)
 PDFPAGES = $(PAGES:%.sch=$(PRINTDIR)/%.pdf)
 PRINTNAME = $(BOARDNAME).pdf
 
-# Print schematics
+# Print schematics (keeping the postscript intermediates)
 .PHONY: print
 print: $(PRINTDIR) \
-       $(PRINTDIR)/$(PRINTNAME)
+       $(PRINTDIR)/$(PRINTNAME) \
+       $(PSPAGES)
 
 $(PRINTDIR)/$(PRINTNAME) : $(PDFPAGES)
 	pdftk $^ cat output $@
@@ -137,11 +148,13 @@ $(PRINTDIR)/%.pdf : $(PRINTDIR)/%.ps
 	@echo 'Converting $< to PDF...'
 	ps2pdf $< $@
 
-# Create postscript schematic pages
+
 $(PRINTDIR)/%.ps : %.sch
 	@echo
 	@echo 'Converting $< to postscript...'
 	gschem -p -o $@ -s $(PRINTSCRIPT) $<
+
+
 
 
 # The output directory for prints
