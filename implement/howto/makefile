@@ -24,13 +24,13 @@ BFLYSCHDIR = schematics/butterfly
 
 
 help:
-	@echo 'Makefile for the ec100 manual                                  '
+	@echo 'Makefile for the Boxcom howto                                  '
 	@echo '                                                               '
 	@echo 'Usage:                                                         '
 	@echo '   make edit                 Edit the manual with emacs        '
 	@echo '   make dvi                  Regenerate the dvi file           '
 	@echo '   make preview              Fire up xdvi to view the dvi file '
-	@echo '   make howto                Create the howto pdf in ./output  '
+	@echo '   make pdf                  Create the howto pdf in ./output  '
 	@echo '   make comcheck             Check included remote commands    '
 	@echo '   make spell                Check spelling                    '
 	@echo '   make clean                Clean up temporary files          '
@@ -51,8 +51,9 @@ $(OUTPUTDIR)/howto.pdf: $(OUTPUTDIR)\
 	@echo "* howto.pdf output to "$(OUTPUTDIR)
 
 pdf: $(MAINFILE).pdf
-$(MAINFILE).pdf: $(MAINFILE).ps
-	ps2pdf $(MAINFILE).ps
+$(MAINFILE).pdf: $(OUTPUTDIR) \
+                 $(MAINFILE).ps
+	ps2pdf $(MAINFILE).ps $(OUTPUTDIR)/boxcom_howto.pdf
 
 ps: $(MAINFILE).ps
 $(MAINFILE).ps: $(MAINFILE).dvi

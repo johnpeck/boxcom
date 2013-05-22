@@ -23,7 +23,9 @@
 ** DONE Work through chapter 4.7 of Pratt
    DEADLINE: <2013-05-15 Wed>
 ** DONE Work through chapter 4.8 of Pratt
-** TODO Work through chapter 4.9 of Pratt
+** DONE Work through chapter 4.9 of Pratt
+** DONE Work through chapter 4.10 of Pratt
+** TODO Work through chapter 4.11 of Pratt
 * Work on howto [11/11]
 ** DONE Add butterfly board schematics to howto
 ** DONE Document curout? command
@@ -58,6 +60,7 @@
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
 * Work on code
+** TODO Write a function to write serial number
 ** DONE Make sampling period a variable
    - Call the command that sets this curper.  
 ** TODO Add curper command to howto
