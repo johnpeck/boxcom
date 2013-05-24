@@ -1,5 +1,4 @@
-# prog_04_16
-# Speedometer
+# Boxcom's host application
 import Tkinter
 import math # Provides functions for converting angles
 import serial
@@ -11,12 +10,12 @@ class Meter0(Tkinter.Canvas):
     def __init__(self,side,fsd,grad_maj,grad_min, units, serobj):
         self.handle = Meter0.handle
         Meter0.handle = Meter0.handle + 1
-        self.side = side
-        self.fsd = fsd
-        self.grad_maj = grad_maj
-        self.grad_min = grad_min
-        self.units = units
-        self.serobj = serobj
+        self.side = side # Major dimension for the speedometer
+        self.fsd = fsd # Full scale deflection
+        self.grad_maj = grad_maj # Major grid interval
+        self.grad_min = grad_min # Minor grid interval
+        self.units = units # Units to write on the dial
+        self.serobj = serobj # Serial object associated with readout
         self.reading = 0
         self.orig = self.side/2.0 # Set the origin
         self.R = 0.95 * self.side/2
@@ -27,21 +26,23 @@ class Meter0(Tkinter.Canvas):
         self.can_meter = Tkinter.Canvas(height = self.side, 
                                         width = self.side,
                                         bg = '#707070')
-        # Define the circle the meter will move in.
+        
+        # Create the circle the meter will move in.
         self.can_meter.create_oval(self.orig - self.R, self.orig - self.R,
                                    self.orig + self.R, self.orig + self.R,
-                                   fill = '#ffffff',
-                                   width = 3)
-        # fsd = full scale deflection.
+                                   fill = '#ffffff', width = 3)
+        # Make tics at the major and minor intervals
         for n in range(0, self.fsd + 1):
             alpha_deg = (225 -n * 270/self.fsd)
             alpha = math.radians(alpha_deg)
+            
+            # Minor tic marks
             if n%self.grad_min == 0:
                 y = self.R * math.sin(alpha)
                 x = self.R * math.cos(alpha)
                 self.can_meter.create_line(self.orig, self.orig,
                                            self.orig + x, self.orig - y)
-
+            # Major tic marks
             if n%self.grad_maj == 0:
                 y = self.R * math.sin(alpha)
                 x = self.R * math.cos(alpha)
@@ -49,13 +50,13 @@ class Meter0(Tkinter.Canvas):
                                            self.orig + x, self.orig - y,
                                            fill = '#ff0000', width = 3)
 
-        # Make a second, slightly smaller circle
+        # Make a second, slightly smaller circle for the needle to
+        # move in
         self.can_meter.create_oval(self.orig - self.r, self.orig - self.r,
                                    self.orig + self.r, self.orig + self.r,
                                    fill = '#ffffff')
 
-        # I need a second loop here to let the numbers go on top of
-        # the smaller circle
+        # Put numbers on top of the smaller circle
         for n in range(0, self.fsd + 1):
            alpha_deg = (225 -n * 270.0/self.fsd)
            alpha = math.radians(alpha_deg) 
@@ -70,6 +71,8 @@ class Meter0(Tkinter.Canvas):
                                    text = self.units, fill = '#000000')
 
     def read(self):
+        # If the previous read's spindle and needle exist, we need to
+        # delete them before they get redrawn
         try:
             self.can_meter.delete(self.spindle)
             self.can_meter.delete(self.needle)
@@ -118,22 +121,52 @@ class FrontEnd():
         self.serobj.port = '/dev/ttyUSB0'
         self.serobj.timeout = 0.1
         self.serinit()
+        
+        # Set up the meter
         self.meter1 = Meter0(800,20000,1000,1000,'Current (mA)',self.serobj)
-        self.meter1.can_meter.grid(row = 0, column = 0, rowspan = 2)
+        self.meter1 = Meter0(800,20000,1000,1000,'Current (mA)',self.serobj)
+        
+        # Set up connection button
+        self.but_conn = Tkinter.Button(text = 'Connect')
+
+        # Set up port entry box
+        self.lab_port = Tkinter.Label(text = 'Serial\nPort')
+        self.strvar_port = Tkinter.StringVar()
+        self.ent_port = Tkinter.Entry(textvariable = self.strvar_port,
+                                      borderwidth = 5)
+        self.strvar_port.set(self.serobj.port)
+        
+        # Position everything
+        self.lab_port.grid(row = 1,column = 0)
+        self.ent_port.grid(row = 1, column = 1,
+                           padx = 3, pady = 3)
+        self.but_conn.grid(row = 1, column = 2, 
+                           rowspan = 1,
+                           padx = 0, pady = 0)
+
+        self.meter1.can_meter.grid(row = 0, column = 3, 
+                                   rowspan = 2)
         self.inputs()
+        
 
     def serinit(self):
         self.serobj.open()
-        self.serobj.write('loglev 3\r')
+        self.serobj.write('loglev 3\r') # Log only errors
+        # Clear out the receive queue by reading until getting a timeout
         readstr = 'junk'
         while (len(readstr) != 0):
             self.serobj.write('\r')
             readstr = self.serobj.read(100)
-            time.sleep(0.1)
-        time.sleep(0.1)
-        
 
+    # Read from the serial object and refresh the display on a
+    # schedule
     def inputs(self):
+        # print(self.meter1.serobj.port)
+        # try:
+        #     self.meter1.serobj.port = '/dev/ttyUSB1'
+        # except:
+        #     print('No /dev/ttyUSB1')
+        #     print(self.meter1.serobj.port)
         self.meter1.read()
         self.master.after(100,self.inputs)
 
