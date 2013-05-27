@@ -86,10 +86,7 @@
 */
 #define MEASUREMENT_ARRAY_SIZE 4
 
-/* Set the period in milliseconds for things to happen in the main
-   loop
- */
-#define MAIN_LOOP_PERIOD_MS 1000
+
 
 /* This array will hold measurements made in the main loop.
  */
@@ -172,10 +169,7 @@ int main() {
       all_ms += ( 0xff - old_ms + new_ms); // We've rolled over
       old_ms = new_ms; // Update the old value
     }
-    /* Choose the timing interval here.  A value of 1000 means that
-       something will be done roughly every second.
-    */
-    // if (all_ms >= MAIN_LOOP_PERIOD_MS) {
+
     if (all_ms >= current_state_ptr -> period_ms) {
       /* Do something here */
 

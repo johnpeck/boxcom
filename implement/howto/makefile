@@ -83,6 +83,7 @@ $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  figs/butterfly_power_cable.eps \
                  figs/current_sense_cable.eps \
                  figs/post_cable.eps \
+                 figs/curout_plot.eps \
                  $(USBSCHDIR)/usb_input.eps \
                  $(USBSCHDIR)/usbio.eps \
                  $(USBSCHDIR)/rs232io.eps \
@@ -149,6 +150,10 @@ figs/post_cable.eps : figs/post_cable.svg
 
 # The butterfly power cable
 figs/butterfly_power_cable.eps : figs/butterfly_power_cable.svg
+	inkscape --export-eps=$@ $<
+
+# The current sampling plot
+figs/curout_plot.eps : figs/curout_plot.svg
 	inkscape --export-eps=$@ $<
 
 # Make the parse buffer flow diagram

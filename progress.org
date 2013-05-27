@@ -59,11 +59,16 @@
 ** DONE Finish cutting diagram for back panel
 ** DONE Get 4-40 lock washers for standoffs below butterfly
 ** TODO Diagram how to make a cable for the binding posts
-* Work on code
+* Work on firmware
+** TODO Add command to generate time stamped data
+   - I guess data would come out comma delimited: time (ms), current
+     (us).  The command could be called curpkt? for current packet.
 ** TODO Write a function to write serial number
 ** DONE Make sampling period a variable
    - Call the command that sets this curper.  
-** TODO Add curper command to howto
+** DONE Add curper command to howto
+** TODO Add curper query
+   - Change documentation afterwards
 ** TODO Better limit checking for curper
    - Lower limit should probably be 10ms.  
 ** DONE Change argument used by logreg command
