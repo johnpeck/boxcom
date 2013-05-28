@@ -48,16 +48,19 @@ void cmd_idn_q( command_arg_t *command_arg_ptr ) {
   usart_printf_p(idnstr);
 }
 
+/* Function called by help
 
-void cmd_help( uint16_t nonval ) {
-    print_help( command_array );
-    return;
+   Writes all the help strings to the remote interface.
+*/
+void cmd_help( command_arg_t *command_arg_ptr ) {
+  print_help( command_array );
+  return;
 }
 
 void print_help( command_t *command_array ) {
-    while ((command_array -> execute) != 0) {
-        usart_printf_p(command_array -> help);
-        command_array++;
-    }
-    return;
+  while ((command_array -> execute) != 0) {
+    usart_printf_p(command_array -> help);
+    command_array++;
+  }
+  return;
 }

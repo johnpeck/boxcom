@@ -17,11 +17,11 @@ struct cal_struct {
 
 
 
-/* cmd_help()
- * Call print_help() to print the help strings for all recognized
- * commands.
- */
-void cmd_help( uint16_t nonval );
+/* Function called by help
+
+   Writes all the help strings to the remote interface.
+*/
+void cmd_help( command_arg_t *command_arg_ptr );
 
 /* print_help()
  * Called by cmd_help().  Prints the help strings for all recognized

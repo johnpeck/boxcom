@@ -61,7 +61,7 @@ void sound_play_timed( uint16_t frequency, uint16_t duration_ms );
    be played for 100ms.  To play a tone for 200ms, give the tone two
    entries.
 */
-void sound_play_array_p( uint16_t *data_ptr );
+void sound_play_array_p( const uint16_t *data_ptr );
 
 
 /* sound_play_startup()

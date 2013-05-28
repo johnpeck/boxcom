@@ -118,7 +118,7 @@ const char helpstr_curout[] PROGMEM =
   "    Return: integer current in uA\r\n";
 
 const char helpstr_curper[] PROGMEM =
-  "curper -- Set the sampling perild in ms.\r\n"
+  "curper -- Set the sampling period in ms.\r\n"
   "    Argument: 16-bit unsigned integer.\r\n"
   "    Return: None\r\n";
 
