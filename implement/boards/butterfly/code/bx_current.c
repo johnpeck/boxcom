@@ -61,7 +61,10 @@
 
 #include "bx_current.h"
 
-// ----------------------- Functions ----------------------------------
+
+
+
+// ----------------------- Globals ------------------------------------
 
 /* The current calibration
  */
@@ -76,6 +79,13 @@ current_cal_t *current_cal_ptr = &current_cal;
  */
 current_state_t current_state;
 current_state_t *current_state_ptr = &current_state;
+
+
+
+
+
+// ----------------------- Functions ----------------------------------
+
 
 /* current_init()
 

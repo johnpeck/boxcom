@@ -32,11 +32,30 @@
 #include "bx_logger.h"
 
 
+// ----------------------- Globals ------------------------------------
+
 
 const char idnstr[] PROGMEM = "johnpeck,bx100,sn001,0.0.1\r\n";
 
+/* System status structure
+
+   Keeps track of miscellaneous system status:
+   -- Serial number
+*/
+system_state_t system_state;
+system_state_t *system_state_ptr = &system_state;
+
 // ----------------------- Functions ----------------------------------
 
+
+/* functions_init()
+
+   Calls cal_load_sernum(pointer to system status structure) to fill
+   in the serial number.
+*/
+void functions_init(void) {
+  cal_load_sernum(system_state_ptr);
+}
 
 
 
@@ -64,3 +83,5 @@ void print_help( command_t *command_array ) {
   }
   return;
 }
+
+

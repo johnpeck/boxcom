@@ -11,6 +11,12 @@
 */
 #include "bx_current.h"
 
+/* bx_functions.h
+ 
+   Defines system_state_t for the overall system state.
+*/
+#include "bx_functions.h"
+
 /* bx_command.h 
 
    Contains the definition of command_arg_t -- the data type used to
@@ -19,21 +25,6 @@
  */
 #include "bx_command.h"
 
-/* calval_t
-
-   Each calibration value will be composed of a signed and unsigned
-   8-bit integer, along with an eeprom address.
-*/
-typedef struct calfactor_struct {
-  int8_t sfactor; // The signed factor
-  uint8_t ufactor; // The unsigned factor
-  uint16_t address; // The eeprom address
-} calfactor_t;
-
-
-
-
-void cal_init(void);
 
 /* cal_save_islope( current output slope calibrationa factor )
 
@@ -80,5 +71,14 @@ void cmd_write_islope( command_arg_t *command_arg_ptr );
 void cmd_write_ioffset( command_arg_t *command_arg_ptr );
 
 
+/* cal_save_sernum( instrument serial number )
+ */
+void cal_save_sernum( uint16_t sernum );
+
+/* cal_load_sernum( pointer to system status structure )
+
+   Loads the serial number out of eeprom.
+*/
+void cal_load_sernum( system_state_t *sys_state );
 
 #endif // End the include guard

@@ -131,6 +131,7 @@ int main() {
   logger_setsystem( "eeprom" ); // Enable eeprom module logging
   logger_setsystem( "current" ); // Enable output current module logging
   logger_setsystem( "cal" ); // Enable calibration module logging
+  functions_init(); // Load the serial number
   adc_init(); // Set the ADCs reference and SAR prescaler
   adc_mux(4); // Set the ADC mux to channel 4
   sound_init(); // Start the sound module, using timer1
