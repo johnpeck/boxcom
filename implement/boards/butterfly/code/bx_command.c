@@ -112,6 +112,11 @@ const char helpstr_curoff[] PROGMEM =
   "    Argument: 16-bit signed integer.\r\n"
   "    Return: None\r\n";
 
+const char helpstr_setser[] PROGMEM =
+  "$setser -- Set the serial number.\r\n"
+  "    Argument: 16-bit unsigned integer.\r\n"
+  "    Return: None\r\n";
+
 const char helpstr_curout[] PROGMEM =
   "curout? -- Query the output current in uA.\r\n"
   "    Argument: None\r\n"
@@ -184,6 +189,12 @@ command_t command_array[] ={
    4,
    &cmd_curper,
    helpstr_curper},
+  // $setser -- Set the serial number
+  {"$setser",
+   "uint16",
+   4,
+   &cmd_write_sernum,
+   helpstr_setser},
   // help -- Print all the help strings
   {"help",
    "none",

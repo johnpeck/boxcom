@@ -81,4 +81,12 @@ void cal_save_sernum( uint16_t sernum );
 */
 void cal_load_sernum( system_state_t *sys_state );
 
+/* Function called by the remote comand $setser
+ 
+   Sets the instrument's serial number.
+*/
+void cmd_write_sernum( command_arg_t *command_arg_ptr );
+
+
+
 #endif // End the include guard

@@ -63,7 +63,9 @@
 ** TODO Add command to generate time stamped data
    - I guess data would come out comma delimited: time (ms), current
      (us).  The command could be called curpkt? for current packet.
-** TODO Write a function to write serial number
+** DONE Write a function to write serial number
+** TODO Add command to write serial number
+** TODO Modify *idn? to get actual serial number
 ** DONE Make sampling period a variable
    - Call the command that sets this curper.  
 ** DONE Add curper command to howto

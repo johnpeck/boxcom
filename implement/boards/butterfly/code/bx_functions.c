@@ -18,24 +18,19 @@
 #include "bx_usart.h"
 
 
-#include "bx_functions.h"
-
-/* pgmspace.h
- * Contains macros and functions for saving and reading data out of
- * flash.
- */
-#include <avr/pgmspace.h>
-
 /* bx_logger.h 
 
-   Sets up logging */
+   Sets up logging 
+*/
 #include "bx_logger.h"
+
+#include "bx_functions.h"
 
 
 // ----------------------- Globals ------------------------------------
 
-
-const char idnstr[] PROGMEM = "johnpeck,bx100,sn001,0.0.1\r\n";
+// idnstr format: Organization, model, serial, version
+const char idnstr[] PROGMEM = "johnpeck,bx100,sn%u,0.0.1\r\n";
 
 /* System status structure
 
@@ -57,14 +52,12 @@ void functions_init(void) {
   cal_load_sernum(system_state_ptr);
 }
 
-
-
 /* cmd_idn_q( pointer to command argument structure )
 
    The function called by the "*IDN?" query
 */
 void cmd_idn_q( command_arg_t *command_arg_ptr ) {
-  usart_printf_p(idnstr);
+  usart_printf_p(idnstr,system_state_ptr -> sernum);
 }
 
 /* Function called by help
