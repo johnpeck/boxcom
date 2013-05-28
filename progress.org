@@ -52,13 +52,15 @@
       defined for the remote command.  The function command_exec must
       know how to deal with the argument type to send it on to a
       function.
-* Work on chassis [3/6]
+* Work on chassis [4/5]
   - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
 ** DONE Create an end-on view of a USB jack
 ** TODO Create top-down view of angle bracket
 ** DONE Finish cutting diagram for back panel
 ** DONE Get 4-40 lock washers for standoffs below butterfly
-** TODO Diagram how to make a cable for the binding posts
+** DONE Diagram how to make a cable for the binding posts
+** Work on sticker
+*** TODO Add instructions for connecting with Python
 * Work on firmware
 ** TODO Add command to generate time stamped data
    - I guess data would come out comma delimited: time (ms), current
