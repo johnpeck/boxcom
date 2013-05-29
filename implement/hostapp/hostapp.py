@@ -106,6 +106,25 @@ class Meter0(Tkinter.Canvas):
                                                   self.orig + 0.01 * self.side,
                                                   fill = '#000000')
 
+class PlotHist(Tkinter.Canvas):
+    def __init__(self,xfoot):
+        self.xfoot = xfoot # Overall x dimension of plot footprint
+        self.yfoot = 0.8 * self.xfoot
+        self.xorig = 0.2 * self.xfoot # The x origin coordinate
+        self.yorig = 0.8 * self.yfoot # The y origin coordinate
+        self.yaxlen = 0.8 * self.yfoot # The y axis length
+        self.xaxlen = 0.8 * self.xfoot # The x axis length
+        # Define the background canvas
+        self.can_plot = Tkinter.Canvas(height = self.yfoot, width = self.xfoot, bg = '#707070')
+        # Draw ordinate axis
+        self.can_plot.create_line(self.xorig, self.yorig - self.yaxlen,
+                                  self.xorig, self.yorig,
+                                  self.xorig + self.xaxlen, self.yorig,
+                                  width = 2, arrow = Tkinter.BOTH)
+                                  
+        
+    
+
 
 
 
@@ -123,8 +142,9 @@ class FrontEnd():
         self.serinit()
         
         # Set up the meter
-        self.meter1 = Meter0(800,20000,1000,1000,'Current (mA)',self.serobj)
-        self.meter1 = Meter0(800,20000,1000,1000,'Current (mA)',self.serobj)
+        # self.meter1 = Meter0(800,20000,1000,1000,'Current (mA)',self.serobj)
+        self.plot1 = PlotHist(500)
+
         
         # Set up connection button
         self.but_conn = Tkinter.Button(text = 'Connect')
@@ -144,8 +164,8 @@ class FrontEnd():
                            rowspan = 1,
                            padx = 0, pady = 0)
 
-        self.meter1.can_meter.grid(row = 0, column = 3, 
-                                   rowspan = 2)
+        # self.meter1.can_meter.grid(row = 0, column = 3, rowspan = 2)
+        self.plot1.can_plot.grid(row = 0, column = 3)
         self.inputs()
         
 
@@ -167,7 +187,9 @@ class FrontEnd():
         # except:
         #     print('No /dev/ttyUSB1')
         #     print(self.meter1.serobj.port)
-        self.meter1.read()
+        # self.meter1.read()
+        # self.master.after(100,self.inputs)
+        print(self.plot1.xfoot)
         self.master.after(100,self.inputs)
 
 root = Tkinter.Tk()

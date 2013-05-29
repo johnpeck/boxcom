@@ -2,9 +2,9 @@
 
    Real Time Clock (RTC) module for boxcom
 
-   The real time clock uses the timer2 counter clocked by a quartz
-   crystal.  The butterfly board has a 32kHz crystal connected between
-   the TOSC1 and TOSC2 pins.  
+   The real time clock uses the timer2 counter (8-bit) clocked by a
+   quartz crystal.  The butterfly board has a 32kHz crystal connected
+   between the TOSC1 and TOSC2 pins.
 */
 
 // ----------------------- Include files ------------------------------
@@ -70,13 +70,13 @@ void rtc_init(void) {
      has settled in to normal operation.  This means that the counter
      value is being automatically updated (TCN2UB = 0) and that the
      configuration register is ready to take new values (TCR2UB = 0).
-    */
+  */
   while((ASSR & _BV(TCR2UB)) | (ASSR & _BV(TCN2UB)));
   /* Wait for timer2 to settle.  It doesn't actually start counting
      for a while after the board is turned on.  So we'll compare its
      value against what we read from timer1 to see when it's counting
      normally.
-   */
+  */
   uint8_t mscount = 0;
   uint16_t t1_topval = 10000; // What timer1 will count to
   OCR1AH = (uint8_t)(t1_topval >> 8);
@@ -85,7 +85,7 @@ void rtc_init(void) {
      timer1.  The RC clock that sets the 1MHz clock for timer1 is
      pretty good, and 10000 timer1 counts should be 10 timer2 counts
      within 10 percent.
-   */
+  */
   uint8_t lowlimit = (uint8_t)(t1_topval/1000 - 1);
   uint8_t highlimit = lowlimit + 2;
 
