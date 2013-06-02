@@ -15,8 +15,19 @@
 * Plan using taskjuggler
 ** TODO Give firmware a start date
    - Firmware needs a start date.  Then the remote commands can just depend on other tasks.
-* Work on calibration
-** TODO Calibrate using a 1k resistor
+* Work on chassis [4/5]
+  - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
+** DONE Create an end-on view of a USB jack
+** TODO Create top-down view of angle bracket
+** DONE Finish cutting diagram for back panel
+** DONE Get 4-40 lock washers for standoffs below butterfly
+** DONE Diagram how to make a cable for the binding posts
+** Work on sticker
+*** TODO Sticker gets revision directory
+*** TODO Add instructions for connecting with Python
+    - This all goes on the right side of the face
+*** DONE Move 3.3V label down 1/8 inch
+*** TODO Add maximum current output label
 * Work on host software
 ** DONE Work through chapter 4.5 of Pratt
    DEADLINE: <2013-05-13 Mon>
@@ -58,15 +69,6 @@
       defined for the remote command.  The function command_exec must
       know how to deal with the argument type to send it on to a
       function.
-* Work on chassis [4/5]
-  - Mechanical drawing is [[file:implement/drawings/budbox.fig][here]].
-** DONE Create an end-on view of a USB jack
-** TODO Create top-down view of angle bracket
-** DONE Finish cutting diagram for back panel
-** DONE Get 4-40 lock washers for standoffs below butterfly
-** DONE Diagram how to make a cable for the binding posts
-** Work on sticker
-*** TODO Add instructions for connecting with Python
 * Work on firmware
 ** TODO Add command to generate time stamped data
    - I guess data would come out comma delimited: time (ms), current
@@ -190,6 +192,8 @@
      however you like.  For example, if you want 16-bit unsigned, it's
      ok to save the output to a uint16_t.
 ** DONE Add a warning sound
+* Work on calibration
+** TODO Calibrate using a 1k resistor
 * TODO Work on makefile for usb board schematics [6/7]
 ** DONE We need a "pcb" target to run gsch2pcb
    - This will also need to create the project file.
