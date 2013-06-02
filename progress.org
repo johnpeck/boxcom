@@ -15,6 +15,8 @@
 * Plan using taskjuggler
 ** TODO Give firmware a start date
    - Firmware needs a start date.  Then the remote commands can just depend on other tasks.
+* Work on calibration
+** TODO Calibrate using a 1k resistor
 * Work on host software
 ** DONE Work through chapter 4.5 of Pratt
    DEADLINE: <2013-05-13 Mon>
@@ -25,7 +27,11 @@
 ** DONE Work through chapter 4.8 of Pratt
 ** DONE Work through chapter 4.9 of Pratt
 ** DONE Work through chapter 4.10 of Pratt
-** TODO Work through chapter 4.11 of Pratt
+** DONE Work through chapter 4.11 of Pratt
+** TODO Make room for y axis label
+** TODO Add crosshairs to read current
+** TODO x axis tic labels are seconds -- not milliseconds
+** TODO Add x axis label
 * Work on howto [11/11]
 ** DONE Add butterfly board schematics to howto
 ** DONE Document curout? command
