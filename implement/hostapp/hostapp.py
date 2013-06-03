@@ -6,7 +6,8 @@ import time
 
 import matplotlib
 matplotlib.use('TkAgg')
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
 # implement the default mpl key bindings
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure # The Figure class
@@ -22,6 +23,7 @@ class FrontEnd():
         self.serobj.port = '/dev/ttyUSB0'
         self.serobj.timeout = 0.1 # Set timeout to 100ms
         self.serinit()
+        self.stopped = False
 
         # Define arrays for the data
         self.timearray = [0]
@@ -30,6 +32,10 @@ class FrontEnd():
         
         # Set up connection button
         self.but_conn = Tkinter.Button(text = 'Connect')
+
+        # Set up go/stop buttons
+        self.but_stop = Tkinter.Button(text = 'Stop', 
+                                       command = self.stopplot)
 
         # Set up port entry box
         self.lab_port = Tkinter.Label(text = 'Serial\nPort')
@@ -44,22 +50,28 @@ class FrontEnd():
         # Add a plot to the figure
         self.pplot = self.pfig.add_subplot(111)
 
+
         # Make a canvas for the figure to be painted on
         self.pfig_can = FigureCanvasTkAgg(self.pfig, master = root)
         self.pfig_can.show()
         
+        # Add a toolbar
+        self.ptool = NavigationToolbar2TkAgg(self.pfig_can, root)
+        
         # Position everything
-        self.lab_port.grid(row = 1,column = 0)
-        self.ent_port.grid(row = 1, column = 1,
-                           padx = 3, pady = 3)
-        self.but_conn.grid(row = 1, column = 2, 
-                           rowspan = 1,
-                           padx = 0, pady = 0)
-        self.pfig_can.get_tk_widget().grid(row = 0, column = 3)
+        self.lab_port.pack()
+        self.ent_port.pack()
+        self.but_conn.pack()
+        self.but_stop.pack()
+        self.pfig_can.get_tk_widget().pack()
         
         # Start sampling the inputs.  This method will call itself
         # over and over again to refresh the data.
         self.readinputs()
+
+    def stopplot(self):
+        self.stopped = True
+
         
 
     def serinit(self):
@@ -99,7 +111,9 @@ class FrontEnd():
         self.pplot.plot(self.timearray,self.curarray)        
         self.pplot.set_ylabel('Junk')
         self.pfig_can.draw()
-        self.master.after(100,self.readinputs)
+        self.ptool.update()
+        if self.stopped == False:
+            self.master.after(100,self.readinputs)
 
 root = Tkinter.Tk()
 frontend = FrontEnd(root)
