@@ -98,10 +98,10 @@ void current_init(void) {
   current_state_ptr -> period_ms = 100;
   current_state_ptr -> lastmeas = 0;
   logger_msg_p("current",log_level_INFO,
-	       PSTR("Current slope value is %u pA/count\r\n"),
+	       PSTR("Current slope value is %u nA/count\r\n"),
 	       (current_cal_ptr -> slope));
   logger_msg_p("current",log_level_INFO,
-	       PSTR("Current offset value is %i pA\r\n"),
+	       PSTR("Current offset value is %i uA\r\n"),
 	       (current_cal_ptr -> offset));
 }
 
@@ -121,15 +121,17 @@ void current_process_array( uint16_t *array, uint8_t averages ) {
   }
   sum >>= shiftnum;  // Make the average value of raw data
   /* Calculate calibrated uA from raw ADC counts:
+     
+     Slope and offset calibration factors are in nA/count and nA, so
+     the 1mA constant has to be expressed in nA.
 
-     ( adcval * slope - 1mA + offset ) >> 10
+     (( adcval * slope - 1mA ) >> 10 ) + offset
   */
+
   current_state_ptr -> lastmeas = 
-    (( (int32_t)sum * current_cal_ptr -> slope ) - 1000000 +
-     current_cal_ptr -> offset ) >> 10 ;
-  /* logger_msg_p("current",log_level_INFO, */
-  /* 	       PSTR("Measured current is %li uA\r\n"), */
-  /* 	       current_state_ptr -> lastmeas); */
+    ((( (int32_t)sum * current_cal_ptr -> slope ) - 1000000 ) >> 10) +
+    current_cal_ptr -> offset;
+
 }
 
 /* Function called by curout?

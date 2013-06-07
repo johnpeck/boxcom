@@ -86,7 +86,7 @@
 /* cal_save_islope( current output slope calibrationa factor )
 
    Writes the current output slope calibration factor to eeprom.  The
-   slope factor is a 16-bit unsigned integer with units of pA/count.
+   slope factor is a 16-bit unsigned integer with units of nA/count.
 
    The eeprom is organized into 8-bit bytes.  So we'll need two memory
    locations.
@@ -116,7 +116,7 @@ void cmd_write_islope( command_arg_t *command_arg_ptr ) {
 /* cal_save_ioffset( current output offset calibration factor )
 
    Writes the current output offset calibration factor to eeprom.  The
-   offset factor is a 16-bit signed integer with units of pA.
+   offset factor is a 16-bit signed integer with units of nA.
 
    The eeprom is organized into 8-bit bytes.  So we'll need two memory
    locations.

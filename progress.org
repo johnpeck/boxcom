@@ -12,6 +12,44 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
+* Work on howto [11/11]
+** TODO Describe how to calibrate
+   - See page 106 of notebook
+** TODO Document $curoff command
+   - This command now takes a signed uA argument
+** TODO Do something about the noise on ms scale
+   - I might try keeping two more bits when I take my average.  Right
+     now, my average isn't really dealing with the LSB -- the bitshift
+     I'm using for my divide just throws away any remainder.  But, if
+     I keep the factor of 4 in the average instead of dividing it out,
+     I can keep those extra bits.  What if I change the averaging
+     factor?  Well, I can always add a bitshift that makes the sum a
+     constant factor of 4 too big.
+** DONE Add butterfly board schematics to howto
+** DONE Document curout? command
+** DONE Document the logreg function
+** DONE Write up how to do loopback test
+** DONE Write up how to wire up Butterfly [3/3]
+*** DONE Redraw Butterfly in inkscape for clipart
+*** DONE Make a drawing with arrows showing where connectors get soldered
+*** DONE Reverse ADC input connector
+** DONE Add drawing of power cable for butterfly
+   - 6 inches.  Page 87 of notebook.
+** DONE Add drawing of Isense connection
+   - 3 inches.  Page 90 of notebook.
+** DONE Add drawing of binding post connection.
+   - 7 inches.  Page 90 of notebook.
+** DONE Add firmware section describing received character flow
+** DONE Add firmware section describing how commands are executed
+** DONE Document how output current calibration works
+** Revise section on creating new remote commands
+*** TODO Each remote command should have the same length
+    - This is for communication time.  It shold be uniform.
+*** TODO Remote command argument types must be in structure
+    - command_arg_struct in command.h must contain the argument type
+      defined for the remote command.  The function command_exec must
+      know how to deal with the argument type to send it on to a
+      function.
 * Plan using taskjuggler
 ** TODO Give firmware a start date
    - Firmware needs a start date.  Then the remote commands can just depend on other tasks.
@@ -43,32 +81,6 @@
 ** TODO Add crosshairs to read current
 ** TODO x axis tic labels are seconds -- not milliseconds
 ** TODO Add x axis label
-* Work on howto [11/11]
-** DONE Add butterfly board schematics to howto
-** DONE Document curout? command
-** DONE Document the logreg function
-** DONE Write up how to do loopback test
-** DONE Write up how to wire up Butterfly [3/3]
-*** DONE Redraw Butterfly in inkscape for clipart
-*** DONE Make a drawing with arrows showing where connectors get soldered
-*** DONE Reverse ADC input connector
-** DONE Add drawing of power cable for butterfly
-   - 6 inches.  Page 87 of notebook.
-** DONE Add drawing of Isense connection
-   - 3 inches.  Page 90 of notebook.
-** DONE Add drawing of binding post connection.
-   - 7 inches.  Page 90 of notebook.
-** DONE Add firmware section describing received character flow
-** DONE Add firmware section describing how commands are executed
-** DONE Document how output current calibration works
-** Revise section on creating new remote commands
-*** TODO Each remote command should have the same length
-    - This is for communication time.  It shold be uniform.
-*** TODO Remote command argument types must be in structure
-    - command_arg_struct in command.h must contain the argument type
-      defined for the remote command.  The function command_exec must
-      know how to deal with the argument type to send it on to a
-      function.
 * Work on firmware
 ** TODO Add command to generate time stamped data
    - I guess data would come out comma delimited: time (ms), current

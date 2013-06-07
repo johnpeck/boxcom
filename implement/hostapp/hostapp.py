@@ -11,7 +11,7 @@ from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
 # implement the default mpl key bindings
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure # The Figure class
- 
+from matplotlib.widgets import Cursor
 
 
 class FrontEnd():
@@ -36,6 +36,8 @@ class FrontEnd():
         # Set up go/stop buttons
         self.but_stop = Tkinter.Button(text = 'Stop', 
                                        command = self.stopplot)
+        self.but_start = Tkinter.Button(text = 'Start',
+                                        command = self.startplot)
 
         # Set up port entry box
         self.lab_port = Tkinter.Label(text = 'Serial\nPort')
@@ -57,12 +59,19 @@ class FrontEnd():
         
         # Add a toolbar
         self.ptool = NavigationToolbar2TkAgg(self.pfig_can, root)
+
+        # Add a cursor, but make it invisible.  Stopping the plot will
+        # make it visible.
+        self.pcursor = Cursor(self.pplot, useblit=True, color='red', linewidth=1 )
+        self.pcursor.visible = False
+
         
         # Position everything
         self.lab_port.pack()
         self.ent_port.pack()
         self.but_conn.pack()
         self.but_stop.pack()
+        self.but_start.pack()
         self.pfig_can.get_tk_widget().pack()
         
         # Start sampling the inputs.  This method will call itself
@@ -71,7 +80,13 @@ class FrontEnd():
 
     def stopplot(self):
         self.stopped = True
+        # Only display a cursor if the plot is stopped
+        self.pcursor.visible = True
 
+    def startplot(self):
+        self.stopped = False
+        self.readinputs()
+        self.pcursor.visible = False
         
 
     def serinit(self):
@@ -96,6 +111,7 @@ class FrontEnd():
         # I have to clear the subplot before I can refresh it.  After
         # plotting new data, refresh the canvas with pfig_can.draw()
         self.pplot.clear()
+
         if len(self.timearray) == 1:
             # If the array length is 1, this is the first time we've
             # read the current.
@@ -112,6 +128,8 @@ class FrontEnd():
         self.pplot.set_ylabel('Junk')
         self.pfig_can.draw()
         self.ptool.update()
+
+        
         if self.stopped == False:
             self.master.after(100,self.readinputs)
 
