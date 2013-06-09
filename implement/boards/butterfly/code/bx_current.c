@@ -113,11 +113,18 @@ void current_init(void) {
    The number of averages may be less than the size of the data array.
  */
 void current_process_array( uint16_t *array, uint8_t averages ) {
+  /* Get the bitshifts in the 8-bit number */
   uint8_t shiftnum = bitshifts_max8(averages);
   uint16_t sum = 0;
-  /* Average the array */
   for (uint8_t count = 0; count < (1 << shiftnum); count++) {
     sum += array[count];
+  }
+  /* I want to keep 2 extra bits in the number for better averaging.
+     Divide the sum by a factor of 4 less than the number of data
+     points to make the average.
+   */
+  if (shiftnum >= 2) {
+    shiftnum -= 2;
   }
   sum >>= shiftnum;  // Make the average value of raw data
   /* Calculate calibrated uA from raw ADC counts:
