@@ -1,0 +1,58 @@
+\section{Calibration}
+
+\subsection{Output current}
+The output current calibration procedure involves a calibration
+resistor $\left( R_{cal} \right)$, and two calibration currents.  One
+of the calibration currents can be zero, and the other $\left( I_{cal}
+\right)$ should be measured with the calibration resistor attached to
+the voltage output.  Calculate the current with
+\begin{equation}
+\label{eqn:ical}
+I_{cal} = \frac{V_{out} \left( R_{cal} \right) }{R_{cal}}
+\end{equation}
+where $V_{out} \left( R_{cal} \right)$ is explicitly a function of
+$R_{cal}$.
+
+With $I_{cal}$ measured, the procedure is as follows:
+\begin{enumerate}
+\item Set a nominal value for the slope factor (8000).
+  \shortboxtext{\texttt{\$curslp 8000}}
+\item Set the offset factor to zero.
+  \shortboxtext{\texttt{\$curoff 0}}
+\item Attach the $R_{cal}$ resistor and query the output current.
+  \shortboxtext{%
+    \texttt{curout?}\\
+    \texttt{3648}
+  }
+  This is the high current output $\left( I_{high} = 3648 \right)$.
+\item Disconnect the $R_{cal}$ resistor and query the output current.
+  \shortboxtext{%
+    \texttt{curout?}\\
+    \texttt{31}
+  }
+  This is the low current output $\left( I_{low} = 31 \right)$.
+
+\item Calculate and apply the new slope value.
+  \begin{eqnarray*}
+    \alpha_{cslp} &=& 8000 \left( \frac{ I_{cal} - 0}
+      {I_{high} - I_{low}} \right)\\
+    &=& 8000 \left( \frac{ 3333 \mu\mbox{A} - 0}
+      {3648 \mu\mbox{A} - 31 \mu\mbox{A}} \right) = 7372
+  \end{eqnarray*}
+  \shortboxtext{\texttt{\$curslp 7372}}
+
+\item With $R_{cal}$ still disconnected, read the new offset.
+  \shortboxtext{%
+    \texttt{curout?}\\
+    \texttt{-34}
+}
+This is the offset output $\left( I_{off} = -34 \right)$.
+
+\item Calculate and apply the new offset value.
+  \begin{eqnarray*}
+    \beta_{coff} &=& -I_{off}\\
+    &=& -(-34\mu\mbox{A}) = 34
+  \end{eqnarray*}
+  \shortboxtext{\texttt{\$curoff 34}}
+
+\end{enumerate}
