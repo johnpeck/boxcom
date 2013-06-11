@@ -1,6 +1,10 @@
 # Boxcom's host application
 import Tkinter
-import serial
+
+import serial # Provides serial class Serial
+from serial.tools.list_ports import comports # For getting list of
+                                             # serial ports
+
 import time
 
 
@@ -18,20 +22,71 @@ class FrontEnd():
     def __init__(self,master):
         self.master = master
         master.title("Instrument Panel")
-        self.serobj = serial.Serial()
-        self.serobj.baudrate = 76800
-        self.serobj.port = '/dev/ttyUSB0'
-        self.serobj.timeout = 0.1 # Set timeout to 100ms
-        self.serinit()
         self.stopped = False
+        self.strvar_port = Tkinter.StringVar()
 
         # Define arrays for the data
         self.timearray = [0]
         self.curarray = [0]
 
         
-        # Set up connection button
-        self.but_conn = Tkinter.Button(text = 'Connect')
+        # Set up radio buttons for the connection selector.  Only add
+        # serial ports to the list that respond to the *idn? query
+        # with a string containing the correct vendor name.
+        self.rad_port = [] # List of radio buttons
+        self.serlist = []  # List of valid serial ports (like /dev/ttyUSB0)
+        for serport in comports():
+            rawstr = ''
+            try:
+                # Try to open port and configure it
+                self.serobj = serial.Serial()
+                self.serobj.baudrate = 76800
+                self.serobj.timeout = 0.1 # Set timeout to 100ms
+                self.serobj.port = serport[0]
+                # If the port can be configured, it might be a boxcom.
+                # In that case, we have to configure the logger with
+                # serinit().
+                self.serinit()
+                self.serobj.write('*idn?\r')
+                rawstr = self.serobj.read(20) # Read a small number of bytes
+                self.serobj.close()
+            except serial.serialutil.SerialException as error:
+                print('Could not open ' + serport[0])
+                print error
+            # If we get characters back from the *idn? query, it's
+            # most likely a boxcom.  See if there's a vendor string in
+            # there just to be sure.
+            if rawstr.count('johnpeck') == 1:
+                self.rad_port.append(Tkinter.Radiobutton(text = serport[0],
+                                                         variable = self.strvar_port, 
+                                                         value = serport[0]))
+                self.serlist.append(serport[0])
+                
+        # Always add the dummy port to the end of the list.
+        self.rad_port.append(Tkinter.Radiobutton(text= 'Dummy',
+                                                 variable = self.strvar_port,
+                                                 value = 'dummy'))
+        self.serlist.append('dummy')
+
+        # Connect to the first serial port in the list.  If there is
+        # no valid serial port, connect to the dummy port.
+        for serport in self.serlist:
+            print serport
+            if serport != 'dummy':
+                self.serobj = serial.Serial()
+                self.serobj.baudrate = 76800
+                self.serobj.timeout = 0.1 # Set timeout to 100ms
+                self.serobj.port = serport
+                self.strvar_port.set(str(serport))
+                self.serinit() 
+                break
+            else:
+                self.strvar_port.set('dummy')
+
+        
+        self.but_conn = []
+        for indexnum in range(3):
+            self.but_conn.append(Tkinter.Button(text = 'Connect ' + str(indexnum)))
 
         # Set up go/stop buttons
         self.but_stop = Tkinter.Button(text = 'Stop', 
@@ -39,12 +94,7 @@ class FrontEnd():
         self.but_start = Tkinter.Button(text = 'Start',
                                         command = self.startplot)
 
-        # Set up port entry box
-        self.lab_port = Tkinter.Label(text = 'Serial\nPort')
-        self.strvar_port = Tkinter.StringVar()
-        self.ent_port = Tkinter.Entry(textvariable = self.strvar_port,
-                                      borderwidth = 5)
-        self.strvar_port.set(self.serobj.port)
+
 
         # ------------------- Set up the plot -------------------
         # Make a figure object
@@ -57,7 +107,7 @@ class FrontEnd():
         self.pfig_can = FigureCanvasTkAgg(self.pfig, master = root)
         self.pfig_can.show()
         
-        # Add a toolbar
+        # Add a toolbar for the plot
         self.ptool = NavigationToolbar2TkAgg(self.pfig_can, root)
 
         # Add a cursor, but make it invisible.  Stopping the plot will
@@ -66,10 +116,9 @@ class FrontEnd():
         self.pcursor.visible = False
 
         
-        # Position everything
-        self.lab_port.pack()
-        self.ent_port.pack()
-        self.but_conn.pack()
+        # ---------------- Position everything ------------------
+        for radiobutton in self.rad_port:
+            radiobutton.pack()
         self.but_stop.pack()
         self.but_start.pack()
         self.pfig_can.get_tk_widget().pack()
@@ -77,7 +126,10 @@ class FrontEnd():
         # Start sampling the inputs.  This method will call itself
         # over and over again to refresh the data.
         self.readinputs()
+        
 
+    # -------------------- Member functions ---------------------
+    
     def stopplot(self):
         self.stopped = True
         # Only display a cursor if the plot is stopped
@@ -87,7 +139,8 @@ class FrontEnd():
         self.stopped = False
         self.readinputs()
         self.pcursor.visible = False
-        
+
+
 
     def serinit(self):
         self.serobj.open()
@@ -99,11 +152,14 @@ class FrontEnd():
             readstr = self.serobj.read(100)
 
     def readcur(self):
-        self.serobj.write('curout?\r')
-        rawstr = self.serobj.readline()
-        curstr = rawstr.split('\r')[0]
-        curnum = int(curstr)
-        return curnum
+        if self.strvar_port.get() != 'dummy':
+            self.serobj.write('curout?\r')
+            rawstr = self.serobj.readline()
+            curstr = rawstr.split('\r')[0]
+            curnum = int(curstr)
+            return curnum
+        else:
+            return 1000
 
     # Read from the serial object and refresh the display on a
     # schedule
@@ -128,8 +184,7 @@ class FrontEnd():
         self.pplot.set_ylabel('Junk')
         self.pfig_can.draw()
         self.ptool.update()
-
-        
+                
         if self.stopped == False:
             self.master.after(100,self.readinputs)
 
