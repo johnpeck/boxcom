@@ -25,7 +25,7 @@
 ** DONE Work through chapter 4.11 of Pratt
 ** TODO Add random data input
 ** TODO Make room for y axis label
-** TODO Add crosshairs to read current
+** DONE Add crosshairs to read current
 ** TODO x axis tic labels are seconds -- not milliseconds
 ** TODO Add x axis label
 * Work on howto [12/14]
