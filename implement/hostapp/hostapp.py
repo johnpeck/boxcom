@@ -7,14 +7,16 @@ from serial.tools.list_ports import comports # For getting list of
 
 import time
 
-
+# Use matplotlib for plotting
 import matplotlib
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
 # implement the default mpl key bindings
 from matplotlib.backend_bases import key_press_handler
-from matplotlib.figure import Figure # The Figure class
+from matplotlib.figure import Figure # The Figure class.  Figures are
+                                     # the top-level containers for
+                                     # all plot objects.
 from matplotlib.widgets import Cursor
 
 
@@ -28,6 +30,10 @@ class FrontEnd():
         # Define arrays for the data
         self.timearray = [0]
         self.curarray = [0]
+
+        # Define the period for data collection.  This will be how
+        # often the unit is queried.
+        self.query_ms = 100 # milliseconds
 
         
         # Set up radio buttons for the connection selector.  Only add
@@ -71,7 +77,6 @@ class FrontEnd():
         # Connect to the first serial port in the list.  If there is
         # no valid serial port, connect to the dummy port.
         for serport in self.serlist:
-            print serport
             if serport != 'dummy':
                 self.serobj = serial.Serial()
                 self.serobj.baudrate = 76800
@@ -97,11 +102,22 @@ class FrontEnd():
 
 
         # ------------------- Set up the plot -------------------
-        # Make a figure object
-        self.pfig = Figure(figsize=(5,4), dpi = 100)
-        # Add a plot to the figure
+        # Make a figure object.
+        #   figsize = (width, height) with inch dimensions
+        self.pfig = Figure(figsize=(5,4),
+                           dpi = 100)
+        # Adjust the position of subplots in the figure (fractions of
+        # the figure dimensions)
+        self.pfig.subplots_adjust(bottom = 0.15,
+                                  right = 0.9,
+                                  top = 0.9,
+                                  left = 0.2,
+                                  wspace = 0,
+                                  hspace = 0)
+                                  
+        # Add a plot to the figure.  Using subplot automatically
+        # calculates position within figure.
         self.pplot = self.pfig.add_subplot(111)
-
 
         # Make a canvas for the figure to be painted on
         self.pfig_can = FigureCanvasTkAgg(self.pfig, master = root)
@@ -140,8 +156,6 @@ class FrontEnd():
         self.readinputs()
         self.pcursor.visible = False
 
-
-
     def serinit(self):
         self.serobj.open()
         self.serobj.write('loglev 3\r') # Log only errors
@@ -173,20 +187,21 @@ class FrontEnd():
             # read the current.
             self.curarray = [self.readcur()/1e3]
         if len(self.timearray) == 100:
-            # If the array length is 100, we've acquired for 100ms.
-            # Start over from time = 0.
+            # If the array length is 100, start over from time = 0.
             self.timearray = [0]
             self.curarray = [self.curarray[-1]]
-        self.timearray.append(self.timearray[-1] + 100)
-        self.curarray.append(self.readcur()/1e3) 
+        # Keep current values in mA, time values in seconds
+        self.timearray.append(self.timearray[-1] + self.query_ms/1e3)
+        self.curarray.append(self.readcur()/1e3) # Keep currents in mA 
 
         self.pplot.plot(self.timearray,self.curarray)        
-        self.pplot.set_ylabel('Junk')
+        self.pplot.set_ylabel('Output current (mA)')
+        self.pplot.set_xlabel('Time (s)')
         self.pfig_can.draw()
         self.ptool.update()
                 
         if self.stopped == False:
-            self.master.after(100,self.readinputs)
+            self.master.after(self.query_ms,self.readinputs)
 
 root = Tkinter.Tk()
 frontend = FrontEnd(root)

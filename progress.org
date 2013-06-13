@@ -13,21 +13,13 @@
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
 * Work on host software
-** DONE Work through chapter 4.5 of Pratt
-   DEADLINE: <2013-05-13 Mon>
-** DONE Work through chapter 4.6 of Pratt
-   DEADLINE: <2013-05-14 Tue>
-** DONE Work through chapter 4.7 of Pratt
-   DEADLINE: <2013-05-15 Wed>
-** DONE Work through chapter 4.8 of Pratt
-** DONE Work through chapter 4.9 of Pratt
-** DONE Work through chapter 4.10 of Pratt
-** DONE Work through chapter 4.11 of Pratt
-** TODO Add random data input
-** TODO Make room for y axis label
+** TODO Stop and start keys should just be one key -- a toggle.
+   - The symbol on this key should change from a pause to a play
+** DONE Make room for y axis label
 ** DONE Add crosshairs to read current
-** TODO x axis tic labels are seconds -- not milliseconds
-** TODO Add x axis label
+** DONE x axis tic labels are seconds -- not milliseconds
+** DONE Add x axis label
+** TODO Add random data input for dummy port
 * Work on howto [12/14]
 ** DONE Describe how to calibrate
    - See page 106 of notebook
