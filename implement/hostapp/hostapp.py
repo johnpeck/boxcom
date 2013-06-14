@@ -94,7 +94,8 @@ class FrontEnd():
             self.but_conn.append(Tkinter.Button(text = 'Connect ' + str(indexnum)))
 
         # Set up go/stop buttons
-        self.but_stop = Tkinter.Button(text = 'Stop', 
+        self.icon_play = Tkinter.PhotoImage(file="images/play_icon.gif")
+        self.but_stop = Tkinter.Button(image = self.icon_play,
                                        command = self.stopplot)
         self.but_start = Tkinter.Button(text = 'Start',
                                         command = self.startplot)

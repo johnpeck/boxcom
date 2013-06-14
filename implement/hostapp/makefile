@@ -10,6 +10,8 @@ help:
 	@echo '                                                          '
 	@echo 'Usage:                                                    '
 	@echo '   make edit                 Edit the app with emacs      '
+	@echo '   make icon_browse          Browse Tango icons           '
+	@echo '   make icons                Convert icons for Tkinter    '
 	@echo '   make run                  Run the app                  '
 	@echo '                                                          '
 
@@ -20,6 +22,20 @@ edit :
               --visit $(MAINFILE).py \
               --funcall auto-complete-mode & 
 
+.PHONY: icon_browse
+icon_browse :
+	qiv -w 500 /usr/share/icons/Tango/scalable/actions/*.svg &
+
+.PHONY : icons
+icons : images/play_icon.gif
+
+
 .PHONY: run
 run :
 	python $(MAINFILE).py
+
+
+#--------------------------- Create icons ------------------------------
+images/play_icon.gif : images/media-playback-start.svg
+	inkscape --export-png=$(basename $@).png $<
+	convert $(basename $@).png $@
