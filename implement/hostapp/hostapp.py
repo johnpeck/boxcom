@@ -94,11 +94,11 @@ class FrontEnd():
             self.but_conn.append(Tkinter.Button(text = 'Connect ' + str(indexnum)))
 
         # Set up go/stop buttons
+        self.icon_pause = Tkinter.PhotoImage(file="images/pause_icon.gif")
         self.icon_play = Tkinter.PhotoImage(file="images/play_icon.gif")
-        self.but_stop = Tkinter.Button(image = self.icon_play,
-                                       command = self.stopplot)
-        self.but_start = Tkinter.Button(text = 'Start',
-                                        command = self.startplot)
+        self.but_playpause = Tkinter.Button(image = self.icon_pause,
+                                            command = self.playpause)
+
 
 
 
@@ -136,8 +136,7 @@ class FrontEnd():
         # ---------------- Position everything ------------------
         for radiobutton in self.rad_port:
             radiobutton.pack()
-        self.but_stop.pack()
-        self.but_start.pack()
+        self.but_playpause.pack()
         self.pfig_can.get_tk_widget().pack()
         
         # Start sampling the inputs.  This method will call itself
@@ -147,6 +146,25 @@ class FrontEnd():
 
     # -------------------- Member functions ---------------------
     
+    # playpause()
+    #
+    # If data collection is running and the playpause button is
+    # pushed, stop (pause) the collection and display the crosshair.
+    #
+    # If data collection is stopped (paused), clear the crosshair and
+    # start collection again.
+    def playpause(self):
+        if self.stopped:
+            self.stopped = False
+            self.but_playpause.config(image=self.icon_pause)
+            self.pcursor.visible = False
+            self.readinputs()
+        else:
+            self.stopped = True
+            self.but_playpause.config(image=self.icon_play)
+            self.pcursor.visible = True
+ 
+
     def stopplot(self):
         self.stopped = True
         # Only display a cursor if the plot is stopped

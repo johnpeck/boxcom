@@ -27,7 +27,8 @@ icon_browse :
 	qiv -w 500 /usr/share/icons/Tango/scalable/actions/*.svg &
 
 .PHONY : icons
-icons : images/play_icon.gif
+icons : images/play_icon.gif \
+        images/pause_icon.gif
 
 
 .PHONY: run
@@ -37,5 +38,9 @@ run :
 
 #--------------------------- Create icons ------------------------------
 images/play_icon.gif : images/media-playback-start.svg
+	inkscape --export-png=$(basename $@).png $<
+	convert $(basename $@).png $@
+
+images/pause_icon.gif : images/media-playback-pause.svg
 	inkscape --export-png=$(basename $@).png $<
 	convert $(basename $@).png $@
