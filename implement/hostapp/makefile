@@ -13,6 +13,7 @@ help:
 	@echo '   make icon_browse          Browse Tango icons           '
 	@echo '   make icons                Convert icons for Tkinter    '
 	@echo '   make run                  Run the app                  '
+	@echo '   make shot                 Make a screenshot            '
 	@echo '                                                          '
 
 
@@ -33,7 +34,13 @@ icons : images/play_icon.gif \
 
 .PHONY: run
 run :
-	python $(MAINFILE).py
+	python $(MAINFILE).py &
+
+.PHONY: shot
+shot :
+	@echo 'Click on plot window with crosshair...'
+	import screenshot.png
+	@echo 'Wrote screenshot to screenshot.png'
 
 
 #--------------------------- Create icons ------------------------------

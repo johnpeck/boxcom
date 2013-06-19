@@ -5,7 +5,8 @@ import serial # Provides serial class Serial
 from serial.tools.list_ports import comports # For getting list of
                                              # serial ports
 
-import time
+import time # For timing data queries
+import random # For the dummy interface output
 
 # Use matplotlib for plotting
 import matplotlib
@@ -18,12 +19,14 @@ from matplotlib.figure import Figure # The Figure class.  Figures are
                                      # the top-level containers for
                                      # all plot objects.
 from matplotlib.widgets import Cursor
+from matplotlib.ticker import FormatStrFormatter
+from matplotlib.ticker import MaxNLocator
 
 
 class FrontEnd():
     def __init__(self,master):
         self.master = master
-        master.title("Instrument Panel")
+        master.title("Current monitor")
         self.stopped = False
         self.strvar_port = Tkinter.StringVar()
 
@@ -36,6 +39,18 @@ class FrontEnd():
         self.query_ms = 100 # milliseconds
 
         
+        # Set up a frame for the connection radio buttons to go in
+        self.frm_port = Tkinter.LabelFrame(master,
+                                           text = 'Connection port',
+                                           labelanchor = 'n',
+                                           borderwidth = 2,
+                                           relief = Tkinter.RIDGE,
+                                           padx = 20,
+                                           pady = 10)
+
+
+        
+
         # Set up radio buttons for the connection selector.  Only add
         # serial ports to the list that respond to the *idn? query
         # with a string containing the correct vendor name.
@@ -63,16 +78,19 @@ class FrontEnd():
             # most likely a boxcom.  See if there's a vendor string in
             # there just to be sure.
             if rawstr.count('johnpeck') == 1:
-                self.rad_port.append(Tkinter.Radiobutton(text = serport[0],
+                self.rad_port.append(Tkinter.Radiobutton(self.frm_port,
+                                                         text = serport[0],
                                                          variable = self.strvar_port, 
                                                          value = serport[0]))
                 self.serlist.append(serport[0])
                 
         # Always add the dummy port to the end of the list.
-        self.rad_port.append(Tkinter.Radiobutton(text= 'Dummy',
+        self.rad_port.append(Tkinter.Radiobutton(self.frm_port,
+                                                 text= 'Dummy',
                                                  variable = self.strvar_port,
                                                  value = 'dummy'))
         self.serlist.append('dummy')
+
 
         # Connect to the first serial port in the list.  If there is
         # no valid serial port, connect to the dummy port.
@@ -88,10 +106,6 @@ class FrontEnd():
             else:
                 self.strvar_port.set('dummy')
 
-        
-        self.but_conn = []
-        for indexnum in range(3):
-            self.but_conn.append(Tkinter.Button(text = 'Connect ' + str(indexnum)))
 
         # Set up go/stop buttons
         self.icon_pause = Tkinter.PhotoImage(file="images/pause_icon.gif")
@@ -119,6 +133,8 @@ class FrontEnd():
         # Add a plot to the figure.  Using subplot automatically
         # calculates position within figure.
         self.pplot = self.pfig.add_subplot(111)
+        self.ytick_format = FormatStrFormatter('%0.3f')
+        self.xtick_format = FormatStrFormatter('%0.1f')
 
         # Make a canvas for the figure to be painted on
         self.pfig_can = FigureCanvasTkAgg(self.pfig, master = root)
@@ -129,11 +145,15 @@ class FrontEnd():
 
         # Add a cursor, but make it invisible.  Stopping the plot will
         # make it visible.
-        self.pcursor = Cursor(self.pplot, useblit=True, color='red', linewidth=1 )
+        self.pcursor = Cursor(self.pplot, 
+                              useblit=True, # Only redraw changed regions
+                              color='red', 
+                              linewidth=1 )
         self.pcursor.visible = False
 
         
         # ---------------- Position everything ------------------
+        self.frm_port.pack()
         for radiobutton in self.rad_port:
             radiobutton.pack()
         self.but_playpause.pack()
@@ -192,7 +212,8 @@ class FrontEnd():
             curnum = int(curstr)
             return curnum
         else:
-            return 1000
+            return random.randrange(-70, +70, 10)
+            # return 1000
 
     # Read from the serial object and refresh the display on a
     # schedule
@@ -211,9 +232,12 @@ class FrontEnd():
             self.curarray = [self.curarray[-1]]
         # Keep current values in mA, time values in seconds
         self.timearray.append(self.timearray[-1] + self.query_ms/1e3)
-        self.curarray.append(self.readcur()/1e3) # Keep currents in mA 
+        self.curarray.append(self.readcur()/1e3)
 
-        self.pplot.plot(self.timearray,self.curarray)        
+        self.pplot.plot(self.timearray,self.curarray)  
+        self.pplot.yaxis.set_major_formatter(self.ytick_format) 
+        self.pplot.xaxis.set_major_formatter(self.xtick_format)
+        self.pplot.xaxis.set_major_locator(MaxNLocator(prune='lower'))
         self.pplot.set_ylabel('Output current (mA)')
         self.pplot.set_xlabel('Time (s)')
         self.pfig_can.draw()

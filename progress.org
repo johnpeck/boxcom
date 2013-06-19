@@ -13,13 +13,17 @@
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
 * Work on host software
-** TODO Stop and start keys should just be one key -- a toggle.
+** TODO Start/stop key should be below plot
+** DONE Connection radiobox should be in a section
+   - The section should have a title like: Connection port
+** DONE Y axis ma should be limited to 3 decimal places
+** DONE Stop and start keys should just be one key -- a toggle.
    - The symbol on this key should change from a pause to a play
 ** DONE Make room for y axis label
 ** DONE Add crosshairs to read current
 ** DONE x axis tic labels are seconds -- not milliseconds
 ** DONE Add x axis label
-** TODO Add random data input for dummy port
+** DONE Add random data input for dummy port
 * Work on howto [12/14]
 ** DONE Describe how to calibrate
    - See page 106 of notebook
