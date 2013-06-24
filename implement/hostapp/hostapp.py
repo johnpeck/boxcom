@@ -1,6 +1,7 @@
 # Boxcom's host application
 import Tkinter
 
+# --------- Use pyserial for serial port interface -------------------
 import serial # Provides serial class Serial
 from serial.tools.list_ports import comports # For getting list of
                                              # serial ports
@@ -8,7 +9,8 @@ from serial.tools.list_ports import comports # For getting list of
 import time # For timing data queries
 import random # For the dummy interface output
 
-# Use matplotlib for plotting
+
+# ------------- Use matplotlib for plotting --------------------------
 import matplotlib
 matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -19,8 +21,10 @@ from matplotlib.figure import Figure # The Figure class.  Figures are
                                      # the top-level containers for
                                      # all plot objects.
 from matplotlib.widgets import Cursor
-from matplotlib.ticker import FormatStrFormatter
-from matplotlib.ticker import MaxNLocator
+from matplotlib.ticker import FormatStrFormatter # For formatting tick
+                                                 # labels
+from matplotlib.ticker import MaxNLocator # For pruning the lower
+                                          # x-axis tick label
 
 
 class FrontEnd():
@@ -136,12 +140,19 @@ class FrontEnd():
         self.ytick_format = FormatStrFormatter('%0.3f')
         self.xtick_format = FormatStrFormatter('%0.1f')
 
+        # Make a frame for the plot and toolbar
+        self.frm_plot = Tkinter.Frame(master,
+                                      borderwidth = 2,
+                                      relief = Tkinter.RIDGE,
+                                      padx = 20,
+                                      pady = 10)
+
         # Make a canvas for the figure to be painted on
-        self.pfig_can = FigureCanvasTkAgg(self.pfig, master = root)
+        self.pfig_can = FigureCanvasTkAgg(self.pfig, master = self.frm_plot)
         self.pfig_can.show()
         
         # Add a toolbar for the plot
-        self.ptool = NavigationToolbar2TkAgg(self.pfig_can, root)
+        self.ptool = NavigationToolbar2TkAgg(self.pfig_can, self.frm_plot)
 
         # Add a cursor, but make it invisible.  Stopping the plot will
         # make it visible.
@@ -153,11 +164,12 @@ class FrontEnd():
 
         
         # ---------------- Position everything ------------------
-        self.frm_port.pack()
+        self.frm_plot.pack() # Frame for plot and toolbar
         for radiobutton in self.rad_port:
-            radiobutton.pack()
-        self.but_playpause.pack()
-        self.pfig_can.get_tk_widget().pack()
+            radiobutton.pack(side=Tkinter.TOP)
+        self.pfig_can.get_tk_widget().pack(side=Tkinter.TOP)
+        self.but_playpause.pack(side=Tkinter.TOP)
+        self.frm_port.pack() # Frame for port radiobuttons
         
         # Start sampling the inputs.  This method will call itself
         # over and over again to refresh the data.
@@ -241,7 +253,7 @@ class FrontEnd():
         self.pplot.set_ylabel('Output current (mA)')
         self.pplot.set_xlabel('Time (s)')
         self.pfig_can.draw()
-        self.ptool.update()
+
                 
         if self.stopped == False:
             self.master.after(self.query_ms,self.readinputs)
