@@ -137,7 +137,7 @@ const char nullstr[] PROGMEM = "";
 command_t command_array[] ={
   // *IDN? -- Print the instrument identification string.
   {"*idn?",           // Name of the command
-   "none",            // Argument type (can be "none" or "hex" right now)
+   "none",            // Argument type ( uint16, sint16, ...)
    0,                 // Maximum number of characters in argument
    &cmd_idn_q,        // Address of function to execute
    helpstr_idn},      // The help text (defined above)
