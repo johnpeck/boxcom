@@ -427,7 +427,8 @@ help:
 edit :
 	find . -type f -iname "*.[ch]" | xargs etags -a
 	emacs --geometry 180x60 \
-              --visit $(TARGET).c &
+              --visit $(TARGET).c \
+              --funcall auto-complete-mode &
 
 # Note that I can't use GNU screen with 76800 baud.  For whatever
 # reason, I can't set the tty baud rate to 76800.  At least GTKterm

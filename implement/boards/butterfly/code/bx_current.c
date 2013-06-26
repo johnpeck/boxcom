@@ -157,3 +157,12 @@ void cmd_curout_q( command_arg_t *command_arg_ptr ) {
 void cmd_curper( command_arg_t *command_arg_ptr ) {
   current_state_ptr -> period_ms = command_arg_ptr -> uint16_arg;
 }
+
+/* Function called by curper?
+
+   Returns the value of the current measurement period in
+   milliseconds.
+ */
+void cmd_curper_q( command_arg_t *command_arg_ptr ) {
+  usart_printf_p( PSTR("%u\r\n"), current_state_ptr -> period_ms);
+}

@@ -1,8 +1,10 @@
-\asciicmd{curper}{
+\asciicmd{curper(?)\{i\}}{
     \index{user_cmds_index}{curper}
     \label{cmd:curper}
 
-    \textbf{Name:} \texttt{curper} -- Set the current sample period.\\
+    \textbf{Name:} \texttt{curper} -- Set or query the current
+    sampling period.\\
+    
     \textbf{Description:} The \texttt{curper} command sets the time
     between output current samples.  Since the output current
     meausurement is an average of the previous four samples, this
@@ -11,7 +13,11 @@
 
     \textbf{Example:}
     \boxtext{\texttt{curper 120} 
-      \codecomment{Set the current sample period to 120ms}
+      \codecomment{Set the current sample period to 120ms}\\
+      \texttt{curper?}
+      \codecomment{Query the current sampling period}\\
+      \texttt{120}
+      \codecomment{The sample period is 120ms}
     }
 
 }
