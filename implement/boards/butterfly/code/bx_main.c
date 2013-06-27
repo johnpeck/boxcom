@@ -172,8 +172,6 @@ int main() {
     }
 
     if (all_ms >= current_state_ptr -> period_ms) {
-      /* Do something here */
-
       /*  Write to the measurement array.  We'll use this array to make
 	  a moving average of the incoming data.
       */

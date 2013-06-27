@@ -127,6 +127,11 @@ const char helpstr_curper[] PROGMEM =
   "    Argument: 16-bit unsigned integer.\r\n"
   "    Return: None\r\n";
 
+const char helpstr_curper_q[] PROGMEM =
+  "curper? -- Query the sampling period in ms.\r\n"
+  "    Argument: None.\r\n"
+  "    Return: Period in milliseconds.\r\n";
+
 const char helpstr_help[] PROGMEM =
     "help -- Print the command help.\r\n";
 
@@ -189,6 +194,12 @@ command_t command_array[] ={
    4,
    &cmd_curper,
    helpstr_curper},
+  // curper? -- Query the period between current measurements
+  {"curper?",
+   "none",
+   0,
+   &cmd_curper_q,
+   helpstr_curper_q},
   // $setser -- Set the serial number
   {"$setser",
    "uint16",
