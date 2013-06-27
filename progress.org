@@ -24,7 +24,7 @@
 ** DONE Add curper command to howto
 ** DONE Add curper query
    - Change documentation afterwards
-** TODO Better limit checking for curper
+** DONE Better limit checking for curper
    - Lower limit should probably be 10ms.  
 ** DONE Change argument used by logreg command
    - I don't want the user using hex arguments

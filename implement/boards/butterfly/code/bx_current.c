@@ -155,7 +155,18 @@ void cmd_curout_q( command_arg_t *command_arg_ptr ) {
    status structure.
 */
 void cmd_curper( command_arg_t *command_arg_ptr ) {
-  current_state_ptr -> period_ms = command_arg_ptr -> uint16_arg;
+  uint16_t curper = command_arg_ptr -> uint16_arg;
+  if (curper < 1) {
+    logger_msg_p("current",log_level_ERROR,
+		 PSTR("curper setting too low\r\n"));
+    curper = 1;
+  }
+  if (curper > 1000) {
+    logger_msg_p("current",log_level_ERROR,
+		 PSTR("curper setting too high\r\n"));
+    curper = 1000;
+  }
+  current_state_ptr -> period_ms = curper;
 }
 
 /* Function called by curper?
