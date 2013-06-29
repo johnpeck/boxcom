@@ -162,6 +162,25 @@ class FrontEnd():
                               linewidth=1 )
         self.pcursor.visible = False
 
+        # -------------- Set up a command entry box -------------
+        self.frm_command = Tkinter.LabelFrame(master,
+                                              text = 'Command Entry',
+                                              labelanchor = 'n',
+                                              borderwidth = 2,
+                                              relief = Tkinter.RIDGE,
+                                              padx = 20,
+                                              pady = 10)
+        self.strvar_command = Tkinter.StringVar()
+        self.ent_command = Tkinter.Entry(self.frm_command,
+                                         textvariable = self.strvar_command)
+        self.icon_send = Tkinter.PhotoImage(file="images/send_icon.gif")
+        self.but_sendcmd = Tkinter.Button(self.frm_command,
+                                          image = self.icon_send,
+                                          command = self.sendcommand) 
+        self.lab_command = Tkinter.Label(self.frm_command,
+                                         text = 'junk')
+                                         
+
         
         # ---------------- Position everything ------------------
         self.frm_plot.pack() # Frame for plot and toolbar
@@ -170,6 +189,10 @@ class FrontEnd():
         self.pfig_can.get_tk_widget().pack(side=Tkinter.TOP)
         self.but_playpause.pack(side=Tkinter.TOP)
         self.frm_port.pack() # Frame for port radiobuttons
+        self.frm_command.pack()
+        self.ent_command.pack(side=Tkinter.LEFT) # Command entry box
+        self.but_sendcmd.pack(side=Tkinter.LEFT) # Send command button
+        self.lab_command.pack(side=Tkinter.TOP)
         
         # Start sampling the inputs.  This method will call itself
         # over and over again to refresh the data.
@@ -254,9 +277,15 @@ class FrontEnd():
         self.pplot.set_xlabel('Time (s)')
         self.pfig_can.draw()
 
-                
         if self.stopped == False:
             self.master.after(self.query_ms,self.readinputs)
+
+    # Send the command from the entry box
+    def sendcommand(self):
+        cmdstring = self.strvar_command.get()
+        self.lab_command.config(text=cmdstring)
+        print(cmdstring)
+        
 
 root = Tkinter.Tk()
 frontend = FrontEnd(root)

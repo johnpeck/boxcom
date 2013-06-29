@@ -29,7 +29,8 @@ icon_browse :
 
 .PHONY : icons
 icons : images/play_icon.gif \
-        images/pause_icon.gif
+        images/pause_icon.gif \
+        images/send_icon.gif
 
 
 .PHONY: run
@@ -49,5 +50,9 @@ images/play_icon.gif : images/media-playback-start.svg
 	convert $(basename $@).png $@
 
 images/pause_icon.gif : images/media-playback-pause.svg
+	inkscape --export-png=$(basename $@).png $<
+	convert $(basename $@).png $@
+
+images/send_icon.gif : images/forward.svg
 	inkscape --export-png=$(basename $@).png $<
 	convert $(basename $@).png $@
