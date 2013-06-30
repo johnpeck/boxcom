@@ -16,6 +16,13 @@
 */
 #include <avr/pgmspace.h>
 
+/* sleep.h
+
+   Provides the sleep_enable(), sleep_disable(), and sleep_cpu()
+   functions for putting the processor to sleep.
+ */
+#include <avr/sleep.h>
+
 /* stdint.h
   
    Defines fixed-width integer types like uint8_t
@@ -150,6 +157,31 @@ uint16_t adc_read(void) {
   adc_temp += (ADCH << 8);    // Add the upper 2 bits
   return adc_temp;
 }
+
+/* adc_read_nc()
+
+   Return a measurement made with the ADC using the noise canceller.
+*/
+uint16_t adc_read_nc(void) {
+  uint16_t adc_temp = 0;
+
+  /* Enable the ADC.  It seems like I already did this in adc_init(),
+     but the part locks up if I don't also do it here. 
+  */
+  ADCSRA |= _BV(ADEN);
+  ADCSRA |= _BV(ADIE); // Enable ADC interrupts
+  set_sleep_mode(SLEEP_MODE_ADC);
+  sleep_enable(); // Enable sleep mode
+  /* Go to sleep.  The ADC will start a conversion once the CPU has
+     been halted.
+  */
+  sleep_cpu(); 
+  adc_temp = ADCL; // Read the lower 8 bits
+  adc_temp += (ADCH << 8); // Add the upper 2 bits 
+  return adc_temp; 
+}
+
+
 
 /* Function called by the remote command "adcval?" 
    

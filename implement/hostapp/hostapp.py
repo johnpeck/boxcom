@@ -244,8 +244,12 @@ class FrontEnd():
             self.serobj.write('curout?\r')
             rawstr = self.serobj.readline()
             curstr = rawstr.split('\r')[0]
-            curnum = int(curstr)
-            return curnum
+            try:
+                curnum = int(curstr)
+                return curnum
+            except:
+                print('Number conversion error')
+                return 0
         else:
             return random.randrange(-70, +70, 10)
             # return 1000

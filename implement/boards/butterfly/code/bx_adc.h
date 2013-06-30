@@ -27,6 +27,13 @@ void adc_mux(uint8_t channel);
  */
 uint16_t adc_read(void);
 
+/* adc_read_nc()
+
+   Return a measurement made with the ADC using the noise canceller.
+*/
+uint16_t adc_read_nc(void);
+
+
 /* Function called by the remote command "adcval?" 
    
    Query the raw ADC counts.

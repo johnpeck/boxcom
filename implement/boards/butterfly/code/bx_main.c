@@ -34,6 +34,13 @@
 */
 #include <avr/pgmspace.h>
 
+/* sleep.h
+
+   Provides the sleep_enable(), sleep_disable(), and sleep_cpu()
+   functions for putting the processor to sleep.
+ */
+#include <avr/sleep.h>
+
 /* bx_logger.h 
 
    Sets up logging  
@@ -180,7 +187,8 @@ int main() {
 	meas_count = 0;
       }
       
-      *meas_ptr = adc_read(); // Make a measurement
+      // *meas_ptr = adc_read(); // Make a measurement
+      *meas_ptr = adc_read_nc(); // Make a measurement
       current_process_array( measurement_array, MEASUREMENT_ARRAY_SIZE );
       meas_count++;
       meas_ptr++;
@@ -205,15 +213,16 @@ int main() {
 
 
 
-/* -------------------------- Interrupts -------------------------------
- * Find the name of interrupt signals in iom169p.h and not pa.  Why
- * not?  We define the mcu name to be atmega169p in the makefile, not
- * atmega169pa. 
- * 
- * See the naming convention outlined at
- * http://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html
- * to make sure you don't use depricated names. 
- */
+// -------------------------- Interrupts -------------------------------
+ 
+/* Find the name of interrupt signals in iom169p.h and not pa.  Why
+   not?  We define the mcu name to be atmega169p in the makefile, not
+   atmega169pa. 
+  
+   See the naming convention outlined at
+   http://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html
+   to make sure you don't use depricated names. 
+*/
  
 
 /* Interrupt on character received via the USART */
@@ -275,4 +284,14 @@ ISR(USART0_RX_vect) {
         }
     }
     return;
+}
+
+/* Interrupt on ADC conversion complete.
+
+   This is used for ADC noise reduction.  The interrupt should disable
+   sleep mode.  This interrupt has lower priority than USART receive
+   character.
+ */
+ISR(ADC_vect) {
+  sleep_disable(); // Disable sleep mode
 }
