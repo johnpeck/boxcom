@@ -187,8 +187,7 @@ int main() {
 	meas_count = 0;
       }
       
-      // *meas_ptr = adc_read(); // Make a measurement
-      *meas_ptr = adc_read_nc(); // Make a measurement
+      *meas_ptr = adc_read(); // Make a measurement
       current_process_array( measurement_array, MEASUREMENT_ARRAY_SIZE );
       meas_count++;
       meas_ptr++;

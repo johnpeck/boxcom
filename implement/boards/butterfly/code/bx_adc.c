@@ -161,6 +161,10 @@ uint16_t adc_read(void) {
 /* adc_read_nc()
 
    Return a measurement made with the ADC using the noise canceller.
+   Note that using this causes problems with the USART received
+   character interrupt.  
+
+   I'm not sure how to stop conflicts between the interrupts.
 */
 uint16_t adc_read_nc(void) {
   uint16_t adc_temp = 0;
