@@ -1,5 +1,6 @@
 # Boxcom's host application
 import Tkinter
+import Pmw # Python mega widgets
 
 # --------- Use pyserial for serial port interface -------------------
 import serial # Provides serial class Serial
@@ -177,8 +178,10 @@ class FrontEnd():
         self.but_sendcmd = Tkinter.Button(self.frm_command,
                                           image = self.icon_send,
                                           command = self.sendcommand) 
-        self.lab_command = Tkinter.Label(self.frm_command,
-                                         text = 'junk')
+        self.txt_command = Pmw.ScrolledText(self.frm_command,
+                                        usehullsize = 1,
+                                        hull_height = 300,
+                                        hull_width = 400)
                                          
 
         
@@ -192,7 +195,7 @@ class FrontEnd():
         self.frm_command.pack()
         self.ent_command.pack(side=Tkinter.LEFT) # Command entry box
         self.but_sendcmd.pack(side=Tkinter.LEFT) # Send command button
-        self.lab_command.pack(side=Tkinter.TOP)
+        self.txt_command.pack(side=Tkinter.TOP)
         
         # Start sampling the inputs.  This method will call itself
         # over and over again to refresh the data.
@@ -210,9 +213,10 @@ class FrontEnd():
     # start collection again.
     def playpause(self):
         if self.stopped:
-            self.stopped = False
+            self.stopped = False # Set the new state
             self.but_playpause.config(image=self.icon_pause)
             self.pcursor.visible = False
+            self.serinit()
             self.readinputs()
         else:
             self.stopped = True
@@ -222,6 +226,7 @@ class FrontEnd():
 
     def stopplot(self):
         self.stopped = True
+        self.but_playpause.config(image=self.icon_play)
         # Only display a cursor if the plot is stopped
         self.pcursor.visible = True
 
@@ -231,8 +236,16 @@ class FrontEnd():
         self.pcursor.visible = False
 
     def serinit(self):
-        self.serobj.open()
+        if not self.serobj.isOpen():
+            self.serobj.open()
         self.serobj.write('loglev 3\r') # Log only errors
+        # Clear out the receive queue by reading until getting a timeout
+        readstr = 'junk'
+        while (len(readstr) != 0):
+            self.serobj.write('\r')
+            readstr = self.serobj.read(100)
+
+    def clearq(self):
         # Clear out the receive queue by reading until getting a timeout
         readstr = 'junk'
         while (len(readstr) != 0):
@@ -286,9 +299,21 @@ class FrontEnd():
 
     # Send the command from the entry box
     def sendcommand(self):
+        self.stopplot() # Have to stop data collection
         cmdstring = self.strvar_command.get()
-        self.lab_command.config(text=cmdstring)
-        print(cmdstring)
+        self.strvar_command.set('') # Clear the command entry box
+        self.txt_command.insert(Tkinter.END,(cmdstring + '\n'))
+        if self.strvar_port.get() != 'dummy':
+            self.clearq()
+            self.retstring = ''
+            self.serobj.write(cmdstring + '\r')
+            retchars = self.serobj.read(200)
+            while (len(retchars) != 0):
+                self.retstring = self.retstring + retchars
+                retchars = self.serobj.read(100)
+            for line in self.retstring.split('\r\n'):
+                self.txt_command.insert(Tkinter.END,(line + '\n'))
+
         
 
 root = Tkinter.Tk()
