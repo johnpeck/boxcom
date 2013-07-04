@@ -14,6 +14,8 @@ help:
 	@echo '   make icons                Convert icons for Tkinter    '
 	@echo '   make run                  Run the app                  '
 	@echo '   make shot                 Make a screenshot            '
+	@echo '   make bundlepmw            Create Pmw.py                '
+	@echo '   make exe                  Create windows executable    '
 	@echo '                                                          '
 
 
@@ -42,6 +44,14 @@ shot :
 	@echo 'Click on plot window with crosshair...'
 	import screenshot.png
 	@echo 'Wrote screenshot to screenshot.png'
+
+.PHONY: bundlepmw
+bundlepmw :
+	python bundlepmw.py -noblt -nocolor /usr/lib/python2.7/site-packages/Pmw/Pmw_1_3_3/lib
+
+.PHONY: exe
+exe :
+	python setup.py build
 
 
 #--------------------------- Create icons ------------------------------
