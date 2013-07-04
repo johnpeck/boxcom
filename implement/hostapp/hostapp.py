@@ -7,7 +7,7 @@ import serial # Provides serial class Serial
 from serial.tools.list_ports import comports # For getting list of
                                              # serial ports
 
-import time # For timing data queries
+from datetime import datetime # For getting elapsed milliseconds
 import random # For the dummy interface output
 
 
@@ -32,16 +32,20 @@ class FrontEnd():
     def __init__(self,master):
         self.master = master
         master.title("Current monitor")
-        self.stopped = False
+        self.start_time = datetime.now()
+        self.stopped = False # State variable -- data collection runs
+                             # by default
         self.strvar_port = Tkinter.StringVar()
 
         # Define arrays for the data
         self.timearray = [0]
         self.curarray = [0]
+        self.plottzero = datetime.now() # Zero time for plotting
 
         # Define the period for data collection.  This will be how
         # often the unit is queried.
         self.query_ms = 100 # milliseconds
+        self.query_ms_adjust = 100 # adjusted for system delay
 
         
         # Set up a frame for the connection radio buttons to go in
@@ -219,21 +223,13 @@ class FrontEnd():
             self.serinit()
             self.readinputs()
         else:
-            self.stopped = True
-            self.but_playpause.config(image=self.icon_play)
-            self.pcursor.visible = True
- 
+            self.stopplot()
 
     def stopplot(self):
         self.stopped = True
         self.but_playpause.config(image=self.icon_play)
         # Only display a cursor if the plot is stopped
         self.pcursor.visible = True
-
-    def startplot(self):
-        self.stopped = False
-        self.readinputs()
-        self.pcursor.visible = False
 
     def serinit(self):
         if not self.serobj.isOpen():
@@ -265,7 +261,7 @@ class FrontEnd():
                 return 0
         else:
             return random.randrange(-70, +70, 10)
-            # return 1000
+
 
     # Read from the serial object and refresh the display on a
     # schedule
@@ -278,12 +274,17 @@ class FrontEnd():
             # If the array length is 1, this is the first time we've
             # read the current.
             self.curarray = [self.readcur()/1e3]
+            self.plottzero = datetime.now() # Reset the plot time=0 point
         if len(self.timearray) == 100:
             # If the array length is 100, start over from time = 0.
+            self.plottzero = datetime.now()
             self.timearray = [0]
             self.curarray = [self.curarray[-1]]
         # Keep current values in mA, time values in seconds
-        self.timearray.append(self.timearray[-1] + self.query_ms/1e3)
+        dt = datetime.now() - self.plottzero
+        plotms = ((dt.days * 24 * 60 * 60 + dt.seconds) * 1000 + 
+                  dt.microseconds / 1000.0)
+        self.timearray.append(plotms/1e3)
         self.curarray.append(self.readcur()/1e3)
 
         self.pplot.plot(self.timearray,self.curarray)  
@@ -294,8 +295,23 @@ class FrontEnd():
         self.pplot.set_xlabel('Time (s)')
         self.pfig_can.draw()
 
+        if len(self.timearray) > 3:
+            self.tweakdelay()
+
         if self.stopped == False:
-            self.master.after(self.query_ms,self.readinputs)
+            self.master.after(self.query_ms_adjust,self.readinputs)
+
+    # Adjust the read delay to approximate the target query_ms delay
+    def tweakdelay(self):
+        lasttime = (self.timearray[-1] - self.timearray[-2]) * 1000
+        if lasttime > self.query_ms:
+            if self.query_ms_adjust > 1:
+                self.query_ms_adjust -= 1
+            else:
+                self.query_ms_adjust = 1
+        elif lasttime < self.query_ms:
+            self.query_ms_adjust += 1
+        print(self.query_ms_adjust)
 
     # Send the command from the entry box
     def sendcommand(self):
