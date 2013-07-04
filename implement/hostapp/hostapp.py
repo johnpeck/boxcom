@@ -311,7 +311,7 @@ class FrontEnd():
                 self.query_ms_adjust = 1
         elif lasttime < self.query_ms:
             self.query_ms_adjust += 1
-        print(self.query_ms_adjust)
+
 
     # Send the command from the entry box
     def sendcommand(self):
