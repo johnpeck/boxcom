@@ -136,7 +136,7 @@
      ok to save the output to a uint16_t.
 ** DONE Add a warning sound
 * Work on host software
-** TODO Get software to fit on laptop screen
+** DONE Get software to fit on laptop screen
 ** TODO Try creating executable
 ** DONE Start/stop key should be below plot
 ** DONE Connection radiobox should be in a section

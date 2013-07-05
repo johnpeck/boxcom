@@ -16,6 +16,7 @@ help:
 	@echo '   make shot                 Make a screenshot            '
 	@echo '   make bundlepmw            Create Pmw.py                '
 	@echo '   make exe                  Create windows executable    '
+	@echo '   make clean                Clean up                     '
 	@echo '                                                          '
 
 
@@ -47,11 +48,17 @@ shot :
 
 .PHONY: bundlepmw
 bundlepmw :
-	python bundlepmw.py -noblt -nocolor /usr/lib/python2.7/site-packages/Pmw/Pmw_1_3_3/lib
+	python bundlepmw.py -noblt -nocolor \
+	 /usr/lib/python2.7/site-packages/Pmw/Pmw_1_3_3/lib
 
 .PHONY: exe
 exe :
 	python setup.py build
+
+.PHONY: clean
+clean :
+	rm -f images/*.png
+	rm -f screenshot.png
 
 
 #--------------------------- Create icons ------------------------------
