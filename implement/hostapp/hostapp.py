@@ -47,18 +47,97 @@ class FrontEnd():
         self.query_ms = 100 # milliseconds
         self.query_ms_adjust = 100 # adjusted for system delay
 
+        # ------------------- Set up the plot -------------------
+        # Make a frame for the plot and start/stop controls
+        self.frm_plotctrl = Tkinter.Frame(master,
+                                          borderwidth = 2,
+                                          relief = Tkinter.RIDGE,
+                                          padx = 20,
+                                          pady = 10)
+
+        # Make a frame for the plot and toolbar
+        self.frm_plot = Tkinter.Frame(self.frm_plotctrl,
+                                      borderwidth = 2,
+                                      relief = Tkinter.RIDGE,
+                                      padx = 20,
+                                      pady = 10)
+
+
+        # Make a figure object.
+        #   figsize = (width, height) with inch dimensions
+        self.pfig = Figure(figsize=(5,4),
+                           dpi = 100)
+        # Adjust the position of subplots in the figure (fractions of
+        # the figure dimensions)
+        self.pfig.subplots_adjust(bottom = 0.15,
+                                  right = 0.9,
+                                  top = 0.9,
+                                  left = 0.2,
+                                  wspace = 0,
+                                  hspace = 0)
+                                  
+        # Add a plot to the figure.  Using subplot automatically
+        # calculates position within figure.
+        self.pplot = self.pfig.add_subplot(111)
+        self.ytick_format = FormatStrFormatter('%0.3f')
+        self.xtick_format = FormatStrFormatter('%0.1f')
+
+        # Make a canvas for the figure to be painted on
+        self.pfig_can = FigureCanvasTkAgg(self.pfig, master = self.frm_plot)
+        self.pfig_can.show()
+        
+        # Add a toolbar for the plot
+        self.ptool = NavigationToolbar2TkAgg(self.pfig_can, self.frm_plot)
+
+        # Add a cursor, but make it invisible.  Stopping the plot will
+        # make it visible.
+        self.pcursor = Cursor(self.pplot, 
+                              useblit=True, # Only redraw changed regions
+                              color='red', 
+                              linewidth=1 )
+        self.pcursor.visible = False
+
+        # Set up go/stop buttons
+        self.icon_pause = Tkinter.PhotoImage(file="images/pause_icon.gif")
+        self.icon_play = Tkinter.PhotoImage(file="images/play_icon.gif")
+        self.but_playpause = Tkinter.Button(self.frm_plotctrl,
+                                            image = self.icon_pause,
+                                            command = self.playpause)
+
+        # -------------- Set up a command entry box -------------
+        self.frm_rightpane = Tkinter.Frame(master,
+                                           borderwidth = 2,
+                                           relief = Tkinter.RIDGE,
+                                           padx = 20,
+                                           pady = 10)
+                                           
+        self.frm_command = Tkinter.LabelFrame(self.frm_rightpane,
+                                              text = 'Command Entry',
+                                              labelanchor = 'n',
+                                              borderwidth = 2,
+                                              relief = Tkinter.RIDGE,
+                                              padx = 20,
+                                              pady = 10)
+        self.strvar_command = Tkinter.StringVar()
+        self.ent_command = Tkinter.Entry(self.frm_command,
+                                         textvariable = self.strvar_command)
+        self.icon_send = Tkinter.PhotoImage(file="images/send_icon.gif")
+        self.but_sendcmd = Tkinter.Button(self.frm_command,
+                                          image = self.icon_send,
+                                          command = self.sendcommand) 
+        self.txt_command = Pmw.ScrolledText(self.frm_command,
+                                        usehullsize = 1,
+                                        hull_height = 300,
+                                        hull_width = 400)
         
         # Set up a frame for the connection radio buttons to go in
-        self.frm_port = Tkinter.LabelFrame(master,
+        self.frm_port = Tkinter.LabelFrame(self.frm_rightpane,
                                            text = 'Connection port',
                                            labelanchor = 'n',
                                            borderwidth = 2,
                                            relief = Tkinter.RIDGE,
                                            padx = 20,
                                            pady = 10)
-
-
-        
 
         # Set up radio buttons for the connection selector.  Only add
         # serial ports to the list that respond to the *idn? query
@@ -100,7 +179,6 @@ class FrontEnd():
                                                  value = 'dummy'))
         self.serlist.append('dummy')
 
-
         # Connect to the first serial port in the list.  If there is
         # no valid serial port, connect to the dummy port.
         for serport in self.serlist:
@@ -114,92 +192,24 @@ class FrontEnd():
                 break
             else:
                 self.strvar_port.set('dummy')
-
-
-        # Set up go/stop buttons
-        self.icon_pause = Tkinter.PhotoImage(file="images/pause_icon.gif")
-        self.icon_play = Tkinter.PhotoImage(file="images/play_icon.gif")
-        self.but_playpause = Tkinter.Button(image = self.icon_pause,
-                                            command = self.playpause)
-
-
-
-
-        # ------------------- Set up the plot -------------------
-        # Make a figure object.
-        #   figsize = (width, height) with inch dimensions
-        self.pfig = Figure(figsize=(5,4),
-                           dpi = 100)
-        # Adjust the position of subplots in the figure (fractions of
-        # the figure dimensions)
-        self.pfig.subplots_adjust(bottom = 0.15,
-                                  right = 0.9,
-                                  top = 0.9,
-                                  left = 0.2,
-                                  wspace = 0,
-                                  hspace = 0)
-                                  
-        # Add a plot to the figure.  Using subplot automatically
-        # calculates position within figure.
-        self.pplot = self.pfig.add_subplot(111)
-        self.ytick_format = FormatStrFormatter('%0.3f')
-        self.xtick_format = FormatStrFormatter('%0.1f')
-
-        # Make a frame for the plot and toolbar
-        self.frm_plot = Tkinter.Frame(master,
-                                      borderwidth = 2,
-                                      relief = Tkinter.RIDGE,
-                                      padx = 20,
-                                      pady = 10)
-
-        # Make a canvas for the figure to be painted on
-        self.pfig_can = FigureCanvasTkAgg(self.pfig, master = self.frm_plot)
-        self.pfig_can.show()
-        
-        # Add a toolbar for the plot
-        self.ptool = NavigationToolbar2TkAgg(self.pfig_can, self.frm_plot)
-
-        # Add a cursor, but make it invisible.  Stopping the plot will
-        # make it visible.
-        self.pcursor = Cursor(self.pplot, 
-                              useblit=True, # Only redraw changed regions
-                              color='red', 
-                              linewidth=1 )
-        self.pcursor.visible = False
-
-        # -------------- Set up a command entry box -------------
-        self.frm_command = Tkinter.LabelFrame(master,
-                                              text = 'Command Entry',
-                                              labelanchor = 'n',
-                                              borderwidth = 2,
-                                              relief = Tkinter.RIDGE,
-                                              padx = 20,
-                                              pady = 10)
-        self.strvar_command = Tkinter.StringVar()
-        self.ent_command = Tkinter.Entry(self.frm_command,
-                                         textvariable = self.strvar_command)
-        self.icon_send = Tkinter.PhotoImage(file="images/send_icon.gif")
-        self.but_sendcmd = Tkinter.Button(self.frm_command,
-                                          image = self.icon_send,
-                                          command = self.sendcommand) 
-        self.txt_command = Pmw.ScrolledText(self.frm_command,
-                                        usehullsize = 1,
-                                        hull_height = 300,
-                                        hull_width = 400)
-                                         
-
         
         # ---------------- Position everything ------------------
-        self.frm_plot.pack() # Frame for plot and toolbar
-        for radiobutton in self.rad_port:
-            radiobutton.pack(side=Tkinter.TOP)
+        self.frm_plotctrl.pack(side=Tkinter.LEFT) # Plot and start/stop
+        self.frm_plot.pack(side=Tkinter.TOP) # Frame for plot and toolbar
         self.pfig_can.get_tk_widget().pack(side=Tkinter.TOP)
         self.but_playpause.pack(side=Tkinter.TOP)
-        self.frm_port.pack() # Frame for port radiobuttons
-        self.frm_command.pack()
+        
+        self.frm_rightpane.pack(side=Tkinter.LEFT)
+        self.frm_command.pack(side=Tkinter.TOP) # Frame for terminal
         self.ent_command.pack(side=Tkinter.LEFT) # Command entry box
         self.but_sendcmd.pack(side=Tkinter.LEFT) # Send command button
-        self.txt_command.pack(side=Tkinter.TOP)
+        self.txt_command.pack(side=Tkinter.LEFT) # Returned text box
+
+
+        self.frm_port.pack(side=Tkinter.TOP) # Frame for port radiobuttons
+        for radiobutton in self.rad_port:
+            radiobutton.pack(side=Tkinter.TOP)
+        
         
         # Start sampling the inputs.  This method will call itself
         # over and over again to refresh the data.
