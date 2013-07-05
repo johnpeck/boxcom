@@ -12,6 +12,12 @@
 ** Module name programmable with remote command
 ** Non-volatile voltage input calibration
 * ------------------------ TODO list ----------------------------
+* Work on demo
+** TODO Program second boxcom to be load
+   DEADLINE: <2013-07-08 Mon>
+   - The second boxcom should just blink an LED with a period of 1s --
+     so on for 1/2 second and off for 1/2 second.  Easiest way to do
+     this is to set curper to 500 for the second unit.
 * Work on firmware
 ** TODO Add command to generate time stamped data
    - I guess data would come out comma delimited: time (ms), current
@@ -136,6 +142,7 @@
      ok to save the output to a uint16_t.
 ** DONE Add a warning sound
 * Work on host software
+** TODO Pressing enter in the command entry box should send command
 ** DONE Get software to fit on laptop screen
 ** TODO Try creating executable
 ** DONE Start/stop key should be below plot
