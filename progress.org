@@ -142,6 +142,7 @@
      ok to save the output to a uint16_t.
 ** DONE Add a warning sound
 * Work on host software
+** TODO Add reset and start key to plot
 ** TODO Pressing enter in the command entry box should send command
 ** DONE Get software to fit on laptop screen
 ** TODO Try creating executable

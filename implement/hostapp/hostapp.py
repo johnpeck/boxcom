@@ -125,6 +125,7 @@ class FrontEnd():
         self.but_sendcmd = Tkinter.Button(self.frm_command,
                                           image = self.icon_send,
                                           command = self.sendcommand) 
+        self.ent_command.bind('<KeyPress-Return>',self.sendcommand_event)
         self.txt_command = Pmw.ScrolledText(self.frm_command,
                                         usehullsize = 1,
                                         hull_height = 300,
@@ -339,6 +340,9 @@ class FrontEnd():
                 retchars = self.serobj.read(100)
             for line in self.retstring.split('\r\n'):
                 self.txt_command.insert(Tkinter.END,(line + '\n'))
+
+    def sendcommand_event(self,event):
+        self.sendcommand()
 
         
 
