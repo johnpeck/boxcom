@@ -157,8 +157,8 @@
 ** DONE x axis tic labels are seconds -- not milliseconds
 ** DONE Add x axis label
 ** DONE Add random data input for dummy port
-* Work on howto [14/18]
-** TODO Write an overview section
+* Work on howto [15/20]
+** DONE Write an overview section
 ** TODO Add a host software section
 ** DONE Make sure every remote command is in the howto
 ** TODO Add a description for *idn
