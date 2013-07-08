@@ -84,6 +84,7 @@ $(MAINFILE).dvi: $(USER_CMDS_IDX).ind \
                  figs/current_sense_cable.eps \
                  figs/post_cable.eps \
                  figs/curout_plot.eps \
+                 figs/coincell.eps \
                  $(USBSCHDIR)/usb_input.eps \
                  $(USBSCHDIR)/usbio.eps \
                  $(USBSCHDIR)/rs232io.eps \
@@ -138,6 +139,10 @@ $(USBSCHDIR)/%.eps : $(USBSCHDIR)/%.ps
 	@echo
 	@echo 'Converting $< to eps...'
 	ps2eps $<
+
+# The coin cell
+figs/coincell.eps : figs/coincell.svg
+	inkscape --export-eps=$@ $<
 
 
 # The current sense cable
