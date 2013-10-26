@@ -1,7 +1,18 @@
 * boxcom progress
 * ----------------------- Dated notes ---------------------------
-** <2012-10-07 Sun> Created this project
-** <2013-02-03 Sun> Rev A of USB board set to Sierra Proto
+* <2012-10-07 Sun> Created this project
+* <2013-02-03 Sun> Rev A of USB board set to Sierra Proto
+* <2013-10-26 Sat> Discussion of lt6106 current measurment
+  - Use of the lt6106 to measure current involves 6 parts: 4
+    resistors, one capacitor, and the lt6106 (sot23-6).  The currents
+    I expect to see for a microphone are 160uA max, and a 60ohm sense
+    resistor would give me a 10mV drop when flowing 160uA.  The
+    problem would be if you wanted to skip a zero-point calibration.
+    The lt6106 has up to 350uV of offset voltage, which is the error
+    voltage on the voltage measured over the sense resistor.  So 350uV
+    would be 3.5% of the voltage when flowing 160uV over a 60ohm
+    resistor.  This error could be reduced by measuring the offset at
+    no current flow, or by increasing the sense resistor.
 * --------------------- Specifications --------------------------
 ** USB board
 *** Four 3.3V power outputs, one of which has current monitoring up to 100mA
