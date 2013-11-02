@@ -1,3 +1,8 @@
+Content-Type: text/enriched
+Text-Width: 70
+
+
+
 # This file describes the boxcom project.  This project demonstrates the
 # capabilities of my ASCII command interface written for the AVR
 # Butterfly.
@@ -83,7 +88,7 @@ task "Boxcom" {
       depends !kit14
       effort 3d
       allocate john
-      note -8<- 
+      note -8<<- 
       Assembly takes less than 1 day, but schedule an
       entire day for each board at the beginning. 
                      ->8-
@@ -101,7 +106,7 @@ task "Boxcom" {
         # of the resource.
         # allocate john
         journalentry 2013-02-26 "A headline" {
-          summary -8<-
+          summary -8<<-
           We ran into some compatibility problems with the SQL
           Library.
           ->8-
@@ -127,73 +132,73 @@ task "Boxcom" {
           # when a task with an effort attribute is in progress or has
           # finished.
           allocate john
-          effort 1d
-        }
-        task digikey "Wait for Digi-Key order" {
-          length 4d
-          start 2013-02-26
-          charge 100 onstart
-        }
-        task newark "Wait for Newark order" {
-          length 4d
-          start 2013-02-26
-          charge 60 onstart
-          
-        }
-        task baggies "Parts go into baggies" {
-          effort 1d
-          allocate john
-          depends !digikey,!newark
-        }
-      } # End kit15
-      task assemble15 "Assembly" {
-        # Assembly requires kitting
-        depends !kit15
-        effort 3d
-        allocate john
-        note -8<- 
-        Assembly takes less than 1 day, but schedule an
-        entire day for each board at the beginning. 
-                       ->8-
-                   } # End assembly
-        
-        #  There should always be visibility of the project
-        task web "Web report" {
-          allocate john
-          task overview "Generate overview text" {
-            effort 1d
-            start 2013-02-09
-          }
-          task schematics "Publish schematics" {
-            effort 1d
-          }
-          task layout "Publish pretty layout picture" {
-            effort 1d
-          }
-          task partslist "Publish parts list" {
-            effort 1d
-          }
-        } # End web reporting
-      } # End USB board
-      
-      # Chassis will be a top-level task
-      task chassis "Chassis" {
-        flags a # Revision code for the chassis
-        task overlay "Create overlay drawings" {
-          allocate john
-          effort 1d
-        }
-      } # End Chassis
-      
-      # Firmware will be a top-level task
-      task "Firmware" {
-        
-        task statcal "Persistent calibration" {
-          start 2013-4-30
-          effort 3d
-	  allocate john
-	}
-	task commands "Remote commands" {
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>}
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>digikey<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Wait</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>for</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>Digi-Key</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>order"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>length<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>4d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>start<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>2013-02-26
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>charge<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>100<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>onstart
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>}
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>newark<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Wait</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>for</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>Newark</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>order"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>length<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>4d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>start<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>2013-02-26
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>charge<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>60<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>onstart
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>red1</param><x-color><param>yellow</param>  </x-color></x-bg-color>
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>}
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>baggies<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Parts</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>go</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>into</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>baggies"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>allocate<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>john
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>depends<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>!digikey,!newark
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>}
+<x-bg-color><param>grey20</param><x-color><param>darkgray</param>      </x-color></x-bg-color>}<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>End</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>kit15
+</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>assemble15<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Assembly"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>Assembly</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>requires</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>kitting
+</x-color><x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>depends<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>!kit15
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>3d
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>allocate<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>john
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>note<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>-8<<-<x-bg-color><param>red1</param><x-color><param>yellow</param> </x-color></x-bg-color>
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>Assembly<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>takes<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>less<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>than<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>day,<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>but<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>schedule<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>an
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>entire<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>day<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>Cyan1</param>for</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>each<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>board<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>at<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>the<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>beginning.<x-bg-color><param>red1</param><x-color><param>yellow</param> </x-color></x-bg-color>
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>->8-
+<x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>}<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>End</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>assembly
+</x-color><x-bg-color><param>red1</param><x-color><param>yellow</param>        </x-color></x-bg-color>
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color><x-color><param>chocolate1</param>There</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>should</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>always</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>be</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>visibility</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>of</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>the</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>project
+</x-color><x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>web<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Web</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>report"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>allocate<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>john
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>overview<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Generate</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>overview</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>text"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>start<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>2013-02-09
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>}
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>schematics<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Publish</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>schematics"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>}
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>layout<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Publish</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>pretty</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>layout</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>picture"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>}
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>partslist<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Publish</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>parts</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>list"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>    </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>}
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>}<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>End</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>web</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>reporting
+</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>      </x-color></x-bg-color>}<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>End</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>USB</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>board
+</x-color><x-bg-color><param>red1</param><x-color><param>yellow</param>      </x-color></x-bg-color>
+<x-bg-color><param>grey20</param><x-color><param>darkgray</param>      </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>Chassis</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>will</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>be</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>a</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>top-level</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>task
+</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>      </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>chassis<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Chassis"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>flags<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>a<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>Revision</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>code</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>for</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>the</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>chassis
+</x-color><x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>overlay<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Create</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>overlay</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>drawings"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>allocate<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>john
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>1d
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>}
+<x-bg-color><param>grey20</param><x-color><param>darkgray</param>      </x-color></x-bg-color>}<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>End</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>Chassis
+</x-color><x-bg-color><param>red1</param><x-color><param>yellow</param>      </x-color></x-bg-color>
+<x-bg-color><param>grey20</param><x-color><param>darkgray</param>      </x-color></x-bg-color><x-color><param>chocolate1</param>#</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>Firmware</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>will</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>be</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>a</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>top-level</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>chocolate1</param>task
+</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>      </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Firmware"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>red1</param><x-color><param>yellow</param>        </x-color></x-bg-color>
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>statcal<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Persistent</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>calibration"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>start<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>2013-4-30
+<x-bg-color><param>yellow</param><x-color><param>firebrick</param>        </x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>effort<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>3d
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param>  </x-color></x-bg-color>allocate<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>john
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color>}
+<x-bg-color><param>grey22</param><x-color><param>darkgray</param>	</x-color></x-bg-color>task<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>commands<x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>"Remote</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color><x-color><param>LightSalmon</param>commands"</x-color><x-bg-color><param>grey20</param><x-color><param>darkgray</param> </x-color></x-bg-color>{
           depends !statcal
           task "ioutp?" {
             note "Some stuff"
@@ -221,17 +226,17 @@ navigator navbar {
 
 macro TaskTip [
   tooltip istask() 
-               -8<-
-               '''Start: ''' <-query attribute='start'->
-               '''End: ''' <-query attribute='end'->
+               -8<<-
+               '''Start: ''' <<-query attribute='start'->
+               '''End: ''' <<-query attribute='end'->
                ----
-               '''Notes: ''' <-query attribute='note'->
+               '''Notes: ''' <<-query attribute='note'->
                ----
-               '''Effort:''' <-query attribute='effort'-> days
+               '''Effort:''' <<-query attribute='effort'-> days
                ----
-               '''Precursors: ''' <-query attribute='precursors'->
+               '''Precursors: ''' <<-query attribute='precursors'->
                ----
-               '''Followers: ''' <-query attribute='followers'->
+               '''Followers: ''' <<-query attribute='followers'->
                ----
                ->8-
 ]
@@ -273,14 +278,14 @@ taskreport narrow "" {
 
 
 textreport frame "" {
-  header -8<-
+  header -8<<-
     == Boxcom ==
-    <[navigator id="navbar"]>
+    <<[navigator id="navbar"]>
   ->8-
   footer "----"
   textreport index "Overview" {
     formats html
-    center '<[report id="overview"]>'
+    center '<<[report id="overview"]>'
   }
 }
 
@@ -288,7 +293,7 @@ textreport frame "" {
 # (specified with taskreport)
 #
 # Specify which taskreport to pull in with the id of the report.  For
-# example, '<[report id="junk"]>' represents the output created with
+# example, '<<[report id="junk"]>' represents the output created with
 # the junk taskreport specification.
 #
 # textreports can contain more textreports.  They'll inherit
@@ -304,17 +309,17 @@ textreport frame "" {
 # file to be generated.  It will also be the entry in the navbar.
 
 textreport morejunk "" {
-  header -8<-
+  header -8<<-
     == More stuff ==
-    <[navigator id="navbar"]>
+    <<[navigator id="navbar"]>
   ->8-
   footer "----"
   textreport "gantt" {
     formats html
-    center '<[report id="narrow"]>'
+    center '<<[report id="narrow"]>'
   }
   textreport "Crap" {
     formats html
-    center '<[report id="narrow"]>'
+    center '<<[report id="narrow"]>'
   }
 }
