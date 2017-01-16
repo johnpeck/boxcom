@@ -350,6 +350,19 @@ DEBUG_HOST = localhost
 
 #============================================================================
 
+# What platform are we on?
+uname_value := "$(shell uname)"
+ifeq ($(uname_value),"Linux")
+	# Platform is Linux
+	platform = linux
+endif
+
+ifeq ($(findstring CYGWIN, $(uname_value)), CYGWIN)
+	# Platform is cygwin, but make may be called from eshell.  So
+	# the shell is bash, but the PATH variable won't be set
+	# correctly.
+	platform = cygwin
+endif
 
 # Define programs and commands.
 SHELL = sh
@@ -408,7 +421,7 @@ ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
 
 # Default target.
 help:
-	@echo 'Makefile for the boxcom code                             '
+	@echo 'Makefile for boxcom on $(platform)                       '
 	@echo '                                                         '
 	@echo 'Usage:                                                   '
 	@echo '   make edit           Edit the code with emacs          '
